@@ -43,22 +43,19 @@
 
 \thispagestyle{empty}
 \normalfont
-\cleardoublepage
 
 \include{dedication}
 
-\thispagestyle{empty}
-
-\cleardoublepage
+% \thispagestyle{empty} \vspace*{.75truecm}
+\include{acknowledgements}
 
 \pagenumbering{arabic}
 
+
 \include{abstract}
 
-\thispagestyle{empty} \vspace*{.75truecm} \cleardoublepage
-\include{acknowledgements}
 
-\tableofcontents \cleardoublepage
+\tableofcontents
 
 \thispagestyle{empty} \vspace*{.75truecm} \normalfont \cleardoublepage
 \pagestyle{plain}\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}} 
@@ -81,7 +78,7 @@
 % ---- Bibliography ----
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliographystyle{plain}
-\bibliography{bibl_thesis}
+\bibliography{Bibl_thesis}
 %\nocite{*}
 
 \appendix
