@@ -16,6 +16,7 @@
 \usepackage{rotating}
 \usepackage{fancyhdr}
 \usepackage[scriptsize]{caption}
+
 \hyphenation{a-gen-tiz-za-zio-ne}
 
 \setlength{\paperwidth}{16cm}
@@ -29,9 +30,15 @@
 \DeclareGraphicsExtensions{.ps,.eps}
 
 
-\usepackage[english]{babel}
-\usepackage[latin1]{inputenc}
+\usepackage[polutonikogreek,english]{babel}
+%\usepackage{teubner}
+
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8x]{inputenx}
+
 \renewcommand{\captionfont}{\normalfont \sffamily \itshape \small}
+
+\newcommand{\greek}[1]{{\selectlanguage{polutonikogreek}#1}}
 
 \pagestyle{empty}
 
