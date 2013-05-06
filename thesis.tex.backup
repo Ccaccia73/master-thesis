@@ -14,9 +14,8 @@
 \usepackage{fancyhdr}
 \usepackage[scriptsize]{caption}
 
-% 2 added
-% \usepackage[colorlinks]{hyperref}
-% \usepackage[hidelinks]{hyperref}
+% 2 
+\usepackage[colorlinks]{hyperref}
 \usepackage{glossaries}
 
 \hyphenation{a-gen-tiz-za-zio-ne}
@@ -29,42 +28,38 @@
 \addtolength{\evensidemargin} {-0.4 cm}
 \linespread{1.1}
 
-% 1 added
 \DeclareGraphicsExtensions{.ps,.eps}
 
-% modified
+
 \usepackage[polutonikogreek,english]{babel}
 %\usepackage{teubner}
 %\usepackage[latin1]{inputenc}
-
-% modified
 \usepackage[utf8x]{inputenx}
 
 \renewcommand{\captionfont}{\normalfont \sffamily \itshape \small}
 
-% 1 added
 \newcommand{\greek}[1]{{\selectlanguage{polutonikogreek}#1}}
 
 \pagestyle{empty}
 
 %\input{definitions}
-\input{glossaryterms}
-\makeglossary
 
 \begin{document}
 
-
 \include{title_page}
-\thispagestyle{empty} \normalfont \cleardoublepage
+
+\thispagestyle{empty}
+\normalfont
+
 \include{dedication}
-\thispagestyle{empty} \cleardoublepage
-\pagenumbering{roman}
-\include{abstract}
-\thispagestyle{empty} \vspace*{.75truecm} \cleardoublepage
+
+% \thispagestyle{empty} \vspace*{.75truecm}
 \include{acknowledgements}
 
+\pagenumbering{Roman}
 
 
+\include{abstract}
 
 
 \tableofcontents
@@ -78,7 +73,8 @@
 \addcontentsline{toc}{chapter}{List of Tables}%
 \cleardoublepage
 
-\addcontentsline{toc}{chapter}{Glossary}
+\include{glossary}
+
 \printglossary
 
 \thispagestyle{empty} \vspace*{.75truecm} \normalfont \cleardoublepage
