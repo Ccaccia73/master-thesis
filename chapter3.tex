@@ -4,9 +4,10 @@
 
 \begin{quotation}
 {\footnotesize
-\noindent{\emph{``Quote 3''}}
+\noindent{\emph{``\greek{p'antec >'anjrwpoi to~u e>id'enai >or'egontai f'usei}''}\\
+(All men naturally desire knowledge)}
 \begin{flushright}
-Author 3
+\greek{>Aristot'elhc}(Aristotle, Met. 1.980a)
 \end{flushright}
 }
 \end{quotation}
@@ -14,6 +15,43 @@ Author 3
 \vspace{0.5cm}
 
 %\noindent In questa sezione si deve descrivere l'obiettivo della ricerca, le problematiche affrontate ed eventuali definizioni preliminari nel caso la tesi sia di carattere teorico.
+
+
+In our work we focused on two types of classifiers: \textit{Support Vector Machines} and \textit{Random Forests}
+which are widely used in computer vision classification problems ( e.g. \cite{mitosisDetectionLearningBased} and \cite{randForests04}).
+We also mention \Glspl{CNN} because they played a relevant role in the definition of our dataset [REF].
+
+
+ 
+
+\subsection{Feature Extraction}
+
+Curse of dimensionality and PCA
+
+
+
+
+[SNIPPET]
+In most computer vision applications it is not sufficient to extract only one type of feature to obtain the relevant information from the image data.
+Instead two or more different features are extracted, resulting in two or more feature descriptors at each image point.
+A common practice is to organize the information provided by all these descriptors as the elements of one single vector,
+commonly referred to as a feature vector. The set of all possible feature vectors constitutes a feature space.
+A common example of feature vectors appears when each image point is to be classified as belonging to a specific class.
+Assuming that each image point has a corresponding feature vector based on a suitable set of features,
+meaning that each class is well separated in the corresponding feature space, the classification of each image point can be done using standard classification method.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{From Detection to Classification}
 
@@ -47,3 +85,27 @@ Experience, agreement...
 \section{Performance}
 
 Definition of performance
+
+
+[SNIPPET]
+The general appearance of a mitosis results in the fact that automatically detecting mitoses is very challenging.
+Different to other pattern recognition tasks, mitotic cells essentially are irregular shape objects. As a result, there
+is no simple way of extracting the features of mitotic cells.
+Benchmarking of different detection algorithms and comparison with human performance.
+
+
+\section{Benchmarks}
+\label{ch3:Bench}
+
+\vspace{0.5cm}
+
+\subsection{Humans}
+\label{ch3:humans}
+
+
+Agreement between different histologists
+
+\subsection{Algorithms}
+
+The technique of \textit{thresholding} is often used to analyze the performance of an algorithm that outputs probabilities in 
+

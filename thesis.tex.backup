@@ -1,8 +1,8 @@
-\documentclass[11pt,a4paper,twoside,openright]{report}
+\documentclass[11pt,a4paper,twoside,openright]{book}
 
 % 2 added
 \usepackage{epsfig}
-\usepackage{epstopdf}
+%\usepackage{epstopdf}
 
 %\usepackage[dvips]{graphicx}
 \usepackage{graphicx}
@@ -14,11 +14,12 @@
 \usepackage{fancyhdr}
 \usepackage[scriptsize]{caption}
 
-% 2 
-\usepackage[colorlinks]{hyperref}
+% 2 added
+% \usepackage[colorlinks]{hyperref}
+% \usepackage[hidelinks]{hyperref}
 \usepackage{glossaries}
 
-\hyphenation{a-gen-tiz-za-zio-ne}
+%\hyphenation{a-gen-tiz-za-zio-ne}
 
 \setlength{\paperwidth}{16cm}
 \setlength{\paperheight}{24cm}
@@ -28,38 +29,43 @@
 \addtolength{\evensidemargin} {-0.4 cm}
 \linespread{1.1}
 
+% 1 added
 \DeclareGraphicsExtensions{.ps,.eps}
 
-
+% modified
 \usepackage[polutonikogreek,english]{babel}
 %\usepackage{teubner}
 %\usepackage[latin1]{inputenc}
+
+% modified
 \usepackage[utf8x]{inputenx}
 
 \renewcommand{\captionfont}{\normalfont \sffamily \itshape \small}
 
+% 1 added
 \newcommand{\greek}[1]{{\selectlanguage{polutonikogreek}#1}}
 
 \pagestyle{empty}
 
 %\input{definitions}
+\input{glossaryterms}
+\makeglossary
 
 \begin{document}
 
+\frontmatter
+
 \include{title_page}
-
-\thispagestyle{empty}
-\normalfont
-
+\thispagestyle{empty} \normalfont \cleardoublepage
 \include{dedication}
-
-% \thispagestyle{empty} \vspace*{.75truecm}
+\thispagestyle{empty} \cleardoublepage
+\pagenumbering{roman}
+\include{abstract}
+\thispagestyle{empty} \vspace*{.75truecm} \cleardoublepage
 \include{acknowledgements}
 
-\pagenumbering{Roman}
 
 
-\include{abstract}
 
 
 \tableofcontents
@@ -73,18 +79,21 @@
 \addcontentsline{toc}{chapter}{List of Tables}%
 \cleardoublepage
 
-\include{glossary}
-
+\addcontentsline{toc}{chapter}{Glossary}
 \printglossary
 
 \thispagestyle{empty} \vspace*{.75truecm} \normalfont \cleardoublepage
-\pagestyle{plain}\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}} 
+\pagestyle{plain}
+
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}} 
 \renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}         
 \fancyhead[LE,RO]{\bfseries\thepage}    
-                                        
 \fancyhead[RE]{\bfseries\leftmark}    
 \fancyhead[LO]{\bfseries\rightmark}     
+
 \renewcommand{\headrulewidth}{0.3pt} 
+
+\mainmatter
 
 \include{chapter1}
 \include{chapter2}
@@ -96,8 +105,12 @@
 
 \cleardoublepage
 % ---- Bibliography ----
+
+\backmatter
+
 \addcontentsline{toc}{chapter}{Bibliography}
-\bibliographystyle{plain}
+\bibliographystyle{acm}
+\thispagestyle{empty}
 \bibliography{Bibl_thesis}
 %\nocite{*}
 
