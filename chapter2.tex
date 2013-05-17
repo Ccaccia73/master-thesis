@@ -123,7 +123,7 @@ apoptotic nuclei can have similar appearance, making it
 difficult even for trained experts to make a distinction \cite{mitosisDetectionLearningBased}. Lymphocytes, compressed
 nuclei, \textquotedblleft junk\textquotedblright particles and other artifact form the tissue preparation process, can also
 have hyperchromatic appearance.
-The images in Figure \ref{ch2:fig2} and in Figure \ref{ch2:fig3} try to give an idea of the difficulty of the task.
+The images in Figures \ref{ch2:fig2}, \ref{ch2:fig3} and \ref{ch2:fig3b} try to give an idea of the difficulty of the task.
 
 \begin{figure}[!hbt]
   \centering
@@ -343,20 +343,36 @@ The cascade therefore has the form of a degenerate tree.
 
 \vspace{0.5cm}
 
-\begin{figure}[!hbt]
+\begin{figure}[!hpbt]
  \centering
   \subfigure[source image]{
-    \includegraphics[width=0.72\textwidth]{./images/A03_02th.jpg}
+    \includegraphics[width=0.64\textwidth]{./images/A03_02th.jpg}
     \label{ch2:fig3:a}
    }\\
   \subfigure[mitoses]{
-    \includegraphics[width=0.72\textwidth]{./images/A03_02.jpg}
+    \includegraphics[width=0.64\textwidth]{./images/A03_02.jpg}
     \label{ch2:fig3:b}
   }
   \caption{Example of image with highlighted mitoses (yellow) }
   \label{ch2:fig3}
 \end{figure}
 
+
+\begin{figure}[!hpbt]
+ \centering
+  \subfigure[source image (zoom)]{
+    \includegraphics[width=0.64\textwidth]{./images/A03_02th_z.jpg}
+    \label{ch2:fig3b:a}
+   }\\
+  \subfigure[mitoses (zoom)]{
+    \includegraphics[width=0.64\textwidth]{./images/A03_02_z.jpg}
+    \label{ch2:fig3b:b}
+  }
+  \caption[Zoom of Figure \ref{ch2:fig3}]{Example of image with highlighted mitoses (yellow) zoom of Figure \ref{ch2:fig3} }
+  \label{ch2:fig3b}
+\end{figure}
+
+\clearpage
 
 \section{Machine Learning}
 \label{ch2:ML}

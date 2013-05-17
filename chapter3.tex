@@ -12,44 +12,48 @@
 }
 \end{quotation}
 
-\vspace{0.5cm}
 
 %\noindent In questa sezione si deve descrivere l'obiettivo della ricerca, le problematiche affrontate ed eventuali definizioni preliminari nel caso la tesi sia di carattere teorico.
 
 
-In our work we focused on two types of classifiers: \textit{Support Vector Machines} and \textit{Random Forests}
-which are widely used in computer vision classification problems ( e.g. \cite{mitosisDetectionLearningBased} and \cite{randForests04}).
-We also mention \Glspl{CNN} because they played a relevant role in the definition of our dataset [REF].
+\section{Bacground}
 
+The purpose of automating the mitosis detection problems requires the definition 
 
- 
-
-\subsection{Feature Extraction}
-
-Curse of dimensionality and PCA
-
-
-
-
-[SNIPPET]
-In most computer vision applications it is not sufficient to extract only one type of feature to obtain the relevant information from the image data.
-Instead two or more different features are extracted, resulting in two or more feature descriptors at each image point.
-A common practice is to organize the information provided by all these descriptors as the elements of one single vector,
-commonly referred to as a feature vector. The set of all possible feature vectors constitutes a feature space.
-A common example of feature vectors appears when each image point is to be classified as belonging to a specific class.
-Assuming that each image point has a corresponding feature vector based on a suitable set of features,
-meaning that each class is well separated in the corresponding feature space, the classification of each image point can be done using standard classification method.
-
-
-
-
-
-
+\begin{tikzpicture}[node distance = 2cm, auto]
+    % Place nodes
+    \node [block] (init) {initialize model};
+    \node [cloud, left of=init] (expert) {expert};
+    \node [cloud, right of=init] (system) {system};
+    \node [block, below of=init] (identify) {identify candidate models};
+    \node [block, below of=identify] (evaluate) {evaluate candidate models};
+    \node [block, left of=evaluate, node distance=3cm] (update) {update model};
+    \node [decision, below of=evaluate] (decide) {is best candidate better?};
+    \node [block, below of=decide, node distance=3cm] (stop) {stop};
+    % Draw edges
+    \path [line] (init) -- (identify);
+    \path [line] (identify) -- (evaluate);
+    \path [line] (evaluate) -- (decide);
+    \path [line] (decide) -| node [near start] {yes} (update);
+    \path [line] (update) |- (identify);
+    \path [line] (decide) -- node {no}(stop);
+    \path [line,dashed] (expert) -- (init);
+    \path [line,dashed] (system) -- (init);
+    \path [line,dashed] (system) |- (evaluate);
+\end{tikzpicture}
 
 
 
 
 
+
+
+
+
+
+
+
+\vspace{0.5cm}
 
 
 
@@ -74,7 +78,46 @@ Definition of classification:
 
 \subsection{Algorithms}
 
+
+
+
+
+
+In our work we focused on two types of classifiers: \textit{Support Vector Machines} and \textit{Random Forests}
+which are widely used in computer vision classification problems ( e.g. \cite{mitosisDetectionLearningBased} and \cite{randForests04}).
+We also mention \Glspl{CNN} because they played a relevant role in the definition of our dataset [REF].
+
+
+ 
+
 The role of features and classifiers
+
+\subsection{Feature Extraction}
+
+Curse of dimensionality and PCA
+
+
+
+
+
+
+
+
+
+
+[SNIPPET]
+In most computer vision applications it is not sufficient to extract only one type of feature to obtain the relevant information from the image data.
+Instead two or more different features are extracted, resulting in two or more feature descriptors at each image point.
+A common practice is to organize the information provided by all these descriptors as the elements of one single vector,
+commonly referred to as a feature vector. The set of all possible feature vectors constitutes a feature space.
+A common example of feature vectors appears when each image point is to be classified as belonging to a specific class.
+Assuming that each image point has a corresponding feature vector based on a suitable set of features,
+meaning that each class is well separated in the corresponding feature space, the classification of each image point can be done using standard classification method.
+
+
+
+
+
 
 \subsection{Humans}
 
