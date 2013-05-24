@@ -190,7 +190,7 @@ for \textit{object detection} and \textit{feature extraction}\cite{featuresRevie
 \subsection{Features}
 
 The concept of feature is used to denote a piece of information which is relevant for solving a computational task\cite{featExtractionAndImageProcessingBook}.
-A feature is defined as an \textquotedblleft{interesting}\textquotedblright part of an image, and features are used as a starting point for many computer vision algorithms.
+A feature is defined as an \textquotedblleft{interesting}\textquotedblright part of an image, and features are used as a starting point for many \Gls{CV} algorithms.
 They can be the result of a general \textit{neighborhood operation}\cite{jahne2000computer} applied to the image, or specific structures in the image itself.
 Types of image features include:
 \begin{itemize}
@@ -203,7 +203,7 @@ Types of image features include:
 Other examples of features are related to motion in image sequences, to shapes defined in terms
 of curves or boundaries between different image regions, or to properties of such a region\cite{MVG_Hartley2004}.
 
-The feature concept is very general and the choice of features in a particular computer vision system may be highly dependent on the specific problem to be considered.\\
+The feature concept is very general and the choice of features in a particular \Gls{CV} system may be highly dependent on the specific problem to be considered.\\
 
 
 \subsection{Feature Detectors}
@@ -259,7 +259,7 @@ also in medical \cite{texture04} and biological imaging \cite{textGLCMbiol}.
 
 \subsubsection{Local Binary Patterns}
 
-\Gls{LBP} is another type of feature used for classification in computer vision. \Gls{LBP} is a simple yet very efficient texture operator
+\Gls{LBP} is another type of feature used for classification in Computer Vision. \Gls{LBP} is a simple yet very efficient texture operator
 which labels the pixels of an image by thresholding the neighborhood of each pixel with the value of the center pixel and considers the result as a binary number.
 The distance and the number of neighbors can be selected, as shown in Figure \ref{ch2:fig4}\cite{LBP01}.
 The notation $(P,R)$ is used for pixel neighborhoods which means \textit{P} sampling points on a circle of radius of \textit{R}.
@@ -328,10 +328,10 @@ image reconstruction and acquisition schemes (tomography, and \Gls{MRI}).
 
 \subsection{Object detection and recognition}
 
-Object detection is a computer vision technology that deals with detecting instances of semantic objects of a certain class (such as humans, traffic signs, mitotic cells) in digital images
+Object detection is a Computer Vision technology that deals with detecting instances of semantic objects of a certain class (such as humans, traffic signs, mitotic cells) in digital images
 Humans recognize a multitude of objects in images with little effort, despite the fact that the image of the objects may be in different orientation,
 or in different size/scale. Objects can even be recognized when they are partially obstructed from view.
-This task is still a challenge for computer vision systems and represents the connection between Image Analysis topics and Machine Learning.
+This task is still a challenge for \Gls{CV} systems and represents the connection between Image Analysis topics and Machine Learning.
 Viola and Jones proposed a well known object detection framework \cite{objDetect04ViolaJones, objDetect05ViolaJonesRapid}, which involves the sums
 of image pixels within rectangular areas, using the so-called Haar-like features, a name that resembles the Haar wavelet adopted in \cite{objDetect03framework}.
 The technique generates a large amount of features and uses the boosting algorithm \textit{AdaBoost} to reduce the over-complete set, by selecting the best features and training classifiers that use them.
@@ -398,8 +398,8 @@ There exists a great variety of \Gls{ML} algorithms, and a detailed review is be
 We focous, in our analysis, on \textit{Pattern Recognition} and in particular on \textit{Supervised Learning} methods.
 
 \subsection{Pattern Recognition}
-
-Pattern recognition is the assignment of a label to a given input value \cite{bishop2006pattern, theodoridis2008pattern}. In its most general form, pattern recognition involves:
+\label{ch2:pr}
+\Gls{PR} is the assignment of a label to a given input value \cite{bishop2006pattern, theodoridis2008pattern}. In its most general form, \Gls{PR} involves:
 
 \begin{itemize}
  \item \textbf{Classification} is the problem of identifying to which of a set of categories a new observation belongs, on the basis
@@ -428,7 +428,7 @@ The \textit{training set}
 \end{equation}
 
 is assumed to represent the mapping of $g$ in an accurate way. The classifier then tries to build a function $h: X \rightarrow Y$ that approximates as closely as possible the correct mapping. The measure of the performance
-(see \ref{ch3:Bench} for details) is generally done on a separate set of data ( the \textit{test set}) whose labels are known but whose data are not used during the learning phase\cite{liu2006pattern}.
+(see \ref{ch3:perf} for details) is generally done on a separate set of data ( the \textit{test set}) whose labels are known but whose data are not used during the learning phase\cite{liu2006pattern}.
 
 A common subclass of classification is \textit{probabilistic classification}. Algorithms of this type involve statistical tools to define the best class for a given instance\cite{ML_gaussian}.
 Probabilistic algorithms output a probability that the instance is a member of each of the possible classes. The best class is normally then selected as the one with the highest probability.
@@ -449,14 +449,14 @@ on the other hand, when the null hypothesis is false results in a \Gls{TP}.
 A \textit{negative} result is one which does not reject the null hypothesis.
 Accepting the null hypothesis when it is actually false - a \Gls{FN} - is a \textbf{type II error};
 on the other hand, when the null hypothesis is true results in a \Gls{TN}.
-How the number of \Gls{TP}, \Gls{FP}, \Gls{TN} and \Gls{FN} can be used to assess the performances of a classification algorithm is treated in Section \ref{ch3:Bench}.
+How the number of \Gls{TP}, \Gls{FP}, \Gls{TN} and \Gls{FN} can be used to assess the performances of a classification algorithm is treated in Section \ref{ch3:perf}.
 
 
 \subsection{Binary Classifiers}
 
 An algorithm that implements a classification, is defined a \textbf{classifier}.
 The term also refers to the mathematical function, implemented by a classification algorithm, that maps input data to a category (i.e. \textit{class}).
-A great amount of algorithms has been developed for classification purposes, in particular for computer vision tasks \cite{classificationSurvey}.
+A great amount of algorithms has been developed for classification purposes, in particular for \Gls{CV} tasks \cite{classificationSurvey}.
 Some methods suitable for learning binary classifiers include\cite{dataMiningBook}:
 
 \begin{itemize}
@@ -471,7 +471,7 @@ Some methods suitable for learning binary classifiers include\cite{dataMiningBoo
 
 
 In our work we focused on two types of classifiers: \textit{Support Vector Machines} and \textit{Random Forests}
-which are widely used in computer vision classification problems ( e.g. \cite{mitosisDetectionLearningBased} and \cite{randForests04}).
+which are widely used in \Gls{CV} classification problems ( e.g. \cite{mitosisDetectionLearningBased} and \cite{randForests04}).
 
 \subsection{Software Tools}
 
