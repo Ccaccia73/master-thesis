@@ -18,6 +18,23 @@
 
 \section{Test Design}
 
+The problem of detecting mitosis can be cast as a problem of classifying image
+patches. In fact, most detection algorithms are based on classifiers which map
+an image patch to the probability that a mitosis appears at its center; once such
+classifier is known, the detection problem is solved by applying it on a sliding
+window over the input image, or to a set of candidate patches identified in a
+previous step.
+The classification task can be presented to an user through a very simple and immediate interaction mechanism: in fact, a single decision is required for each
+patch. In contrast, detection would require a more complicated interaction with
+users. For this reason, we focus on the classification subproblem in the following.
+For a given sample, input is given in form of an image patch with size 100 × 100
+px: such size completely contains the image of the cell, and most algorithms
+(FIXME) considered in the following only use data from a smaller window. The
+task is to map each patch to one of two classes: C1) the image contains a mitosis
+at its center; C0) the image does not contain a mitosis anywhere. There are no
+samples in which a mitosis is visible off-center.
+
+
 \subsection{Dataset}
 
 (NB: il set di immagini usate deve esser già stato descritto)
