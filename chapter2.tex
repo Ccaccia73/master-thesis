@@ -227,6 +227,7 @@ Such a process assigns a label to every pixel in an image so that pixels with th
 
 
 \subsection{Texture Algorithms}
+\label{ch2:texture}
 
 An image texture is a set of metrics designed to quantify the perceived texture of an image.
 Image texture gives information about the spatial arrangement of color or intensities in an image or in selected region of it\cite{ CV_Forsyth}.
@@ -258,7 +259,7 @@ also in medical \cite{texture04} and biological imaging \cite{textGLCMbiol}.
 
 
 \subsubsection{Local Binary Patterns}
-
+\label{ch2:lbp}
 \Gls{LBP} is another type of feature used for classification in Computer Vision. \Gls{LBP} is a simple yet very efficient texture operator
 which labels the pixels of an image by thresholding the neighborhood of each pixel with the value of the center pixel and considers the result as a binary number.
 The distance and the number of neighbors can be selected, as shown in Figure \ref{ch2:fig4}\cite{LBP01}.
@@ -287,6 +288,7 @@ The notation $(P,R)$ is used for pixel neighborhoods which means \textit{P} samp
 The computation of the \Gls{LBP} code of a pixel of coordinates $(x_c,y_c)$ is given by:
 
 \begin{equation}
+\label{ch2:eq_lbp1}
  LBP_{P,R} = \sum_{p=0}^{P-1} s(g_p - g_c) \cdot 2^{p} \quad \textrm{where} \ s(x) = 
     \left\{
 	\begin{array}{ll} 1, & \textrm{if} \ x \geq 0\\
@@ -310,6 +312,7 @@ Both operators are also computationally attractive, as they can be realized with
 The \Gls{VAR} operator is described by the following relations:
 
 \begin{equation}
+\label{ch2:eq_lbp2}
  VAR_{(P,R)} = \frac{1}{P} \sum_{p=0}^{P-1}(g_p - \mu)^{2} \quad \textrm{where} \ \mu = \sum_{p=0}^{P-1}g_p^2
 \end{equation}
 

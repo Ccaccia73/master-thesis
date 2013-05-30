@@ -24,7 +24,7 @@ We used the public MITOS dataset \cite{icpr}. The dataset is composed by a total
 covering an area of 512$\times$512 $\mu$m each, acquired with an APERIO XT scanner (see Figure \ref{ch2:fig1}). 
 A unique split is defined by the dataset authors, with 35 images used for training and 15 for evaluation.
 The dataset contains a total of about 300 mitosis, which were annotated by an expert pathologist.
-The performance of the algorithms participating to the \textit{2012 ICPR mitosis detection contest} are shown in Section \ref{ch3:icpr_perf}.\\
+The performance of the algorithms participating to the \textit{2012 ICPR mitosis detection contest} are shown in Section \ref{ch6:icpr_perf}.\\
 With reference to Figure \ref{ch3:fig1}, we focused on on the classification subproblem, with the \Glspl{ROI} given as an input.
 The input is given in form of an image patch with size 100$\times$100 pixel: such size completely contains the image of the cell.
 The task is to map each patch to one of two classes:
@@ -38,6 +38,7 @@ There are no samples in which a mitosis is visible off-center.
 \vspace{0.5cm}
 
 \subsection{Image Candidates}
+\label{ch4:ic}
 
 For the \textit{\textbf{C1}} class, all the 216 mitosis available in the 35 training images are chosen
 as training samples, and all 87 mitosis in the evaluation images are chosen as
@@ -70,6 +71,7 @@ algorithms were tuned to solve a problem with very low prevalence of mitotic sam
 \vspace{0.5cm}
 
 \subsection{Extended Dataset}
+\label{ch4:ed}
 
 We extended our dataset by rotating and mirroring each image patch (see Figure \ref{ch4:fig1}). We used the extended dataset only for the detection algorithm, so that we could analyze
 the effect of different features, which can be explicitly dependent on orientation or not, on the global performance of the classifier.\\
@@ -96,6 +98,7 @@ Where $c_{i}$ represents the classification of image patch \textit{i}, and $c_{i
 
 
 \section{Features Extraction}
+\label{ch4:FE}
 
 Each image patch can be represented as a 100$\times$100$\times$3 matrix, where the $(i,j,:)$ triplet represents the RGB value of point with coordinates $(i,j)$ in the image.
 Each value is in the range 0 to 255. Starting from these (raw) data we extracted some features by which we trained and tested our classifiers.
@@ -104,8 +107,8 @@ Each value is in the range 0 to 255. Starting from these (raw) data we extracted
 
 \subsection{Simple Features}
 
-The simplest features that can be computed involve the average and the standard deviation of the RGB values of the image patch. They can be computed on all the data or can be maintained separated
-for each RGB component. In the first case, average and standard deviation each give one value every instance:
+The simplest features that can be computed involve the average and the standard deviation of the \Gls{RGB} values of the image patch. They can be computed on all the data or can be maintained separated
+for each \Gls{RGB} component. In the first case, average and standard deviation each give one value every instance:
 
 \begin{eqnarray}
  m & = & \frac{1}{100\times100\times3} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} \sum_{k=1}^{3} i_{ijk} \right) \\
@@ -120,18 +123,18 @@ Otherwise, average and standard deviation produce a vector of three components:
                             \frac{1}{100\times100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} i_{ij2} \right) \\
                             \frac{1}{100\times100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} i_{ij3} \right)
                            \end{array} \right] \\
- \overline{\sigma} & = & \left[ \begin{array}{c}
+ \overline{S} & = & \left[ \begin{array}{c}
                                  \sqrt{\frac{1}{100\times100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} (i_{ij1} - M(1) )^2 \right)} \\
                                  \sqrt{\frac{1}{100\times100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} (i_{ij2} - M(2) )^2 \right)} \\
                                  \sqrt{\frac{1}{100\times100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} (i_{ij3} - M(3) )^2 \right)}
                                 \end{array}  \right]
 \end{eqnarray}
 
-Another simple set of features is represented by the \textit{median} of each RGB values. 
-
+Another simple set of features is represented by the \textit{median} of each \Gls{RGB} value. The median is defined as the numerical value separating the higher half of the data sample, from the lower half
+and can be found by arranging all the data from lowest value to highest value and picking the middle one, or the mean of the two middle values, in case of even data.
+Each of the features above are independent of the orientation of the image.
 %	-	m: mean
 %	-	s: standard deviation
-%	-	i: mean intensity in 25 central regions of the image
 %	-	M: mean per color
 %	-	S: std per color
 %	-	d: median per color
@@ -140,21 +143,117 @@ Another simple set of features is represented by the \textit{median} of each RGB
 
 \vspace{0.5cm}
 
-\subsection{Color Histograms}
+\subsection{Color Histograms and Intensities}
+
+A color histogram is a representation of the distribution of colors in an image, i.e. the number of pixels that have colors in each of a fixed list of color ranges \cite{colorHistogram01},
+that span the image's color space. The color histogram can be built for any kind of color space, although the term is more often used for three-dimensional spaces like \Gls{RGB} or \Gls{HSV}.
+A histogram of an image is produced first by discretization of the colors in the image into a number of bins, and counting the number of image pixels in each bin.
+We built the \Gls{RGB} color histogram for each image patch, using 16 bins for each channel. The feature vector is so composed of 48 elements.\\
+Also this feature is orientation independent.
+
+
+\begin{figure}[!hbt]
+  \centering
+    \includegraphics[width=0.94\textwidth]{./images/histIM.png}
+  \caption[Color Histograms]{Color Histograms of sample image}
+  \label{ch4:fig2}
+\end{figure}  
+
+It is generally possible to transform a color image into a gray-scale one. One typical transformation algorithm, applied pixel by pixel, is the following:
+
+\begin{equation}
+ \label{ch4:eqGS}
+ pix_{gray} = 0.2989 \cdot pix_{red} + 0.5870 \cdot pix_{green} + 0.1140 \cdot pix_{blue}
+\end{equation}
+
+On the resulting monochromatic image, it is possible to compute an \textit{intensity histogram}.\\
+We preferred to compute a slightly different feature: the average intensity in the 25 central regions of the image.
+We first computed the gray-scale image according to Equation \ref{ch4:eqGS}, then we selected the central part of the image and divided it in a grid of $5\times5$ elements.
+We finally computed the mean intensity for each element. Figure \ref{ch4:fig3} illustrates the procedure.
+
+\begin{figure}[!hbt]
+  \centering
+    \includegraphics[width=0.94\textwidth]{./images/GSintens1.png}
+  \caption[Example of mean gray-scale intensities feature]{Mean gray-scale intensity of central part of image patch}
+  \label{ch4:fig3}
+\end{figure}
+
+The resulting feature vector is composed of 25 values, corresponding to the intensities, ordered columnwise. This type of feature is orientation dependent.
 
 %	-	H: color histograms (16 bins)
-
+%	-	i: mean intensity in 25 central regions of the image
 
 
 \vspace{0.5cm}
 
 \subsection{Texture Features}
+\label{ch4:tf}
+
+Texture features are widely used in different \Gls{CV} tasks, as pointed out in Section \ref{ch2:texture}. We focused on the features described in \cite{LBP01} and \cite{LBP02},
+based on Local Binary Patterns (\Gls{LBP}). The general idea of \Gls{LBP} is described on page \pageref{ch2:lbp}.
+The \Gls{LBP} features considered here are labeled $LBP_{P,R}$, where \textit{P} is the number of neighbors considered and \textit{R} is the distance from the pixel.
+The two main characteristics of the \Glspl{LBP} considered are:
+
+\begin{itemize}
+ \item \textit{uniformity}: which is a fundamental property of local image texture. It refers to the uniform appearance of the local
+binary pattern, that is, there is a limited number of transitions or discontinuities in the circular presentation of the pattern.
+The most frequent uniform binary patterns correspond to primitive \textquotedblleft microfeatures\textquotedblright, such
+as edges, corners, and spots; hence, they can be regarded as feature detectors that are triggered by the best matching
+pattern.
+\item \textit{rotation invariance}: which takes into account if a spatial pattern is affected by rotation or not.
+\end{itemize}
+
+Three different types of features can be built, on the basis of Equation \ref{ch2:eq_lbp1}:
+
+\begin{enumerate}
+ \item $LBP_{P,R}^{u2}$: uniform feature,
+ \item $LBP_{P,R}^{ri}$: rotation invariant feature,
+ \item $LBP_{P,R}^{riu2}$: uniform and rotation invariant feature,
+\end{enumerate}
+
+In particular we used:
+
+\begin{equation}
+ LBP_{8,R}^{type} \quad \textrm{where} \begin{cases}
+    type  & \in \{ri, u2, riu2\}\\
+    R  & \in \{1,2,3\}
+  \end{cases}
+\end{equation}
+
+while building the feature vector, we used the \textit{type} parameter in a mutually exclusive way, i.e. we did not concatenate \Glspl{LBP} of different types. On the other hand, we
+built feature vectors with various combitations of radii.\\
+The following equations show the three different mutually exclusive texture feature sets that we considered.
+
+\begin{eqnarray}
+\label{ch4:tftypes}
+ \overline{L} & = & \left[ LBP_{8,1}^{riu2}, LBP_{8,2}^{riu2}, LBP_{8,3}^{riu2} \right] \\
+ \overline{U} & = & \left[ LBP_{8,1}^{u2}, LBP_{8,2}^{u2}, LBP_{8,3}^{u2} \right] \\
+ \overline{R} & = & \left[ LBP_{8,1}^{ri}, LBP_{8,2}^{ri}, LBP_{8,3}^{ri} \right]
+\end{eqnarray}
+
+Finally, we considered the \Gls{VAR} operator, as described in Equation \ref{ch2:eq_lbp2}. As, from early tests, a single \Gls{VAR} value for the entire image patch proved to be non-significant, we
+decided to follow an approach similar to the one described for the intensity histogram (see Figure \ref{ch4:fig3}) and evaluated the mean value of a grid of samples in the central
+region of the image. Figure \ref{ch4:fig4} shows a sample of $VAR(8,1)$ computation. Please note that the gray-scale mapping of the VAR(8,1) figure has been adjusted to be visible with full gray-scale range.
+
+\begin{figure}[!hbt]
+  \centering
+    \includegraphics[width=0.94\textwidth]{./images/GS_VAR.png}
+  \caption[Example of VAR(8,1) feature]{Example of VAR(8,1) feature}
+  \label{ch4:fig4}
+\end{figure}
+
+The resulting feature vector is composed of 36 values, corresponding to the average VAR(8,1) in each element of the grid, ordered columnwise. This type of feature is orientation dependent.
+\\
+The Matlab code implemented to build the feature vectors is listed in \ref{appendixB:FE}
+
+
+% \clearpage
 
 %	-	l: lbp riu2 radius 1, 8 neighbors
-%	-	v: mean pixel variance
-%	-	L: lbp riu2 radius 1-2-3, 8 neighbors concatenated
 %	-	r: lbp ri radius 1, 8 neighbors
 %	-	u: lbp u2 radius 1, 8 neighbors
+%	-	v: mean pixel variance
+%	-	L: lbp riu2 radius 1-2-3, 8 neighbors concatenated
 %	-	V: pixel variance, 36 elements
 %	-	R: lbp ri radii 1-2-3, 8 neighbors
 %	-	U: lbp u2 radii 1-2-3, 8 neighbors
@@ -166,84 +265,218 @@ Another simple set of features is represented by the \textit{median} of each RGB
 
 \section{Classifiers}
 
-In our work we focused on two types of classifiers: \textit{Support Vector Machines} and \textit{Random Forests}
-which are widely used in computer vision classification problems ( e.g. \cite{mitosisDetectionLearningBased} and \cite{randForests04}).
-We also mention \Glspl{CNN} because they played a relevant role in the definition of our dataset [REF].
+Once defined the set of feature to be considered, it is possible to build a matrix whose lines represent an \textit{instance} (i.e. an image patch) and whose columns represent a \textit{feature}
+(or a component of it). Having a matrix representing the training feature set, a matrix representing the evaluation (i.e. testing) feature set and two vectors including the ground-truth
+classification of each image patch, it is possible to run a classifier that tries to get insights form the feature set in order to classify the evaluation set.\\
+In our work we focused on two types of classifiers:
+
+\begin{itemize}
+ \item \textit{Support Vector Machines}, which are widely used in computer vision classification problems, in particular
+in biomedical imaging (\cite{mitosisDetectionLearningBased, SVM02, SVM03, SVMClassHistogram}, see also Section \ref{ch3:review}),
+ \item \textit{Random Forests}, which is a relatively new ensemble approach that can also be thought of as a form of nearest neighbor predictor (\cite{randForests03,randForests02,randForests04}).
+\end{itemize}
+
+We also mention \Gls{CNN}, as it played a relevant role in the definition of our dataset (see Section \ref{ch4:ic}).
 
 
 \vspace{0.5cm}
 
 \subsection{Support Vector Machines}
+\label{ch4:svm}
 
+We used the Matlab implementation of the \textit{libSVM} described in \cite{SVM01}. \Glspl{SVM} are a popular classification technique.
+The goal of \Gls{SVM} is to produce a model (based on the training data) which predicts the target values of the test data
+given only the test data attributes. Given a training set of instance-label pairs $(\mathbf{x_i}, y_i)$, $i = 1,\cdots,l$, where $\mathbf{x_i} \in \mathbb{R}^n$ and $y \in \{-1,1\}^l$.\\
+The \Gls{SVM} requires the solution of the following optimization problem:
 
+\begin{equation}
+     \begin{aligned}
+      \smash{\min_{\textbf{w},b,\xi}} \quad & \frac{1}{2}\textbf{w}^T\textbf{w}+C \sum_{i=1}^{l}\xi_i   \\
+      \text{Subject to:} &\\
+       & y_i \left(\textbf{w}^T \phi( \mathbf{x_i} ) +b\right) \geq 1-\xi_i \\
+       & \xi_i \geq 0 
+     \end{aligned}
+     \phantom{\hspace{3cm}} %%<---adjust the value as you want
+\end{equation}
+
+The training vectors $\mathbf{x_i}$ are mapped into a higher dimensional space (maybe infinite), by the function $\phi$.
+\Gls{SVM} finds a linear separating hyperplane with the maximal margin in this higher dimensional space.
+$C > 0$ is the penalty parameter of the error term.
+The function
+
+\begin{equation}
+ K(\mathbf{x_i}, \mathbf{x_j}) = \phi(\mathbf{x_i})^T\phi(\mathbf{x_j})
+\end{equation}
+
+is called the \textit{kernel function}. Many kernel functions have been defined, the most common are:
+
+\begin{itemize}
+ \item \textit{linear}: $K(\mathbf{x_i}, \mathbf{x_j}) = \mathbf{x_i}^T\mathbf{x_j}$,
+ \item \textit{polynomial}: $K(\mathbf{x_i}, \mathbf{x_j}) = \left(\gamma \mathbf{x_i}^T\mathbf{x_j} + r \right)^d, \gamma > 0$,
+ \item \textit{\Gls{RBF}}: $K(\mathbf{x_i}, \mathbf{x_j}) = \exp{\left(-\gamma \lVert \mathbf{x_i} - \mathbf{x_j} \rVert^2 \right)}, \gamma > 0$,
+ \item \textit{sigmoid}: $K(\mathbf{x_i}, \mathbf{x_j}) = \tanh \left( \mathbf{x_i}^T\mathbf{x_j} + r \right)$.
+\end{itemize}
+
+Where $\gamma$, \textit{d} and \textit{r} are kernel parameters \cite{ML01}.\\
+In our work we focused on \Glspl{RBF} and sigmoid kernels, which are used in most cases.
+In \Glspl{SVM} the \textit{support vectors} are the training instances that concur to define the separating hyperplane in the kernel space. The 
+image of Figure \ref{ch4:fig5} gives a linear representation of a \Gls{SVM}.
+
+\begin{figure}[!hbt]
+  \centering
+    \includegraphics[width=0.98\textwidth]{./images/SVM_example.png}
+  \caption{Representation of a SVM}
+  \label{ch4:fig5}
+\end{figure}
 
 
 \vspace{0.5cm}
 
 \subsection{Random Forests}
 
+\Glspl{DT} are attractive classifiers due to their high execution speed and simplicity. However, trees often suffer from performance loss, in terms
+of generalization accuracy on unseen data when the complexity of the problem grows \cite{randForests01}.\\
+Random Forests are a combination of tree predictors such that each tree depends on the values of a
+random vector sampled independently and with the same distribution for all trees in the forest \cite{randForests03}.
+So, \Gls{RF} can be viewed as an ensemble approach that can also be thought of as a form of nearest neighbor predictor.
+Ensembles are a divide-and-conquer approach used to improve performance. The main principle behind ensemble methods is that a group of \textquotedblleft weak learners\textquotedblright
+can be combined together to form a \textquotedblleft strong learner\textquotedblright. Each classifier, individually, is a weak learner, while all the classifiers taken together are a strong learner.
+An example of \Gls{DT} is shown in Figure \ref{ch4:fig6}.
 
+\begin{figure}[!hbt]
+  \centering
+    \includegraphics[width=0.98\textwidth]{./images/DT_example.png}
+  \caption{Example of a Decision Tree}
+  \label{ch4:fig6}
+\end{figure}
 
+A \Gls{RF} is composed by a number of trees \textbf{T}. For some number \textit{m}, \textit{m} features are randomly selected from the feature vector.
+The subset of variables is used to train a \Gls{DT}.\\
+According to Breiman implementation of \Glspl{RF}, \textit{m} should be that  $\ll$ than the number of features.\\
+We adopted the convention in \cite{randForests03} that $m \leq \log_2 F +1$ and used an ensemble of 500 trees.\\
+Running a \Gls{RF},when a new input is entered into the system (a test sample), it is run down all of the trees, each of which classifies
+it in a \textquotedblleft hard\textquotedblright way (see \ref{ch3:class}): in a sense, each tree gives a vote for the current sample. 
+The result is the average  of all of the terminal nodes that are reached, giving a final \textit{soft} classification.
+\Glspl{RF} are generally quite fast, robust classifiers, and are also used in image classification \cite{randForests04}.
+\\
+The Matlab code implemented to classify data is listed in \ref{appendixB:Cl}.
 
 \vspace{0.5cm}
 
 
 \section{Experiments}
 
+Here we describe the set of experiments that we run on the dataset. Each experiment has been executed classifying data with a Random Forest classifier and
+a Support Vector Machine.
+
+\vspace{0.5cm}
+
+\subsection{Normalization}
+
+Te first aspect that we took into account regarded \textit{normalization} of data. Each feature in the \textit{feature vector} can range among different values.
+The procedure described in the guide in \cite{SVM01} claims that the scaling of data is very important in order to obtain a good classification with \Glspl{SVM} \cite{juszczak2002feature}.
+On the other hand, \Glspl{RF}, as composed of \Glspl{DT}, should not be influenced by scaling.\\
+The general idea is to rescale the data so that each new feature \textit{z} has: $\mu = 0, \sigma = 1$, using the following relations:
+
+\begin{eqnarray}
+ \mu & = \frac{1}{N} & \sum_{i=1}^{N} x_i \\
+ \sigma & = & \sqrt{ \frac{1}{N} \cdot \sum_{i=1}^{N}(x_i - \mu)^2 } \\
+ z_i & = & \frac{x_i - \mu}{\sigma}
+\end{eqnarray}
+
+We run some test with different sets of features.
+\\
+The Matlab code implemented to run \textit{experiment 1} is listed in \ref{appendixB:exp1}
+
+\vspace{0.5cm}
+
+\subsection{Extended Dataset}
+
+We analyzed the effect of considering the extended dataset, as described in Section \ref{ch4:ed}. Rotated and mirrored images should provide some information for
+all the features that are orientation dependent, in all the other cases, the added elements are just replicates of already present instances.
+Also in this case we run test with different sets of features.
+\\
+The Matlab code implemented to run \textit{experiment 2} is listed in \ref{appendixB:exp2}
 
 
 \vspace{0.5cm}
 
-\subsection{Exp.1: }
+\subsection{Best Features Combinations}
 
-
-\vspace{0.5cm}
-
-\subsection{Exp.2: }
-
-
-\vspace{0.5cm}
-
-\subsection{Exp.3: }
-
+In this experiment we looked for the best combination of features, so we considered all the features described in \ref{ch4:FE}. Having \textit{n} features, maybe multi-component,
+they can be combined in $2^n-1$ ways. As the texture features (see Section \ref{ch4:tf}, in particular Equation \ref{ch4:tftypes}) are mutually exclusive, we run three different
+experiment, one for each texture feature set.
+\\
+The Matlab code implemented to run \textit{experiment 3} is listed in \ref{appendixB:exp3}
 
 \vspace{0.5cm}
 
-\subsection{Exp.4: }
+\subsection{Dataset Dimension}
 
-
-\vspace{0.5cm}
-
-\subsection{Exp.5: }
-
-
-\vspace{0.5cm}
-
-\subsection{Exp.6: }
-
-Curse of dimensionality and PCA
-
-[SNIPPET]
-In most computer vision applications it is not sufficient to extract only one type of feature to obtain the relevant information from the image data.
-Instead two or more different features are extracted, resulting in two or more feature descriptors at each image point.
-A common practice is to organize the information provided by all these descriptors as the elements of one single vector,
-commonly referred to as a feature vector. The set of all possible feature vectors constitutes a feature space.
-A common example of feature vectors appears when each image point is to be classified as belonging to a specific class.
-Assuming that each image point has a corresponding feature vector based on a suitable set of features,
-meaning that each class is well separated in the corresponding feature space, the classification of each image point can be done using standard classification method.
-
-
+In this experiment we analyzed the effect of the size of the training dataset on the classification performance. To achieve this goal, we repeatedly selected random subsets of the
+extended dataset and applied our classifier. To avoid the dependence on the specific selected subset, we run many different experiments with randomly chosen subsets with the same 
+size and then we averaged the results.
+\\
+The Matlab code implemented to run \textit{experiment 4} is listed in \ref{appendixB:exp4}
 
 \vspace{0.5cm}
 
-\subsection{Exp.7: }
+\subsection{SVM parameters}
 
+In the experiments above we noted that \Glspl{SVM} are more sensible to the selected features and to the size of the dataset, meaning that, in some cases, \Gls{SVM} performs poorly on data.
+So we decided to analyze in a deeper way if some of the configuration options of the classifier (i.e. kernel type [Section \ref{ch4:svm}], degree in kernel function, etc. ) could improve the performance.
+\\
+The Matlab code implemented to run \textit{experiment 5} is listed in \ref{appendixB:exp5}
 
 \vspace{0.5cm}
 
 
+\subsection{Principal Component Analysis}
+
+Even when considering only simple features, the feature space can reach high dimensions (i.e. a lot of components). It is common experience,
+in many classification problems, that when the dimensionality increases, the volume of the space increases so fast that the meaningful data become sparse
+in a substrate of noise.\\
+This situation is often referred to as the \textit{curse of dimensionality} \cite{bellmandynamic}.
+In \Gls{ML} problems that involve learning from a finite number of data samples in a high-dimensional feature space,
+with each feature having a number of possible values, an enormous amount of training data are required to ensure that there are several samples with each combination of values.
+With a fixed number of training samples, the predictive power reduces as the dimensionality increases, and this is known as the \textit{Hughes effect} \cite{hughes}.\\
+\Gls{PCA} is a way to reduce the dimensionality of the dataset \cite{PCA_jolliffe}. \Gls{PCA} is a mathematical procedure that uses an orthogonal transformation
+(SVD transformation) to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called \textit{principal components}.
+This transformation is defined in such a way that the components are sorted in descending magnitude of \textit{explained variance}: that is, the first principal component
+has the largest possible variance ( accounts for as much of the variability in the data as possible), and each succeeding component, has the highest variance possible under the constraint
+that it is orthogonal to (i.e., uncorrelated with) the preceding components. \Gls{PCA} is sensitive to the relative scaling of the original variables, 
+and so we applied it on normalized data \cite{PCA02_applications}.
+In our experiments we selected some datasets with high dimension feature spaces, applied \Gls{PCA} and classified the resulting components adding one component at a time, with the aim to
+observe the classification performances in relation to the number of components and the percentage of explained variance.
+\\
+The Matlab code implemented to run \textit{experiment 6} is listed in \ref{appendixB:exp6}
 
 
+\vspace{0.5cm}
+
+\subsection{Size of the Image Patch}
+
+In all the experiments above, we considered the size of each image patch, on which to compute features, to be $100\times100$ pixels.
+We wanted to analyze if there is a smaller sub-image that includes all the meaningful information, while the boundary contains essentially background (i.e. noise for the
+purposes of classification), while an excessively small patch would not allow to classify data.\\
+So we run experiments considering, form time to time, bigger portions of the images and analyzed the classification performances.
+\\
+The Matlab code implemented to run \textit{experiment 7} is listed in \ref{appendixB:exp7}
+
+
+
+\vspace{0.5cm}
+
+
+
+
+% In most computer vision applications it is not sufficient to extract only one type of feature to obtain the relevant information from the image data.
+% Instead two or more different features are extracted, resulting in two or more feature descriptors at each image point.
+% A common practice is to organize the information provided by all these descriptors as the elements of one single vector,
+% commonly referred to as a feature vector. The set of all possible feature vectors constitutes a feature space.
+% A common example of feature vectors appears when each image point is to be classified as belonging to a specific class.
+% Assuming that each image point has a corresponding feature vector based on a suitable set of features,
+% meaning that each class is well separated in the corresponding feature space, the classification of each image point can be done using standard classification method.
 
  
 
