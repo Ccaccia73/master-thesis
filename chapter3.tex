@@ -241,15 +241,16 @@ The value of $\kappa$ can be divided in ranges:
 \end{itemize}
 
 Most studies show that value of $\kappa$ generally varies from \textit{fair} to \textit{moderate} (e.g. the study in \cite{meyer2005breast} reports a value of $\kappa = 0.5$).\\
-The low level of agreement among pathologists is an issue also for algorithms' benchmarking, as it can be difficult to establish a definite \textit{ground truth} (i.e. the process of gathering the proper objective data for the test).\\
-Nonetheless, the images of the \textit{MITOS Dataset} have been annotated by only one pathologist: the algorithms of the \textit{2012 ICPR Contest} and our work based their ground truth on that.
+The low level of agreement among pathologists is an issue also for algorithms' benchmarking, as it can be difficult to establish a definite \Gls{GT} (i.e. the process of gathering the proper objective data for the test).\\
+Nonetheless, the images of the \textit{MITOS Dataset} have been annotated by only one pathologist: the algorithms of the \textit{2012 ICPR Contest} and our work based their \Gls{GT} on that.
 
 \vspace{0.5cm}
 
 \subsection{Benchmarking}
+\label{ch3:bench}
 
 Benchmarking of different algorithms and comparison with human performance play a key role in a detection framework, it is so of great importance the definition of \textit{performance}.\\
-Given a \textit{ground truth}, the \textit{Confusion Matrix} (or Error Matrix \cite{stehman1997selecting}), is so defined:
+Given a \Gls{GT}, the \textit{Confusion Matrix} (or Error Matrix \cite{stehman1997selecting}), is so defined:
 each column of the matrix represents the instances in a predicted class, while each row represents the instances in an actual class.
 The name originates from the fact that it makes it easy to see if the system is confusing two classes (i.e. mislabeling one as another).
 The elements of the matrix are:
@@ -268,10 +269,10 @@ The elements of the matrix are:
    & predicted \textit{Positive} & predicted \textit{Negative} \\
    \hline
    Actual \textit{Positive} & \cellcolor{YellowGreen}True Positive  & \cellcolor{OrangeRed}False Negative \\
-                            & \cellcolor{YellowGreen} \textbf{(TP)} & \cellcolor{OrangeRed} \textbf{FN} \\
+                            & \cellcolor{YellowGreen} \text{(TP)} & \cellcolor{OrangeRed} \text{(FN)} \\
    \hline
    Actual \textit{Negative} & \cellcolor{OrangeRed}False Positive & \cellcolor{YellowGreen}True Negative \\
-                            & \cellcolor{OrangeRed} \textbf{(FP)} & \cellcolor{YellowGreen} \textbf{(TN)} \\
+                            & \cellcolor{OrangeRed} \text{(FP)} & \cellcolor{YellowGreen} \text{(TN)} \\
   \hline
  \end{tabularx}
  \label{ch3:tab1}
@@ -356,6 +357,7 @@ then subject to further investigation or treatments. Also the following relation
 \vspace{0.5cm}
 
 \subsubsection{Receiver Operating Characteristic (ROC)}
+\label{ch3:roc}
 
 As mentioned in \ref{ch3:class}, the classifier or diagnosis result can be a real value (continuous output),
 in this case the boundary between the two classes of the binary classifier must be determined by a threshold value.
@@ -371,12 +373,12 @@ points below the line poor results (worse than random).
 \begin{figure}[!hbt]
   \centering
     \subfigure[ROC curve]{
-      \includegraphics[width=0.82\textwidth]{./images/ROC1.png}
+      \includegraphics[width=0.84\textwidth]{./images/ROC1.png}
       \label{ch3:fig2:a}
     }\\
     %\hspace{1mm}
     \subfigure[AUC]{
-      \includegraphics[width=0.82\textwidth]{./images/ROC2.png}
+      \includegraphics[width=0.84\textwidth]{./images/ROC2.png}
       \label{ch3:fig2:b}
     }
     \caption{Example of ROC curves}

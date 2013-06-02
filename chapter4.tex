@@ -19,6 +19,7 @@ Publius Vergilius Maro (Aeneis II, 65-66)
 We developed an algorithm to perform mitosis-detection as a part of our work, with the aim to compare its results with humans facing the same task.
 
 \section{Dataset}
+\label{ch4:ds}
 
 We used the public MITOS dataset \cite{icpr}. The dataset is composed by a total of 50 2084$\times$2084 pixel images
 covering an area of 512$\times$512 $\mu$m each, acquired with an APERIO XT scanner (see Figure \ref{ch2:fig1}). 
@@ -111,22 +112,22 @@ The simplest features that can be computed involve the average and the standard 
 for each \Gls{RGB} component. In the first case, average and standard deviation each give one value every instance:
 
 \begin{eqnarray}
- m & = & \frac{1}{100\times100\times3} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} \sum_{k=1}^{3} i_{ijk} \right) \\
- \sigma & = & \sqrt{\frac{1}{100\times100\times3} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} \sum_{k=1}^{3} (i_{ijk} - m )^2 \right)}
+ m & = & \frac{1}{100\cdot100\cdot3} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} \sum_{k=1}^{3} i_{ijk} \right) \\
+ \sigma & = & \sqrt{\frac{1}{100\cdot100\cdot3} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} \sum_{k=1}^{3} (i_{ijk} - m )^2 \right)}
 \end{eqnarray}
 
 Otherwise, average and standard deviation produce a vector of three components:
 
 \begin{eqnarray}
  \overline{M} & = & \left[ \begin{array}{c}
-                            \frac{1}{100\times100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} i_{ij1} \right) \\
-                            \frac{1}{100\times100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} i_{ij2} \right) \\
-                            \frac{1}{100\times100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} i_{ij3} \right)
+                            \frac{1}{100\cdot100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} i_{ij1} \right) \\
+                            \frac{1}{100\cdot100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} i_{ij2} \right) \\
+                            \frac{1}{100\cdot100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} i_{ij3} \right)
                            \end{array} \right] \\
  \overline{S} & = & \left[ \begin{array}{c}
-                                 \sqrt{\frac{1}{100\times100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} (i_{ij1} - M(1) )^2 \right)} \\
-                                 \sqrt{\frac{1}{100\times100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} (i_{ij2} - M(2) )^2 \right)} \\
-                                 \sqrt{\frac{1}{100\times100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} (i_{ij3} - M(3) )^2 \right)}
+                                 \sqrt{\frac{1}{100\cdot100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} (i_{ij1} - M(1) )^2 \right)} \\
+                                 \sqrt{\frac{1}{100\cdot100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} (i_{ij2} - M(2) )^2 \right)} \\
+                                 \sqrt{\frac{1}{100\cdot100} \left( \sum_{i=1}^{100} \sum_{j=1}^{100} (i_{ij3} - M(3) )^2 \right)}
                                 \end{array}  \right]
 \end{eqnarray}
 
@@ -191,7 +192,7 @@ The resulting feature vector is composed of 25 values, corresponding to the inte
 
 Texture features are widely used in different \Gls{CV} tasks, as pointed out in Section \ref{ch2:texture}. We focused on the features described in \cite{LBP01} and \cite{LBP02},
 based on Local Binary Patterns (\Gls{LBP}). The general idea of \Gls{LBP} is described on page \pageref{ch2:lbp}.
-The \Gls{LBP} features considered here are labeled $LBP_{P,R}$, where \textit{P} is the number of neighbors considered and \textit{R} is the distance from the pixel.
+The \Gls{LBP} features considered here are labeled LBP$_{P,R}$, where \textit{P} is the number of neighbors considered and \textit{R} is the distance from the pixel.
 The two main characteristics of the \Glspl{LBP} considered are:
 
 \begin{itemize}
@@ -206,16 +207,16 @@ pattern.
 Three different types of features can be built, on the basis of Equation \ref{ch2:eq_lbp1}:
 
 \begin{enumerate}
- \item $LBP_{P,R}^{u2}$: uniform feature,
- \item $LBP_{P,R}^{ri}$: rotation invariant feature,
- \item $LBP_{P,R}^{riu2}$: uniform and rotation invariant feature,
+ \item $\text{LBP}_{P,R}^{u2}$: uniform feature,
+ \item $\text{LBP}_{P,R}^{ri}$: rotation invariant feature,
+ \item $\text{LBP}_{P,R}^{riu2}$: uniform and rotation invariant feature,
 \end{enumerate}
 
 In particular we used:
 
 \begin{equation}
- LBP_{8,R}^{type} \quad \textrm{where} \begin{cases}
-    type  & \in \{ri, u2, riu2\}\\
+ \text{LBP}_{8,R}^{\text{type}} \quad \textrm{where} \begin{cases}
+    \text{type}  & \in \{ri, u2, riu2\}\\
     R  & \in \{1,2,3\}
   \end{cases}
 \end{equation}
@@ -226,9 +227,9 @@ The following equations show the three different mutually exclusive texture feat
 
 \begin{eqnarray}
 \label{ch4:tftypes}
- \overline{L} & = & \left[ LBP_{8,1}^{riu2}, LBP_{8,2}^{riu2}, LBP_{8,3}^{riu2} \right] \\
- \overline{U} & = & \left[ LBP_{8,1}^{u2}, LBP_{8,2}^{u2}, LBP_{8,3}^{u2} \right] \\
- \overline{R} & = & \left[ LBP_{8,1}^{ri}, LBP_{8,2}^{ri}, LBP_{8,3}^{ri} \right]
+ \overline{L} & = & \left[ \text{LBP}_{8,1}^{riu2}, \text{LBP}_{8,2}^{riu2}, \text{LBP}_{8,3}^{riu2} \right] \\
+ \overline{U} & = & \left[ \text{LBP}_{8,1}^{u2}, \text{LBP}_{8,2}^{u2}, \text{LBP}_{8,3}^{u2} \right] \\
+ \overline{R} & = & \left[ \text{LBP}_{8,1}^{ri}, \text{LBP}_{8,2}^{ri}, \text{LBP}_{8,3}^{ri} \right]
 \end{eqnarray}
 
 Finally, we considered the \Gls{VAR} operator, as described in Equation \ref{ch2:eq_lbp2}. As, from early tests, a single \Gls{VAR} value for the entire image patch proved to be non-significant, we
@@ -262,12 +263,63 @@ The Matlab code implemented to build the feature vectors is listed in \ref{appen
 
 \vspace{0.5cm}
 
+%\clearpage
 
 \section{Classifiers}
 
 Once defined the set of feature to be considered, it is possible to build a matrix whose lines represent an \textit{instance} (i.e. an image patch) and whose columns represent a \textit{feature}
-(or a component of it). Having a matrix representing the training feature set, a matrix representing the evaluation (i.e. testing) feature set and two vectors including the ground-truth
+(or a component of it): Equation \ref{ch4:fmat} represents such matrix.
+\begin{equation}
+\label{ch4:fmat}
+ M_{feats} = \\ \bordermatrix{~ & \tikzmark{harrowleft} 1 & \cdots & ~  & \cdots & ~ & \cdots & ~ & n_{fc}\tikzmark{harrowright}  \cr
+			      \tikzmark{varrowtop} 1 & c_{111} & c_{112} & \cdots & c_{1k1} & \cdots & c_{1kn_k} & \cdots & c_{1n_f1} \cr
+			                      \vdots &    ~    &   ~     &   ~    &    ~    &   ~    &     ~     &    ~   &     ~     \cr
+			                       ~     & \vdots  & \vdots  & \ddots & \vdots  & \ddots & \vdots    & \ddots &  \vdots   \cr
+			                      \vdots &    ~    &   ~     &   ~    &   ~     &   ~    &    ~      &    ~   &    ~      \cr
+			      \tikzmark{varrowbottom} n_i & \tikzmark{f1} c_{n_i11} & c_{n_i12} \tikzmark{f2} & \cdots & \tikzmark{f3} c_{n_ij1} & \cdots & c_{n_ijn_j} \tikzmark{f4} & \cdots & \tikzmark{f5} c_{n_in_f1} \tikzmark{f6} \cr
+			     }
+\end{equation}
+\tikz[overlay,remember picture] {
+  \draw[->] ([yshift=3ex]harrowleft) -- ([yshift=3ex]harrowright)
+            node[midway,above] {\tiny \textit{features}};
+  \draw[->] ([yshift=1.5ex,xshift=-0.8ex]varrowtop) -- ([xshift=-0.8ex]varrowbottom)
+            node[pos=0.0,anchor=north,xshift=-0.65cm,yshift=-2.3cm] {\tiny \textit{instances}};
+  \draw [thick, decoration={ brace, amplitude=8pt, mirror, raise=0.12cm}, decorate] (f1) -- (f2) 
+	    node [pos=0.5,anchor=north,yshift=-0.36cm] {\tiny \textit{feat$_1$}};
+  \draw [thick, decoration={ brace, amplitude=8pt, mirror, raise=0.12cm}, decorate] (f3) -- (f4) 
+	    node [pos=0.5,anchor=north,yshift=-0.36cm] {\tiny \textit{feat$_j$}};
+  \draw [thick, decoration={ brace, amplitude=5pt, mirror, raise=0.12cm}, decorate] (f5) -- (f6) 
+	    node [pos=0.5,anchor=north,yshift=-0.36cm] {\tiny \textit{feat$_{nf}$}};
+}
+
+Where $n_f$ is the total number of features and $n_i$ is the total number of instances. Each feature can be made of more than one component (e.g. $feat_1$ and $feat_j$ in the example).
+For this reason, the total number of columns in the matrix $(n_{fc})$ is given by the sum of all the feature components. So, 
+each element of the matrix $c_{ijk}$ is the $k^{th}$ component of the $j^{th}$ feature in the $i^{th}$ instance. The matrix representing the eavluation set is built in the same way.\\
+A vector represents the class which every instance belongs to. Equation \ref{ch4:cvect} describes such vector:
+\begin{equation}
+\label{ch4:cvect}
+ V_{class} = \\ \bordermatrix{~ &  ~  \cr
+			      \tikzmark{varrowtop} 1 &  \tikzmark{f5} e_{1}  \tikzmark{f6} \cr
+			                      \vdots & \vdots \cr
+			                       ~     & e_i   \cr
+			                      \vdots & \vdots \cr
+			      \tikzmark{varrowbottom} n_i & e_{n_i} \cr
+			     }
+\end{equation}
+\tikz[overlay,remember picture] {
+  \draw[->] ([yshift=1.5ex,xshift=-0.8ex]varrowtop) -- ([xshift=-0.8ex]varrowbottom)
+            node[pos=0.0,anchor=north,xshift=-0.65cm,yshift=-2.3cm] {\tiny \textit{instances}};
+  \draw [thick, decoration={ brace, amplitude=3pt, raise=0.25cm}, decorate] (f5) -- (f6) 
+	    node [pos=0.5,anchor=north,yshift=0.76cm] {\tiny \textit{class}};
+}
+
+where $e_i$ belongs to one of the two classes. In some implementations of binary classifiers it is required that $e_i \ \in \{-1,1\} \ \forall i = 1,\cdots,n_i$,
+otherwise $e_i \ \in \{0,1\} \ \forall i = 1,\cdots,n_i$. The vector 
+representing the \Gls{GT} of the evaluation set is built in the same way.\\
+Having a matrix representing the training feature set, a matrix representing the evaluation (i.e. testing) feature set and two vectors including the \Gls{GT}
 classification of each image patch, it is possible to run a classifier that tries to get insights form the feature set in order to classify the evaluation set.\\
+
+
 In our work we focused on two types of classifiers:
 
 \begin{itemize}
@@ -364,109 +416,14 @@ The Matlab code implemented to classify data is listed in \ref{appendixB:Cl}.
 \vspace{0.5cm}
 
 
-\section{Experiments}
+\section{Classification Process}
 
-Here we describe the set of experiments that we run on the dataset. Each experiment has been executed classifying data with a Random Forest classifier and
-a Support Vector Machine.
-
-\vspace{0.5cm}
-
-\subsection{Normalization}
-
-Te first aspect that we took into account regarded \textit{normalization} of data. Each feature in the \textit{feature vector} can range among different values.
-The procedure described in the guide in \cite{SVM01} claims that the scaling of data is very important in order to obtain a good classification with \Glspl{SVM} \cite{juszczak2002feature}.
-On the other hand, \Glspl{RF}, as composed of \Glspl{DT}, should not be influenced by scaling.\\
-The general idea is to rescale the data so that each new feature \textit{z} has: $\mu = 0, \sigma = 1$, using the following relations:
-
-\begin{eqnarray}
- \mu & = \frac{1}{N} & \sum_{i=1}^{N} x_i \\
- \sigma & = & \sqrt{ \frac{1}{N} \cdot \sum_{i=1}^{N}(x_i - \mu)^2 } \\
- z_i & = & \frac{x_i - \mu}{\sigma}
-\end{eqnarray}
-
-We run some test with different sets of features.
-\\
-The Matlab code implemented to run \textit{experiment 1} is listed in \ref{appendixB:exp1}
-
-\vspace{0.5cm}
-
-\subsection{Extended Dataset}
-
-We analyzed the effect of considering the extended dataset, as described in Section \ref{ch4:ed}. Rotated and mirrored images should provide some information for
-all the features that are orientation dependent, in all the other cases, the added elements are just replicates of already present instances.
-Also in this case we run test with different sets of features.
-\\
-The Matlab code implemented to run \textit{experiment 2} is listed in \ref{appendixB:exp2}
-
-
-\vspace{0.5cm}
-
-\subsection{Best Features Combinations}
-
-In this experiment we looked for the best combination of features, so we considered all the features described in \ref{ch4:FE}. Having \textit{n} features, maybe multi-component,
-they can be combined in $2^n-1$ ways. As the texture features (see Section \ref{ch4:tf}, in particular Equation \ref{ch4:tftypes}) are mutually exclusive, we run three different
-experiment, one for each texture feature set.
-\\
-The Matlab code implemented to run \textit{experiment 3} is listed in \ref{appendixB:exp3}
-
-\vspace{0.5cm}
-
-\subsection{Dataset Dimension}
-
-In this experiment we analyzed the effect of the size of the training dataset on the classification performance. To achieve this goal, we repeatedly selected random subsets of the
-extended dataset and applied our classifier. To avoid the dependence on the specific selected subset, we run many different experiments with randomly chosen subsets with the same 
-size and then we averaged the results.
-\\
-The Matlab code implemented to run \textit{experiment 4} is listed in \ref{appendixB:exp4}
-
-\vspace{0.5cm}
-
-\subsection{SVM parameters}
-
-In the experiments above we noted that \Glspl{SVM} are more sensible to the selected features and to the size of the dataset, meaning that, in some cases, \Gls{SVM} performs poorly on data.
-So we decided to analyze in a deeper way if some of the configuration options of the classifier (i.e. kernel type [Section \ref{ch4:svm}], degree in kernel function, etc. ) could improve the performance.
-\\
-The Matlab code implemented to run \textit{experiment 5} is listed in \ref{appendixB:exp5}
-
-\vspace{0.5cm}
-
-
-\subsection{Principal Component Analysis}
-
-Even when considering only simple features, the feature space can reach high dimensions (i.e. a lot of components). It is common experience,
-in many classification problems, that when the dimensionality increases, the volume of the space increases so fast that the meaningful data become sparse
-in a substrate of noise.\\
-This situation is often referred to as the \textit{curse of dimensionality} \cite{bellmandynamic}.
-In \Gls{ML} problems that involve learning from a finite number of data samples in a high-dimensional feature space,
-with each feature having a number of possible values, an enormous amount of training data are required to ensure that there are several samples with each combination of values.
-With a fixed number of training samples, the predictive power reduces as the dimensionality increases, and this is known as the \textit{Hughes effect} \cite{hughes}.\\
-\Gls{PCA} is a way to reduce the dimensionality of the dataset \cite{PCA_jolliffe}. \Gls{PCA} is a mathematical procedure that uses an orthogonal transformation
-(SVD transformation) to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called \textit{principal components}.
-This transformation is defined in such a way that the components are sorted in descending magnitude of \textit{explained variance}: that is, the first principal component
-has the largest possible variance ( accounts for as much of the variability in the data as possible), and each succeeding component, has the highest variance possible under the constraint
-that it is orthogonal to (i.e., uncorrelated with) the preceding components. \Gls{PCA} is sensitive to the relative scaling of the original variables, 
-and so we applied it on normalized data \cite{PCA02_applications}.
-In our experiments we selected some datasets with high dimension feature spaces, applied \Gls{PCA} and classified the resulting components adding one component at a time, with the aim to
-observe the classification performances in relation to the number of components and the percentage of explained variance.
-\\
-The Matlab code implemented to run \textit{experiment 6} is listed in \ref{appendixB:exp6}
-
-
-\vspace{0.5cm}
-
-\subsection{Size of the Image Patch}
-
-In all the experiments above, we considered the size of each image patch, on which to compute features, to be $100\times100$ pixels.
-We wanted to analyze if there is a smaller sub-image that includes all the meaningful information, while the boundary contains essentially background (i.e. noise for the
-purposes of classification), while an excessively small patch would not allow to classify data.\\
-So we run experiments considering, form time to time, bigger portions of the images and analyzed the classification performances.
-\\
-The Matlab code implemented to run \textit{experiment 7} is listed in \ref{appendixB:exp7}
-
-
-
-\vspace{0.5cm}
-
+Once a classifier is trained on the training set, it can be used to classify unseen data (i.e., the evaluation or testing set). The classifier
+function is applied to each instance of the \textit{evaluation} feature set, which is built as the matrix described in Equation \ref{ch4:fmat}.\\
+The output of the classifier is a vector like the one described in Equation \ref{ch4:cvect}, unless that, generally, the classification
+process gives a \textit{soft} classification (see Section \ref{ch3:class}), which means that  $-1 \leq e_i \leq 1 \ \forall i = 1,\cdots,n_i$, or
+$0 \leq e_i \leq 1$, depending on the definition of the classes.\\
+The performance parameters are computed as a function of a \textit{classification threshold}, as described in Section \ref{ch3:roc}.
 
 
 

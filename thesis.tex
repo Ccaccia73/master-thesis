@@ -16,7 +16,7 @@
 \usepackage[scriptsize]{caption}
 
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{shapes,arrows,matrix,decorations.pathreplacing}
 
 % Define block styles
 \tikzstyle{decision} = [diamond, draw, fill=blue!20, 
@@ -133,6 +133,8 @@
 
 % 1 added
 \newcommand{\greek}[1]{{\selectlanguage{polutonikogreek}#1}}
+
+\newcommand{\tikzmark}[1]{\tikz[overlay, remember picture] \coordinate (#1);}
 
 \pagestyle{empty}
 
