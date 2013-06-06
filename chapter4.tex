@@ -4,7 +4,7 @@
 
 \begin{quotation}
 {\footnotesize
-\noindent \emph{``Ab uno\\ disces omnis''}\\
+\noindent \emph{\textquotedblleft Ab uno\\ disces omnis\textquotedblright''}\\
 \noindent (Learn everything from one)
 \begin{flushright}
 Publius Vergilius Maro (Aeneis II, 65-66)
@@ -25,7 +25,7 @@ We used the public MITOS dataset \cite{icpr}. The dataset is composed by a total
 covering an area of 512$\times$512 $\mu$m each, acquired with an APERIO XT scanner (see Figure \ref{ch2:fig1}). 
 A unique split is defined by the dataset authors, with 35 images used for training and 15 for evaluation.
 The dataset contains a total of about 300 mitosis, which were annotated by an expert pathologist.
-The performance of the algorithms participating to the \textit{2012 ICPR mitosis detection contest} are shown in Section \ref{ch6:icpr_perf}.\\
+The performance of the algorithms participating to the \textit{2012 ICPR mitosis detection contest} are shown in Section \ref{ch3:icpr_perf}.\\
 With reference to Figure \ref{ch3:fig1}, we focused on on the classification subproblem, with the \Glspl{ROI} given as an input.
 The input is given in form of an image patch with size 100$\times$100 pixel: such size completely contains the image of the cell.
 The task is to map each patch to one of two classes:
@@ -107,6 +107,7 @@ Each value is in the range 0 to 255. Starting from these (raw) data we extracted
 \vspace{0.5cm}
 
 \subsection{Simple Features}
+\label{ch4:sf}
 
 The simplest features that can be computed involve the average and the standard deviation of the \Gls{RGB} values of the image patch. They can be computed on all the data or can be maintained separated
 for each \Gls{RGB} component. In the first case, average and standard deviation each give one value every instance:
@@ -145,6 +146,7 @@ Each of the features above are independent of the orientation of the image.
 \vspace{0.5cm}
 
 \subsection{Color Histograms and Intensities}
+\label{ch4:chi}
 
 A color histogram is a representation of the distribution of colors in an image, i.e. the number of pixels that have colors in each of a fixed list of color ranges \cite{colorHistogram01},
 that span the image's color space. The color histogram can be built for any kind of color space, although the term is more often used for three-dimensional spaces like \Gls{RGB} or \Gls{HSV}.
@@ -266,6 +268,7 @@ The Matlab code implemented to build the feature vectors is listed in \ref{appen
 %\clearpage
 
 \section{Classifiers}
+\label{ch4:classifiers}
 
 Once defined the set of feature to be considered, it is possible to build a matrix whose lines represent an \textit{instance} (i.e. an image patch) and whose columns represent a \textit{feature}
 (or a component of it): Equation \ref{ch4:fmat} represents such matrix.
