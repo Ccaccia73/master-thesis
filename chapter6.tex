@@ -1027,11 +1027,148 @@ Figure \ref{ch6:fig19}, similarly to Figure \ref{ch6:fig18}, shows a general max
 
 \section{Accuracy of Humans}
 
-In this section we illustrate the performances of the users of the website described in Chapter \ref{chapter5}. 
+In this section we illustrate the performances of the users of the website described in Chapter \ref{chapter5}.
+We gathered data from a total of 45 test subjects, 8 of which have expertise in biology (i.e. may have some prior expectations or experience on a mitosis’ appearance),
+and none of which routinely works with histology datasets. No subject was allowed to take the test twice. In total, subjects provided 3009 classifications
+(on average 67 per subjects), resulting in an average of 17.3 classifications for each of the 174 evaluation samples.
+Each subjects dedicated an average of 49 minutes to the test.
+Below, we compare the performance of such subjects to the 7 top-performing algorithms in the 2012 ICPR mitosis detection contest, all of which were learned
+on the training images of the MITOS dataset. For a given algorithm, a \textbf{C1} evaluation sample is considered a true positive if and only if, in the corresponding
+image of the MITOS dataset, the algorithm detected a mitosis whose centroid is within 8 $\mu$m (20 px) from the coordinates given by the algorithm;
+else, the sample is considered a false positive (this is the same criterion used for evaluation of the ICPR contest).
+A \textbf{C0} evaluation sample is a true negative if and only if the algorithm
+returned no detections in a range of 16 $\mu$m (40 px), else it is a false negative.\\
+Note that the results reported below for algorithms do not directly map
+to the results of the ICPR contest (shown in Section \ref{ch3:icpr_perf}). In fact, we are computing the algorithms’
+performance in a classification task on a balanced dataset, whereas the algorithms’ parameters (such as thresholds) were optimized for solving a detection
+task where the prevalence of mitosis over non-mitosis was much lower. Therefore, we can expect that the reported performance for each algorithm is a lower
+bound of the performance it could obtain when properly tuned for this task.
+For this same reason, the results below should not be used to compare different algorithms with each other.
+We also compare the performances of the users with best classifications obtained in Chapter \ref{chapter4}, which instead is designed on the same problem
+as the one presented to the users.
+
 
 \vspace{0.5cm}
 
-\section{Comparison}
+\subsection{Comparison between Users and ICPR Contest Algorithms}
 
-(rif. paper)
+For a given set of N classifications produced by an human or algorithm, the accuracy is defined as the fraction of classifications which are 
+correct\footnote{for all algorithms, N = 174 since we computed an output for each evaluation sample;
+instead, test subjects were not required to evaluate all samples}.
+Because our evaluation set has the same prevalence of both classes, a random classifier has an expected accuracy = 0.5. Subjects could assign each sample to one of
+four probability values: for each user, we computed the accuracy when using all three meaningful thresholds ($p(C1) = {0.1, 0.5, 0.9}$), and selected the maximum
+resulting accuracy value.\\
+
+\begin{figure}[!htb]
+   \begin{center}
+    \includegraphics[width=0.28\textwidth]{./images/human/p11.png}
+    \caption{Accuracy distribution of humans}
+    \label{ch6:fig20}
+    \end{center}
+\end{figure}
+
+
+Figure \ref{ch6:fig20} reports the accuracy distribution for all test subjects, while Figure \ref{ch6:fig21} shows the
+performance of the 5 best test subjects (\ref{ch6:fig21:a}), compared with the performance
+of the 7 algorithms (\ref{ch6:fig21:a}). The average classification accuracy for users is 0.661,
+comparable with the accuracy of the worst of the considered algorithms; The best
+individual yielded an accuracy of $0.859 \pm 0.012$, which is close to the accuracy
+of the second-scoring algorithm, and worse $(p < 0.01)$ than the most accurate
+algorithm (accuracy = $0.873 \pm 0.004$).
+
+
+\begin{figure}[!htb]
+  \centering
+    \subfigure[]{
+      \includegraphics[width=0.351\textwidth]{./images/human/p12.png}
+      \label{ch6:fig21:a}
+    }
+    \hspace{1mm}
+    \subfigure[]{
+      \includegraphics[width=0.351\textwidth]{./images/human/p13.png}
+      \label{ch6:fig21:b}
+    }
+    \caption{best Humans' performance vs. ICPR algorithms}
+    \label{ch6:fig21}
+\end{figure}
+
+All users with $N \geq 10$ performed better than chance; most achieved an
+accuracy between 0.60 and 0.75. Only three users (one of which with significant experience in cytology but not in this specific problem)
+exceeded an accuracy of 0.80. Differences in human performance are partly explained by different
+amounts of motivation end effort put in the test; still, we observed that many
+users who dedicated a significant amount of time and effort to study the training set and complete the test obtained a performance close to the average.
+Most users described the problem as \textquotedblleft{}very difficult\textquotedblright”.\\
+Some users gave indications about the evaluation criteria which they devised during classification. Most of them focused on the shape of the dark element in the middle.
+Mitotic samples where mostly the one with blurry or bumpy edges, while non-mitotic samples where the ones with a smooth shape.
+Most of them ignored the surrounding area.\\
+Figure \ref{ch6:fig22} reports the performance of test subjects and algorithms in \Gls{ROC} space. IDSIA and Utrecht institutions provided confidence values for each classification,
+from which \Gls{ROC} curves were computed.
+
+\begin{figure}[!htb]
+   \begin{center}
+    \includegraphics[width=0.94\textwidth]{./images/human/p2.png}
+    \caption[ROC plot humans vs. algorithms]{For each subject 3 points are reported, corresponding to the three possible thresholds.
+    Full ROC curves could be plotted for IDSIA (thick blue) and Utrecht (thin blue),who provided soft confidence values for each detection.}
+    \label{ch6:fig22}
+    \end{center}
+\end{figure}
+
+\vspace{0.5cm}
+
+\subsection{Comparison between Users and Classifiers}
+
+In this section we compare the performances of users with the classifiers that we trained on the same problem. In particular we selected two of the best performing classifiers with 
+reference to Tables \ref{ch6:tab9} and \ref{ch6:tab11}.
+
+\begin{figure}[!htb]
+   \begin{center}
+    \includegraphics[width=0.94\textwidth]{./images/human/class_humans.png}
+    \caption[ROC plot humans vs. classifiers]{For each subject 3 points are reported, corresponding to the three possible thresholds.
+    Full ROC curves are shown for two best feature-sets for SVM and RF}
+    \label{ch6:fig23}
+    \end{center}
+\end{figure}
+
+Figure \ref{ch6:fig23} reports the \Gls{ROC} curves of the best performing \Gls{SVM} and \Gls{RF} classifiers and the user performances.
+
+\vspace{0.5cm}
+
+\section{Difficulties}
+
+Even a superficial look at the dataset shows that some samples are easier to classify than others.
+Here we investigate whether samples that users find easy are also easier to classify for algorithms.
+First, we define for each sample a score representing the classification difficulty for humans, defined as
+
+\begin{equation}
+ D_h = \frac{1}{|S|} \cdot \sum_{s \in S} \left(  |p_s(C1) - c |  \right)
+\end{equation}
+
+\noindent where:
+
+\begin{itemize}
+ \item \textit{s} represents a test subject,
+ \item \textit{S} is the set of test subjects who evaluated the considered sample, $|S|$ denotes its cardinality,
+ \item $p_s(C1)$ is the probability assigned by the user to the \textbf{C1} class,
+ \item \textit{c} is a binary variable representing the true class of the sample.
+\end{itemize}
+
+Please note that $D_h$ differs from accuracy because it also depends on the confidence that users expressed for each classification.
+
+We divided the \textbf{C1} evaluation samples in three groups: $E_{easy}$, containing the 22 mitosis with the lowest $D_h$ value 
+(i.e. those which were identified most easily by humans), $E_{hard}$ , containing the 22 mitosis with the highest $D_h$ ; and $E_{med}$,
+containing the remaining 43 mitosis.
+
+
+
+
+
+
+
+
+Table 1 reports the accuracy of algorithms on these samples. We observe that for each algorithm, the accuracy on Eeasy is
+better than the accuracy on Emed , which in turn is better than the accuracy
+on Ehard; this indicates that samples which are challenging for humans are also
+difficult for all considered algorithms.
+
+
 
