@@ -21,7 +21,7 @@
 \end{flushright}
 }
 \end{quotation}
-\vspace{1.5cm}
+\vspace{2cm}
 
 %\noindent L'introduzione deve essere atomica, quindi non deve contenere n\`e sottosezioni n\`e paragrafi n\`e altro. Il titolo, il sommario e l'introduzione devono sembrare delle scatole cinesi, nel senso che lette in quest'ordine devono progressivamente svelare informazioni sul contenuto per incatenare l'attenzione del lettore e indurlo a leggere l'opera fino in fondo. L'introduzione deve essere tripartita, non graficamente ma logicamente:
 
@@ -122,26 +122,36 @@ These results are consistent with the ones that we report in this work, based on
 %\section{Inquadramento generale}
 %La prima parte contiene una frase che spiega l'area generale dove si svolge il lavoro; una che spiega la sottoarea pi\`u specifica dove si svolge il lavoro e la terza, che dovrebbe cominciare con le seguenti parole ``lo scopo della tesi \`e \dots'', illustra l'obbiettivo del lavoro. Poi vi devono essere una o due frasi che contengano una breve spiegazione di cosa e come \`e stato fatto, delle attivit\`a  sperimentali, dei risultati ottenuti con una valutazione e degli sviluppi futuri. La prima parte deve essere circa una facciata e mezza o due
 
-
-
 %\section{Breve descrizione del lavoro}
 %La seconda parte deve essere una esplosione della prima e deve quindi mostrare in maniera pi\`u esplicita l'area dove si svolge il lavoro, le fonti bibliografiche pi\`u importanti su cui si fonda il lavoro in maniera sintetica (una pagina) evidenziando i lavori in letteratura che presentano attinenza con il lavoro affrontato in modo da mostrare da dove e perch\'e \`e sorta la tematica di studio. Poi si mostrano esplicitamente le realizzazioni, le direttive future di ricerca, quali sono i problemi aperti e quali quelli affrontati e si ripete lo scopo della tesi. Questa parte deve essere piena (ma non grondante come la sezione due) di citazioni bibliografiche e deve essere lunga circa 4 facciate.
 
-
-\emph{Third part topics}
+The dissertation presents the following structure:
 
 \begin{itemize}
-\item Structure of the work
-	\begin{itemize}
-	\item Section 1: state of the art...
-	\item Section 2: approach to the problem and model
-	\item Section 3: design of a mitosis detection algorithm
-	\item Section 4: design of a user study
-	\item Section 5: experimental results
-	\item Section 6: Conclusions
-	\item Appendixes: implementation details
-	\end{itemize}
+ \item In Chapter \ref{chapter2} we review the state of the art in the main fields of research in which our 
+ work is included, such as: mitosis detection for breast cancer grading, applications of computer vision techniques
+ in biomedical imaging, and machine learning methods for biomedical classification.
+ \item In Chapter \ref{chapter3} we define the problem of mitosis counting, in terms of detection and classification.
+ We also describe some implementations of mitosis detection algorithm and define the most important measures of performance for classification task.
+ \item In Chapter \ref{chapter4} we describe the dataset on which all our work is based and define the framework for the classification algorithms that
+ we implemented. We outline the main components needed to carry out a classification task: dataset manipulation, features selection and extraction, 
+ classification and analysis of the performances.
+ \item In Chapter \ref{chapter5} we describe the testing website developed to collect users' classifications and performance.
+ \item In Chapter \ref{chapter6} we describe all the experimental results deriving from automatic classification, human classification and we compare
+ the results.
+ \item Chapter \ref{chapter7} is dedicated to conclusions and evaluations on possible future research directions.
 \end{itemize}
+
+Four appendix are included in this work:
+
+\begin{itemize}
+ \item Appendix \ref{appendixA} describes the process of mitosis in cells.
+ \item Appendix \ref{appendixB} reports the main components of the code written for automatic classification.
+ \item Appendix \ref{appendixC} describes the software structure of the testing website.
+ \item Appendix \ref{appendixD} shows some of the image samples used for our classification tasks.
+\end{itemize}
+
+
 
 %\section{Struttura della tesi}
 %La terza parte contiene la descrizione della struttura della tesi ed \`e organizzata nel modo seguente.
