@@ -465,6 +465,7 @@ In the following examples we considered extended datasets, unless explicitly spe
 \vspace{0.5cm}
 
 \subsection{Best Feature Combinations}
+\label{ch6:sec_best}
 
 In this experiment we looked for the best combination of features, so we considered all the features described in \ref{ch4:FE}. Having \textit{n} features, maybe multi-component,
 they can be combined in $2^n-1$ ways. As the texture features (see Section \ref{ch4:tf}, in particular Equation \ref{ch4:tftypes}) are mutually exclusive, we run three different
@@ -1048,9 +1049,10 @@ We also compare the performances of the users with best classifications obtained
 as the one presented to the users.
 
 
-\vspace{0.5cm}
+\clearpage
+%\vspace{0.5cm}
 
-\subsection{Comparison between Users and ICPR Contest Algorithms}
+\subsection{Humans and ICPR Contest Algorithms}
 
 For a given set of N classifications produced by an human or algorithm, the accuracy is defined as the fraction of classifications which are 
 correct\footnote{for all algorithms, N = 174 since we computed an output for each evaluation sample;
@@ -1115,7 +1117,7 @@ from which \Gls{ROC} curves were computed.
 
 \vspace{0.5cm}
 
-\subsection{Comparison between Users and Classifiers}
+\subsection{Humans and ad hoc Classifiers}
 
 In this section we compare the performances of users with the classifiers that we trained on the same problem. In particular we selected two of the best performing classifiers with 
 reference to Tables \ref{ch6:tab9} and \ref{ch6:tab11}.
@@ -1137,10 +1139,16 @@ Figure \ref{ch6:fig23} reports the \Gls{ROC} curves of the best performing \Gls{
 
 Even a superficial look at the dataset shows that some samples are easier to classify than others.
 Here we investigate whether samples that users find easy are also easier to classify for algorithms.
+
+\vspace{0.5cm}
+
+\subsection{Humans vs. ICPR Algorithms}
+
 First, we define for each sample a score representing the classification difficulty for humans, defined as
 
 \begin{equation}
  D_h = \frac{1}{|S|} \cdot \sum_{s \in S} \left(  |p_s(C1) - c |  \right)
+ \label{ch6:eq2}
 \end{equation}
 
 \noindent where:
@@ -1155,20 +1163,288 @@ First, we define for each sample a score representing the classification difficu
 Please note that $D_h$ differs from accuracy because it also depends on the confidence that users expressed for each classification.
 
 We divided the \textbf{C1} evaluation samples in three groups: $E_{easy}$, containing the 22 mitosis with the lowest $D_h$ value 
-(i.e. those which were identified most easily by humans), $E_{hard}$ , containing the 22 mitosis with the highest $D_h$ ; and $E_{med}$,
-containing the remaining 43 mitosis.
+(i.e. those which were identified most easily by humans), $E_{hard}$ , containing the 22 mitosis with the highest $D_h$  and $E_{med}$,
+containing the remaining 43 mitosis).
+
+Appendix \ref{appendixD}, in particular Section \ref{appendixD:h_diff} shows the samples described in this section.
+
+\begin{table}[!hbt]
+\tiny
+ \centering
+ \begin{tabularx}{360pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X}
+    \hline
+           &            &   \multicolumn{7}{c}{Algorithms}  \\
+    \hline
+    Subset & humans     & IDSIA & IPAL & ISIK   & Necla & NUS & Utrecht & Warwick \\
+    \hline
+     $E_{easy}$   & 0.876 & 0.909 & 0.864 & 0.864 & 0.773 & 0.591 & 0.909 & 0.727  \\
+     \hline
+     $E_{med}$    & 0.716 & 0.884 & 0.814 & 0.512 & 0.744 & 0.395 & 0.860 & 0.674  \\ 
+     \hline
+     $E_{hard}$   & 0.496 & 0.545 & 0.545 & 0.318 & 0.364 & 0.136 & 0.500 & 0.409  \\
+     \hline
+ \end{tabularx}
+ \caption{Accuracy of human and algorithms on easy, medium and difficult mitosis.}
+ \label{ch6:tab13}
+\end{table}
 
 
-
-
-
-
-
-
-Table 1 reports the accuracy of algorithms on these samples. We observe that for each algorithm, the accuracy on Eeasy is
-better than the accuracy on Emed , which in turn is better than the accuracy
-on Ehard; this indicates that samples which are challenging for humans are also
+Table \ref{ch6:tab13} reports the accuracy of algorithms on these samples. We observe that for each algorithm, the accuracy on $E_{easy}$ is
+better than the accuracy on $E_{med}$ , which in turn is better than the accuracy
+on $E_{hard}$; this indicates that samples which are challenging for humans are also
 difficult for all considered algorithms.
 
 
+\vspace{0.5cm}
 
+\subsection{Humans vs. ad hoc Classifiers}
+\label{ch6:sec_class}
+
+The same evaluations and comparisons made in previous Section can be carried out on the results obtained by our best classifiers.\\
+Using the same division in $E_{easy}$, $E_{med}$ and $E_{hard}$ of the mitoses, we computed the average accuracy of each classifier for the samples of each subset.
+Tables \ref{ch6:tab14} and \ref{ch6:tab15} show the results, divided for \Gls{SVM} and \Gls{RF} best classifiers.
+
+
+\begin{table}[!hbt]
+\tiny
+ \centering
+ \begin{tabularx}{360pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X }
+    \hline
+                  &            &  \multicolumn{4}{c}{SVM classifiers}    \\
+    \hline
+    Subset        & humans     & \texttt{H} & \texttt{MSiVH} & \texttt{SiU}   & \texttt{SiVHU} \\
+    \hline
+     $E_{easy}$   & 0.876      & 0.954      & 0.818          & 1.000          & 1.000          \\
+     \hline
+     $E_{med}$    & 0.716      & 0.853      & 0.721          & 0.861          & 0.791          \\ 
+     \hline
+     $E_{hard}$   & 0.496      & 0.909      & 0.409          & 0.818          & 0.864          \\
+     \hline
+ \end{tabularx}
+ \caption{Accuracy of human and \Gls{SVM} classifiers on sets of mitoses.}
+ \label{ch6:tab14}
+\end{table}
+
+
+\begin{table}[!hbt]
+\tiny
+ \centering
+ \begin{tabularx}{360pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X }
+    \hline
+                  &            &  \multicolumn{4}{c}{RF classifiers}    \\
+    \hline
+    Subset        & humans     & \texttt{iVHL} & \texttt{MSHL} & \texttt{MSiVHR}   & \texttt{SHL} \\
+    \hline
+     $E_{easy}$   & 0.876      & 0.954      & 0.864          & 0.954          & 1.000          \\
+     \hline
+     $E_{med}$    & 0.716      & 0.861      & 0.698          & 0.837          & 0.930          \\ 
+     \hline
+     $E_{hard}$   & 0.496      & 0.954      & 0.545          & 0.909          & 1.000          \\
+     \hline
+ \end{tabularx}
+ \caption{Accuracy of human and \Gls{RF} classifiers on sets of mitoses.}
+ \label{ch6:tab15}
+\end{table}
+
+Tables \ref{ch6:tab14} and \ref{ch6:tab15} show that, most classifiers, even if trained on different features, have better performances on easy mitoses than on medium and hard,
+with a trend similar to human performance. This confirms that, in general, difficult mitoses for humans are generally more difficult also for classifiers.\\
+On average, classifiers outperform humans on each set of mitoses, as shown in Table \ref{ch6:tab16}.
+
+
+\begin{table}[!hbt]
+% \tiny
+ \centering
+ \begin{tabularx}{280pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X }
+    \hline
+    Subset        & humans     & classifiers (avg.) \\
+    \hline
+     $E_{easy}$   & 0.876      & 0.943         \\
+     \hline
+     $E_{med}$    & 0.716      & 0.831         \\ 
+     \hline
+     $E_{hard}$   & 0.496      & 0.801         \\
+     \hline
+ \end{tabularx}
+ \caption{Accuracy of human and average of classifiers on sets of mitoses.}
+ \label{ch6:tab16}
+\end{table}
+
+The measure of the difficulty described in Equation \ref{ch6:eq2} of an image sample can be used not only for \textbf{C1} samples, but also for \textbf{C0} samples.
+We divided the subset of negative samples of our evaluation dataset with the same criteria used for positive samples and performed the same comparison between
+humans and our classifiers. Tables \ref{ch6:tab17} and \ref{ch6:tab18} show the results, divided for \Gls{SVM} and \Gls{RF} best classifiers.
+
+
+
+
+\begin{table}[!hbt]
+\tiny
+ \centering
+ \begin{tabularx}{360pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X }
+    \hline
+                  &            &  \multicolumn{4}{c}{SVM classifiers}    \\
+    \hline
+    Subset        & humans     & \texttt{H} & \texttt{MSiVH} & \texttt{SiU}   & \texttt{SiVHU} \\
+    \hline
+     $E_{easy}$   & 0.801      & 0.750      & 0.917          & 0.958          & 0.875          \\
+     \hline
+     $E_{med}$    & 0.626      & 0.683      & 0.951          & 0.732          & 0.732          \\ 
+     \hline
+     $E_{hard}$   & 0.376      & 0.500      & 0.818          & 0.773          & 0.636          \\
+     \hline
+ \end{tabularx}
+ \caption{Accuracy of human and \Gls{SVM} classifiers on sets of non-mitoses.}
+ \label{ch6:tab17}
+\end{table}
+
+
+\begin{table}[!hbt]
+\tiny
+ \centering
+ \begin{tabularx}{360pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X }
+    \hline
+                  &            &  \multicolumn{4}{c}{RF classifiers}    \\
+    \hline
+    Subset        & humans     & \texttt{iVHL} & \texttt{MSHL} & \texttt{MSiVHR}   & \texttt{SHL} \\
+    \hline
+     $E_{easy}$   & 0.801      & 0.875      & 0.958          & 0.917          & 0.833          \\
+     \hline
+     $E_{med}$    & 0.626      & 0.756      & 0.951          & 0.756          & 0.561          \\ 
+     \hline
+     $E_{hard}$   & 0.376      & 0.682      & 0.818          & 0.727          & 0.591          \\
+     \hline
+ \end{tabularx}
+ \caption{Accuracy of human and \Gls{RF} classifiers on sets of non-mitoses.}
+ \label{ch6:tab18}
+\end{table}
+
+
+Tables \ref{ch6:tab17} and \ref{ch6:tab18} show that, most classifiers, even if trained on different features, have better performances on easy mitoses than on medium and hard,
+with a trend similar to human performance. This confirms that, in general, difficult non-mitoses for humans are generally more difficult also for classifiers.\\
+On average, classifiers outperform humans on each set of non-mitoses, as shown in Table \ref{ch6:tab19}.
+
+
+
+\begin{table}[!hbt]
+% \tiny
+ \centering
+ \begin{tabularx}{280pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X }
+    \hline
+    Subset        & humans     & classifiers (avg.) \\
+    \hline
+     $E_{easy}$   & 0.801      & 0.885         \\
+     \hline
+     $E_{med}$    & 0.626      & 0.765         \\ 
+     \hline
+     $E_{hard}$   & 0.376      & 0.693         \\
+     \hline
+ \end{tabularx}
+ \caption{Accuracy of human and average of classifiers on sets of non-mitoses.}
+ \label{ch6:tab19}
+\end{table}
+
+
+Tables \ref{ch6:tab16} and \ref{ch6:tab19} also show that, for both humans and classifiers, on average mitoses are detected more easily than non-mitoses.
+
+\vspace{0.5cm}
+
+\section{Difficulties among Classifiers}
+
+As a further analysis, we tried to find correlations among samples that appear to be difficult (i.e. are wrongly labeled) for several classifiers.
+for this analysis we used the same best classifiers determined in Section \ref{ch6:sec_best} and used also in Section \ref{ch6:sec_class}.
+Among the 8 best classifiers ( 2 types of classifiers and 4 sets of features each ), we considered if there exist samples that are not correctly classified by 
+many classifiers.\\
+In this analysis we intersected the \Glspl{FN} and \Glspl{FP} of all the classifiers and looked for frequencies. We considered only \Glspl{FN} and \Glspl{FP}
+with 5 or more occurrences, to be sure that they were misclassified by both \Gls{SVM} and \Gls{RF}.\\
+We started with \Glspl{FN} and found 6 samples: the results illustrated in Tables \ref{ch6:tab20} and \ref{ch6:tab21}.
+
+\begin{table}[!hbt]
+% \tiny
+ \centering
+ \begin{tabularx}{280pt}{  >{\centering\arraybackslash} X | >{\centering\arraybackslash} X }
+    \hline
+    Frequency        & $\sharp$ of samples \\
+    \hline
+     5 classifiers   & 2 samples        \\
+     \hline
+     6 classifiers   & 3 samples         \\ 
+     \hline
+     7 classifiers   & 1 sample         \\
+     \hline
+     8 classifiers  &  no samples \\
+     \hline
+ \end{tabularx}
+ \caption{Frequency of common misclassified mitoses.}
+ \label{ch6:tab20}
+\end{table}
+
+\begin{table}[!hbt]
+% \tiny
+ \centering
+ \begin{tabularx}{280pt}{ l | >{\centering\arraybackslash} X  }
+    \hline
+    Subset        & frequency  \\
+    \hline
+     $E_{easy}$   & no samples \\
+     \hline
+     $E_{med}$    & 5 samples \\ 
+     \hline
+     $E_{hard}$   & 1 sample \\
+     \hline
+ \end{tabularx}
+ \caption{Correlation among frequency and human difficulty.}
+ \label{ch6:tab21}
+\end{table}
+
+Among the 87 \textbf{C1} samples, 41 have been misclassified by at least one algorithm. Of 41 samples, only 6 have been wrongly labeled by 5 of more classifiers.
+Table \ref{ch6:tab21} shows the distribution of the difficulty of the 6 samples. Most of them belong to $E_{med}$, with only one belonging to $E_{hard}$.
+
+\vspace{0.2cm}
+
+A similar analysis can be carried out on \textbf{C0} samples. Tables \ref{ch6:tab22} and \ref{ch6:tab23} show the results.
+
+
+\begin{table}[!hbt]
+% \tiny
+ \centering
+ \begin{tabularx}{280pt}{  >{\centering\arraybackslash} X | >{\centering\arraybackslash} X }
+    \hline
+    Frequency        & $\sharp$ of samples \\
+    \hline
+     5 classifiers   & 6 samples        \\
+     \hline
+     6 classifiers   & 6 samples         \\ 
+     \hline
+     7 classifiers   & 3 sample         \\
+     \hline
+     8 classifiers  &  1 sample \\
+     \hline
+ \end{tabularx}
+ \caption{Frequency of common misclassified non-mitoses.}
+ \label{ch6:tab22}
+\end{table}
+
+\begin{table}[!hbt]
+% \tiny
+ \centering
+ \begin{tabularx}{280pt}{ l | >{\centering\arraybackslash} X  }
+    \hline
+    Subset        & frequency  \\
+    \hline
+     $E_{easy}$   & 2 samples \\
+     \hline
+     $E_{med}$    & 8 samples \\ 
+     \hline
+     $E_{hard}$   & 6 sample \\
+     \hline
+ \end{tabularx}
+ \caption{Correlation among frequency and human difficulty.}
+ \label{ch6:tab23}
+\end{table}
+
+
+Among the 87 \textbf{C0} samples, 46 have been misclassified by at least one algorithm. Of 46 samples, 16 have been wrongly labeled by 5 of more classifiers.
+Table \ref{ch6:tab23} shows the distribution of the difficulty of the 16 samples. Most of them belong to $E_{med}$ and $E_{hard}$, with only 2 belonging to $E_{easy}$.
+
+\vspace{0.2cm}
+
+Appendix \ref{appendixD}, in particular Section \ref{appendixD:cl_diff} shows the samples described in this section.
