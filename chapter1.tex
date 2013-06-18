@@ -48,7 +48,7 @@ Early detection of cancer stage plays an important role in selecting the best tr
 The current procedure for breast cancer grading is manually performed by pathologists, as
 breast tissue samples of patients are taken and examined under microscopes.\\
 
-\vspace{0.6cm}
+\vspace{0.5cm}
 
 Pathologists grade the tissue samples based on the deviation of the cell structures
 from normal tissues. A pathologist may have to examine hundreds of slides daily \cite{histopat01}, which is a subjective and time consuming process.\\
@@ -59,11 +59,52 @@ medical field. As the quality of medical imaging affects diagnosis, the medical
 image processing has become an interesting research topic, not only for the ability to store, retrieve and handling a large amount of data, but rather for 
 automating the analysis process \cite{medImagingReview01}.\\
 
-\vspace{0.6cm}
+\vspace{0.5cm}
+
+A cell that divides itself into two daughter cells with the same chromosomes undergoes a process of \textit{mitosis}
+(see Figure \ref{ch1:fig1})\footnote{image taken from \url{http://en.wikipedia.org/wiki/Mitosis}}.
+
+\begin{figure}[!htbf]
+ \centering
+  \includegraphics[width=0.92\textwidth]{./images/Major_events_in_mitosis.png}
+  \caption{Mitosis of a cell}
+  \label{ch1:fig1}
+\end{figure}
+
+\vspace{0.5cm}
+
 
 The scoring of mitotic figures is an integrated part of the various systems for grading of invasive breast cancer with most rigorous criteria \cite{breastCancerGrading01}.
 For this reason, the automatic detection and counting of mitotic figures in breast cancer tissue is an attractive and challenging research
 topic \cite{Mitosis01}.\\
+An example of histological images for mitosis detection is given in Figure \ref{ch1:fig2}\footnote{image taken from \url{ttp://www.breastpathology.info}}.
+
+\begin{figure}[!hbt]
+  \centering
+    \subfigure{
+      \includegraphics[width=0.47\textwidth]{./images/bcg0.jpg}
+      %\label{ch1:fig2:a}
+    }
+    \hspace{0.1mm}
+    \subfigure{
+      \includegraphics[width=0.47\textwidth]{./images/bcg2.jpg}
+      %\label{ch1:fig2:b}
+    }\\
+    \vspace{0.1mm}
+    \subfigure{
+      \includegraphics[width=0.47\textwidth]{./images/bcg3.jpg}
+      %\label{ch1:fig2:c}
+    }
+    \hspace{0.1mm}
+    \subfigure{
+      \includegraphics[width=0.47\textwidth]{./images/bcg5.jpg}
+      %\label{ch1:fig2:d}
+    }
+    \caption{Histological images with labeled mitoses (\texttt{Y}) and non-mitoses (\texttt{N})}
+    \label{ch1:fig2}
+\end{figure}
+
+
 The automatic detection process lays its groundwork in the fields of Computer Vision and Machine Learning\cite{mitosisBreastCancerImagingAlgorithmsTHESIS}.
 Mitotic cells must be found and identified on a histological image. This issue can be faced as a
 detection problem, to find interesting portions of a histological image, and a supervised learning problem, where a classifier
@@ -84,7 +125,7 @@ This aspect have an impact when using data to train a a computerized system for 
 Conversely, once a dataset and the associated ground truth is accepted, it is the classifier that has to be able to gain information on labeled samples and
 use this information to perform sufficiently well on new (unseen) data.
 
-\vspace{0.6cm}
+\vspace{0.5cm}
 
 From the application point of view, both aspects (dataset and classifier performance) are important to build a reliable automatic mitosis detection system:
 the most relevant issue is whether such algorithms perform similarly (or better) than experts who routinely solve the same task.
@@ -99,7 +140,7 @@ The former case means that the effort should be focused on improving the algorit
 We aim to answer this question in the context of mitosis detection in breast
 cancer histological images using a public dataset.
 
-\vspace{0.6cm}
+\vspace{0.5cm}
 
 In our work we focused on the classification problem, extracting labeled samples from images of a public dataset annotated by an expert pathologist.
 We then built some classifiers based on such images and implemented a testing website to collect classifications by different users.
@@ -118,7 +159,7 @@ These results are consistent with the ones that we report in this work, based on
 
 
 
-\vspace{0.6cm}
+\vspace{0.5cm}
 
 %\section{Inquadramento generale}
 %La prima parte contiene una frase che spiega l'area generale dove si svolge il lavoro; una che spiega la sottoarea pi\`u specifica dove si svolge il lavoro e la terza, che dovrebbe cominciare con le seguenti parole ``lo scopo della tesi \`e \dots'', illustra l'obbiettivo del lavoro. Poi vi devono essere una o due frasi che contengano una breve spiegazione di cosa e come \`e stato fatto, delle attivit\`a  sperimentali, dei risultati ottenuti con una valutazione e degli sviluppi futuri. La prima parte deve essere circa una facciata e mezza o due
