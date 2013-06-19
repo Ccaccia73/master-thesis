@@ -13,7 +13,7 @@ Roger Bacon (Opus Majus part VI, ch. I)
 \end{flushright}
 }
 \end{quotation}
-\vspace{0.5cm}
+\vspace{2cm}
 
 %\noindent Si mostra il progetto dal punto di vista sperimentale, le cose materialmente realizzate. In questa sezione si mostrano le attivit\`a sperimentali svolte, si illustra il funzionamento del sistema (a grandi linee) e si spiegano i risultati ottenuti con la loro valutazione critica. Bisogna introdurre dati sulla complessit\`a degli algoritmi e valutare l'efficienza del sistema.
 
@@ -30,19 +30,19 @@ We adopted some conventions to describe a specific feature-set in a short way. A
 features placed side by side, so a complete set can be represented by a string whose characters correspond to a specific feature. We used the following nomenclature:
 
 \begin{itemize}
- \item \textit{M}: mean value per color (Section \ref{ch4:sf}),
- \item \textit{S}: standard deviation per color (Section \ref{ch4:sf}),
- \item \textit{d}: median per color (Section \ref{ch4:sf}),
- \item \textit{H}: color histograms (Section \ref{ch4:chi}),
- \item \textit{i}: mean intensities (Section \ref{ch4:chi}),
- \item \textit{L}: LBP$^{riu2}$ with radii 1-2-3, 8 neighbors (Section \ref{ch4:tf}),
- \item \textit{R}: LBP$^{ri}$ with radii 1-2-3, 8 neighbors (Section \ref{ch4:tf}),
- \item \textit{U}: LBP$^{u2}$ with radii 1-2-3, 8 neighbors (Section \ref{ch4:tf}),
- \item \textit{V}: VAR, pixel variance (Section \ref{ch4:tf}).
+ \item \texttt{M}: mean value per color (Section \ref{ch4:sf}),
+ \item \texttt{S}: standard deviation per color (Section \ref{ch4:sf}),
+ \item \texttt{d}: median per color (Section \ref{ch4:sf}),
+ \item \texttt{H}: color histograms (Section \ref{ch4:chi}),
+ \item \texttt{i}: mean intensities (Section \ref{ch4:chi}),
+ \item \texttt{L}: LBP$^{riu2}$ with radii 1-2-3, 8 neighbors (Section \ref{ch4:tf}),
+ \item \texttt{R}: LBP$^{ri}$ with radii 1-2-3, 8 neighbors (Section \ref{ch4:tf}),
+ \item \texttt{U}: LBP$^{u2}$ with radii 1-2-3, 8 neighbors (Section \ref{ch4:tf}),
+ \item \texttt{V}: VAR, pixel variance (Section \ref{ch4:tf}).
 \end{itemize}
 
 \noindent Thus a feature set can be described by the string \texttt{MSHLV}, meaning that the above corresponding features have been concatenated.
-We remind here that features \textit{L}, \textit{R} and \textit{U} are used in a mutually exclusive way. 
+We remind here that features \texttt{L}, \texttt{R} and \texttt{U} are used in a mutually exclusive way. 
 
 \vspace{0.5cm}
 
@@ -57,7 +57,7 @@ In this section we describe the experiments made and, for each one of them, we r
 \subsection{Normalization}
 
 Te first aspect that we took into account regarded \textit{normalization} of data. Each feature in the \textit{feature vector} can range among different values.
-The procedure described in the guide in \cite{SVM01} claims that the scaling of data is very important in order to obtain a good classification with \Glspl{SVM} \cite{juszczak2002feature}.
+The procedure that we used as a reference (described in the guide in \cite{SVM01}) claims that the scaling of data is very important in order to obtain a good classification with \Glspl{SVM} \cite{juszczak2002feature}.
 On the other hand, \Glspl{RF}, as composed of \Glspl{DT}, should not be influenced by scaling.\\
 The general idea is to rescale the data so that each new feature \textit{z} has: $\mu = 0, \sigma = 1$, using the following relations:
 
@@ -67,9 +67,9 @@ The general idea is to rescale the data so that each new feature \textit{z} has:
  z_i & = & \frac{x_i - \mu}{\sigma}
 \end{eqnarray}
 
-We run some test with different sets of features.
+\noindent We run some test with different sets of features.
 \\
-The Matlab code implemented to run \textit{experiment 1} is listed in \ref{appendixB:exp1}
+We remind here that the Matlab code implemented to run the experiments can be found at \url{https://github.com/Ccaccia73/mitosis-experiments}, into the sub-directory \texttt{classify}.
 
 \vspace{0.5cm}
 

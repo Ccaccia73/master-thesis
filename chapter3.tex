@@ -384,13 +384,13 @@ points below the line poor results (worse than random).
 \begin{figure}[!hbt]
   \centering
     \subfigure[ROC curve]{
-      \includegraphics[width=0.84\textwidth]{./images/ROC1.png}
+      \includegraphics[width=0.46\textwidth]{./images/ROC1mod.png}
       \label{ch3:fig2:a}
     }
-    \\
-    %\hspace{1mm}
+    %\\
+    \hspace{1mm}
     \subfigure[AUC]{
-      \includegraphics[width=0.84\textwidth]{./images/ROC2.png}
+      \includegraphics[width=0.46\textwidth]{./images/ROC2mod.png}
       \label{ch3:fig2:b}
     }
     \caption{Example of ROC curves}
@@ -404,26 +404,27 @@ summary statistics like the \textit{Gini coefficient} \cite{Gini} and the \texti
 Another common measure related to the \Gls{ROC} curve is known as the Area Under the ROC Convex Hull (\textit{AUCH ROC}, in Figure \ref{ch3:fig2:b}), which computes the area under the convex hull of the ROC curve, as
 it can be shown that any point on the line segment between two prediction results can be achieved by randomly using one or other system with probabilities proportional to the relative length of the opposite component of the segment.
 
-\vspace{0.5cm}
+\clearpage
 
-\subsection{Performances of Algorithms on MITOS Dataset}
+\section{Performances on ICPR Contest}
 \label{ch3:icpr_perf}
 
-We report here the performances of the best-scoring algorithms that participated to the ICPR2012 Contest, as shown on the contest website (Figure \ref{ch3:fig3} and \ref{ch3:fig4}).
-The principal metric adopted to compare algorithms is the $F_1$-Score (Figure \ref{ch3:fig3}) , but also precision and recall are shown (Figure \ref{ch3:fig4}). 
+We report here the performances of the best-scoring algorithms that participated to the ICPR2012 Contest, as shown on the contest website (Figure \ref{ch3:fig3}).
+The principal metric adopted to compare algorithms is the $F_1$-Score (Figure \ref{ch3:fig3:a}), but also precision and recall are shown (Figure \ref{ch3:fig3:b}). 
 
 \begin{figure}[!htb]
   \centering
-      \includegraphics[width=0.84\textwidth]{./images/ICPRperf1.png}
-    \caption{Performances of best algorithms in ICPR 2012 contest ($F_1$-Score)}
+    \subfigure[$F_1$-Score]{
+      \includegraphics[width=0.72\textwidth]{./images/ICPRperf1.png}
+      \label{ch3:fig3:a}
+    }
+    \\
+    \subfigure[various metrics]{
+      \includegraphics[width=0.72\textwidth]{./images/ICPRperf2.png}
+      \label{ch3:fig3:b}
+    }
+    \caption{Performances of best algorithms in ICPR 2012 contest}
     \label{ch3:fig3}
-\end{figure}
-
-\begin{figure}[t]
-  \centering
-      \includegraphics[width=0.84\textwidth]{./images/ICPRperf2.png}
-    \caption{Performances of best algorithms in ICPR 2012 contest (various metrics)}
-    \label{ch3:fig4}
 \end{figure}
 
 

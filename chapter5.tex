@@ -7,13 +7,16 @@
 \noindent{\emph{``\greek{`p'antwn qrhm'atwn m'etron', >'anjrwpon e>~inai, 't~wn m`en >'ontwn <wc >'esti, t~wn d`e m`h >'ontwn <wc o>uk >'estinv.'}''}\\
 (man is \textquotedblleft the measure of all things, of the existence of the things that are and the non-existence of the things that are not.\textquotedblright)}
 \begin{flushright}
-\greek{Pl'atwn}(Plato, Theaet. 152a)
+\greek{Pl'atwn} (Plato, Theaet. 152a)
 \end{flushright}
 }
 \end{quotation}
 
+\vspace{2cm}
+
+
 % ὄντων ὡς ἔστι, τῶν δὲ μὴ ὄντων ὡς οὐκ ἔστιν.’
-We built a web interface to collect data originated from mitosis classification performed by humans.
+\noindent We built a web interface to collect data originated from mitosis classification performed by humans.
 
 
 \vspace{0.5cm}
@@ -32,14 +35,14 @@ The classification task can be presented to an user through a very simple and im
 patch. In contrast, detection would require a more complicated interaction with
 users. For this reason, we focused on the classification subproblem.
 For a given sample, input is given in form of an image patch with size 100$\times$100 pixel: such size completely contains the image of the cell, and most algorithms
-generally use data from a smaller window. The task proposed to the used the same as the one tackled in automatic classifcation (see Chapter \ref{chapter4}), that is to map each patch to one of two classes:
+generally use data from a smaller window. The task proposed to the user is the same as the one tackled in automatic classification (see Chapter \ref{chapter4}), that is to map each patch to one of two classes:
 
-\vbox{%
+% \vbox{%
 \begin{itemize}
  \item [] \textit{\textbf{C1}}: the image contains a mitosis at its center,
  \item [] \textit{\textbf{C0}}: the image does not contain a mitosis anywhere. 
 \end{itemize}
-}
+% }
 
 \noindent with no samples containing a mitosis visible off-center.
 
@@ -56,12 +59,12 @@ The dataset is the same as the one described in Section \ref{ch4:ds}.
 The user interface has been built in \Gls{RoR}\footnote{\url{http://rubyonrails.org/} \cite{hansson2009ruby}}, which is 
 an open source web application framework which runs on the \textit{Ruby} programming language \cite{collingbourne2011book}, and allows to
 develop complete, dynamic pages without too much overhead \cite{RoR01}.
-\Gls{RoR} makes an extensive use of the concept of \Gls{CoC} which is a software design paradigm which seeks to decrease the number of decisions that developers need to make, gaining simplicity
+\Gls{RoR} makes an extensive use of the concept of \Gls{CoC} which is a software design paradigm that seeks to decrease the number of decisions that developers need to make, gaining simplicity
 and standardization. In fact the directory structure of a \Gls{RoR} project is auto-generated and standardized, and also 
 class names are conventionally mapped  to identically named database tables and the fields to its columns.\\
-The application built for this project has been depolyed on the \textit{Heroku application platform}\footnote{\url{https://www.heroku.com/}} and its
-online implementation is reachable
-at the following \texttt{url}: \url{http://mitosis-detection.herokuapp.com/}.
+The application built for this project has been deployed on the \textit{Heroku application platform}\footnote{\url{https://www.heroku.com/}} and its
+on-line implementation is reachable
+at the following \textit{url}: \url{http://mitosis-detection.herokuapp.com/}.
 
 
 \vspace{0.5cm}
@@ -98,7 +101,7 @@ In the first stage the user receives some information about the purpose of the t
   \centering
 \begin{tikzpicture}
     \node[anchor=south west,inner sep=0] (image) at (0,0) {
-      \includegraphics[width=0.98\textwidth]{./images/cr_MD_intro.png}
+      \includegraphics[width=0.98\textwidth]{./images/cr_MD_intro_mod.png}
     };
     \begin{scope}[x={(image.south east)},y={(image.north west)}]
       \coordinate (a) at (0,0);
@@ -127,13 +130,13 @@ instructed to study them and devise some differentiating criteria (see Figure \r
   \centering
 \begin{tikzpicture}
     \node[anchor=south west,inner sep=0] (image) at (0,0) {
-      \includegraphics[width=0.88\textwidth]{./images/cr_MD_train.png}
+      \includegraphics[width=0.87\textwidth]{./images/cr_MD_train_mod.png}
     };
     \begin{scope}[x={(image.south east)},y={(image.north west)}]
-      \coordinate (a) at (0.01,0.15);
-      \coordinate (b) at (0.01,0.63);
-      \coordinate (c) at (0.99,0.15);
-      \coordinate (d) at (0.99,0.63);
+      \coordinate (a) at (0.0,0.15);
+      \coordinate (b) at (0.0,0.63);
+      \coordinate (c) at (1.0,0.15);
+      \coordinate (d) at (1.0,0.63);
       
       \draw[red, thick, decorate, decoration={brace, amplitude=8pt}] (a) -- (b)
 	      node [midway,xshift=-14pt] {\tiny C1};
@@ -159,13 +162,13 @@ During evaluation, the subject is presented with one evaluation sample at a time
 \end{itemize}
 
 During the evaluation phase, the whole training set remains visible for reference (see Figure \ref{ch5:fig3_eval}). The number of classification options has been chosen so that the user is led to make
-a commitment over the type of current image: towards \textit{C0} or towards \textit{C1}.
+a commitment over the type of current image: towards \textbf{C0} or towards \textbf{C1}.
 
 \begin{figure}[!hbt]
   \centering
 \begin{tikzpicture}
     \node[anchor=south west,inner sep=0] (image) at (0,0) {
-      \includegraphics[width=0.88\textwidth]{./images/cr_MD_eval0.png}
+      \includegraphics[width=0.88\textwidth]{./images/cr_MD_eval0_mod.png}
     };
     \begin{scope}[x={(image.south east)},y={(image.north west)}]
       \coordinate (a) at (0.02,0.0);
@@ -199,12 +202,12 @@ unfair advantage over algorithms.
 \begin{figure}[!hbt]
   \centering
     \subfigure[positive Feedback]{
-	\includegraphics[width=0.84\textwidth]{./images/cr_MD_eval_OK.png}
+	\includegraphics[width=0.87\textwidth]{./images/cr_MD_eval_OK_mod.png}
 	\label{ch5:fig4:a}
     }\\
     %\hspace{1mm}
     \subfigure[negative Feedback]{
-      \includegraphics[width=0.84\textwidth]{./images/cr_MD_eval_KO.png}
+      \includegraphics[width=0.87\textwidth]{./images/cr_MD_eval_KO_mod.png}
       \label{ch5:fig4:b}
     }
     \caption{Examples of classification feedback}
@@ -213,13 +216,13 @@ unfair advantage over algorithms.
 
 
 In addition, subjects are allowed to finish the test at any time, the ones who reach a minimum of 20 classifications are shown their
-current average accuracy, as shown in Figure \ref{ch5:fig5_perf}.
+current average accuracy, as illustrated in Figure \ref{ch5:fig5_perf}.
 
 \begin{figure}[!hbt]
   \centering
 \begin{tikzpicture}
     \node[anchor=south west,inner sep=0] (image) at (0,0) {
-      \includegraphics[width=0.88\textwidth]{./images/cr_MD_eval_act_perf.png}
+      \includegraphics[width=0.87\textwidth]{./images/cr_MD_eval_act_perf_mod.png}
     };
     \begin{scope}[x={(image.south east)},y={(image.north west)}]
       \coordinate (a) at (0.0,0.2);
@@ -234,26 +237,35 @@ current average accuracy, as shown in Figure \ref{ch5:fig5_perf}.
 
 \vspace{0.5cm}
 
+
 \subsection{Comments}
 
 After concluding the classifications, the subject can write his opinions about the classification criteria that he devised during the process (see Figure \ref{ch5:fig6_comm}).
 
+% \begin{figure}[!hbt]
+%   \centering
+%     \begin{tikzpicture}
+%       \node[anchor=south west,inner sep=0] (image) at (0,0) {
+% 	\includegraphics[width=0.92\textwidth]{./images/cr_MD_comments_mod.png}
+%     };
+%     \begin{scope}[x={(image.south east)},y={(image.north west)}]
+%       \coordinate (a) at (0.0,0.0);
+%       \coordinate (b) at (1.0,1.0);
+%       
+%       \draw[black,thin] (a) rectangle (b);
+%     \end{scope}
+% \end{tikzpicture}
+%   \caption{Comment page}
+%   \label{ch5:fig6_comm}
+% \end{figure}  
+
 \begin{figure}[!hbt]
   \centering
-    \begin{tikzpicture}
-      \node[anchor=south west,inner sep=0] (image) at (0,0) {
-	\includegraphics[width=0.92\textwidth]{./images/cr_MD_comments.png}
-    };
-    \begin{scope}[x={(image.south east)},y={(image.north west)}]
-      \coordinate (a) at (0.0,0.0);
-      \coordinate (b) at (1.0,1.0);
-      
-      \draw[black,thin] (a) rectangle (b);
-    \end{scope}
-\end{tikzpicture}
+	\includegraphics[width=0.92\textwidth]{./images/cr_MD_comments_mod.png}
   \caption{Comment page}
   \label{ch5:fig6_comm}
 \end{figure}  
+
 
 \vspace{0.5cm}
 
@@ -262,19 +274,26 @@ After concluding the classifications, the subject can write his opinions about t
 Finally, the user can review his overall performance, viewing his \textit{confusion matrix}, his \textit{accuracy}, \textit{sensitivity} and \textit{specificity} (as described in Section \ref{ch3:perf}).
 The results page is shown in Figure \ref{ch5:fig7_res}.
 
+% \begin{figure}[!hbt]
+%   \centering
+%     \begin{tikzpicture}
+%       \node[anchor=south west,inner sep=0] (image) at (0,0) {
+% 	\includegraphics[width=0.92\textwidth]{./images/cr_MD_user_res_mod.png}
+%     };
+%     \begin{scope}[x={(image.south east)},y={(image.north west)}]
+%       \coordinate (a) at (0.0,0.0);
+%       \coordinate (b) at (1.0,1.0);
+%       
+%       \draw[black,thin] (a) rectangle (b);
+%     \end{scope}
+% \end{tikzpicture}
+%   \caption{user results page}
+%   \label{ch5:fig7_res}
+% \end{figure}  
+
 \begin{figure}[!hbt]
   \centering
-    \begin{tikzpicture}
-      \node[anchor=south west,inner sep=0] (image) at (0,0) {
-	\includegraphics[width=0.92\textwidth]{./images/cr_MD_user_res.png}
-    };
-    \begin{scope}[x={(image.south east)},y={(image.north west)}]
-      \coordinate (a) at (0.0,0.0);
-      \coordinate (b) at (1.0,1.0);
-      
-      \draw[black,thin] (a) rectangle (b);
-    \end{scope}
-\end{tikzpicture}
+	\includegraphics[width=0.92\textwidth]{./images/cr_MD_user_res_mod.png}
   \caption{user results page}
   \label{ch5:fig7_res}
 \end{figure}  
@@ -317,60 +336,82 @@ The first line of a detection reports the information concerning user and detect
 
 \noindent Finally it is possible to view all the comments left by the users (see Figure \ref{ch5:fig10_comm}).
 
+
 \begin{figure}[!hbt]
   \centering
-    \begin{tikzpicture}
-      \node[anchor=south west,inner sep=0] (image) at (0,0) {
-	\includegraphics[width=0.92\textwidth]{./images/cr_MD_data_all.png}
-    };
-    \begin{scope}[x={(image.south east)},y={(image.north west)}]
-      \coordinate (a) at (0.0,0.0);
-      \coordinate (b) at (1.0,1.0);
-      
-      \draw[black,thin] (a) rectangle (b);
-    \end{scope}
-\end{tikzpicture}
+	\includegraphics[width=0.92\textwidth]{./images/cr_MD_data_all_mod.png}
   \caption{Overall results page}
   \label{ch5:fig8_data}
 \end{figure}
 
 \begin{figure}[!hbt]
   \centering
-    \begin{tikzpicture}
-      \node[anchor=south west,inner sep=0] (image) at (0,0) {
-	\includegraphics[width=0.92\textwidth]{./images/cr_MD_data_dl.png}
-    };
-    \begin{scope}[x={(image.south east)},y={(image.north west)}]
-      \coordinate (a) at (0.0,0.0);
-      \coordinate (b) at (1.0,1.0);
-      
-      \draw[black,thin] (a) rectangle (b);
-    \end{scope}
-\end{tikzpicture}
+	\includegraphics[width=0.92\textwidth]{./images/cr_MD_data_dl_mod.png}
   \caption{Download buttons}
   \label{ch5:fig9_dl}
 \end{figure}
 
 \begin{figure}[!hbt]
   \centering
-    \begin{tikzpicture}
-      \node[anchor=south west,inner sep=0] (image) at (0,0) {
-	\includegraphics[width=0.92\textwidth]{./images/cr_MD_data_comments.png}
-    };
-    \begin{scope}[x={(image.south east)},y={(image.north west)}]
-      \coordinate (a) at (0.0,0.0);
-      \coordinate (b) at (1.0,1.0);
-      
-      \draw[black,thin] (a) rectangle (b);
-    \end{scope}
-\end{tikzpicture}
+	\includegraphics[width=0.92\textwidth]{./images/cr_MD_data_comments_mod.png}
   \caption{User comments}
   \label{ch5:fig10_comm}
 \end{figure}
 
+% 
+% \begin{figure}[!hbt]
+%   \centering
+%     \begin{tikzpicture}
+%       \node[anchor=south west,inner sep=0] (image) at (0,0) {
+% 	\includegraphics[width=0.92\textwidth]{./images/cr_MD_data_all_mod.png}
+%     };
+%     \begin{scope}[x={(image.south east)},y={(image.north west)}]
+%       \coordinate (a) at (0.0,0.0);
+%       \coordinate (b) at (1.0,1.0);
+%       
+%       \draw[black,thin] (a) rectangle (b);
+%     \end{scope}
+% \end{tikzpicture}
+%   \caption{Overall results page}
+%   \label{ch5:fig8_data}
+% \end{figure}
+% 
+% \begin{figure}[!hbt]
+%   \centering
+%     \begin{tikzpicture}
+%       \node[anchor=south west,inner sep=0] (image) at (0,0) {
+% 	\includegraphics[width=0.92\textwidth]{./images/cr_MD_data_dl_mod.png}
+%     };
+%     \begin{scope}[x={(image.south east)},y={(image.north west)}]
+%       \coordinate (a) at (0.0,0.0);
+%       \coordinate (b) at (1.0,1.0);
+%       
+%       \draw[black,thin] (a) rectangle (b);
+%     \end{scope}
+% \end{tikzpicture}
+%   \caption{Download buttons}
+%   \label{ch5:fig9_dl}
+% \end{figure}
+% 
+% \begin{figure}[!hbt]
+%   \centering
+%     \begin{tikzpicture}
+%       \node[anchor=south west,inner sep=0] (image) at (0,0) {
+% 	\includegraphics[width=0.92\textwidth]{./images/cr_MD_data_comments_mod.png}
+%     };
+%     \begin{scope}[x={(image.south east)},y={(image.north west)}]
+%       \coordinate (a) at (0.0,0.0);
+%       \coordinate (b) at (1.0,1.0);
+%       
+%       \draw[black,thin] (a) rectangle (b);
+%     \end{scope}
+% \end{tikzpicture}
+%   \caption{User comments}
+%   \label{ch5:fig10_comm}
+% \end{figure}
+
 \vspace{0.5cm}
 
 \section{Source Code}
-
-Some extracts of the source code of the project can be found in Appendix \ref{appendixC}. The entire project source code is maintained at
+The entire project source code is maintained at the following repository:\\
 \url{https://github.com/Ccaccia73/tydes}.

@@ -12,7 +12,7 @@ Publius Vergilius Maro (Aeneis II, 65-66)
 }
 \end{quotation}
 
-\vspace{0.5cm}
+\vspace{2cm}
 
 %\noindent In questa sezione si spiega come \`e stato affrontato il problema concettualmente, la soluzione logica che ne \`e seguita senza la documentazione.
 
@@ -21,20 +21,21 @@ We developed an algorithm to perform mitosis-detection as a part of our work, wi
 \section{Dataset}
 \label{ch4:ds}
 
-We used the public MITOS dataset \cite{icpr}. The dataset is composed by a total of 50 2084$\times$2084 pixel images
+We used the public MITOS dataset \cite{icpr}. The dataset is composed by a total of 50 images with size 2084$\times$2084 pixel,
 covering an area of 512$\times$512 $\mu$m each, acquired with an APERIO XT scanner (see Figure \ref{ch2:fig1}). 
 A unique split is defined by the dataset authors, with 35 images used for training and 15 for evaluation.
 The dataset contains a total of about 300 mitosis, which were annotated by an expert pathologist.
 The performance of the algorithms participating to the \textit{2012 ICPR mitosis detection contest} are shown in Section \ref{ch3:icpr_perf}.\\
 With reference to Figure \ref{ch3:fig1}, we focused on on the classification subproblem, with the \Glspl{ROI} given as an input.
 The input is given in form of an image patch with size 100$\times$100 pixel: such size completely contains the image of the cell.
-The task is to map each patch to one of two classes:
+\clearpage
+\noindent The task is to map each patch to one of two classes:
 \begin{itemize}
  \item [] \textit{\textbf{C1}}: the image contains a mitosis at its center,
  \item [] \textit{\textbf{C0}}: the image does not contain a mitosis anywhere. 
 \end{itemize}
 
-There are no samples in which a mitosis is visible off-center.
+\noindent There are no samples in which a mitosis is visible off-center.
 
 \vspace{0.5cm}
 
@@ -45,23 +46,23 @@ For the \textit{\textbf{C1}} class, all the 216 mitosis available in the 35 trai
 as training samples, and all 87 mitosis in the evaluation images are chosen as
 evaluation samples.\\
 We enforced an even distribution of the two classes classes both in training and in evaluation sets, and therefore
-selected 216 \textit{\textbf{C0}} samples for training, and 87 \textit{\textbf{C0}} samples for evaluation; the resulting
+selected 216 \textit{\textbf{C0}} samples for training and 87 \textit{\textbf{C0}} samples for evaluation; the resulting
 training set contained 432 samples.\\
 Millions of different \textit{\textbf{C0}} samples may be randomly chosen from the original training and evaluation images:
-an overwhelming majority of such samples would not contain any nucleus and be non-informative for training and trivial for
+an overwhelming majority of such samples would not contain any nucleus and therefore be non-informative for training and trivial for
 evaluation. Limiting the choice to non-mitotic nuclei \texttwelveudash{} which greatly outnumber
 mitotic ones \texttwelveudash{} would not solve the problem, since most of such nuclei look very
 similar to each other and are trivially identified as non-mitotic. Only a small
 subset of non-mitotic nuclei \texttwelveudash{} as well as other structures and artifacts \texttwelveudash{} pose an
 actual challenge, both for humans and for algorithms.\\
 In order to select such objects as \textit{\textbf{C0}} samples, we used the output produced by a simple \Gls{CNN}-based mitosis detector,
-similar to the one outlined in \cite{agNN} for selecting useful training samples.
+similar to the one outlined in another work on the same dataset \cite{agNN}, for selecting useful training samples.
 The detector, built at IDSIA, was trained on few images in the training set, then applied on the whole dataset.
 Because the detector was simple and trained on a small amount of data, it performed poorly and detected a lot of false positives.
 \textit{\textbf{C0}} samples have been randomly chosen among the outputs of such detector which are
 farther than 50 pixels from the centroid of any mitosis; this ensures that no actual
 mitosis is visible in the corresponding image patch. The resulting samples do in
-fact resemble mitosis, are informative in the training set, and appear non-trivial
+fact resemble mitosis, are informative in the training set and appear non-trivial
 in the evaluation set. Finally, 10 \textit{\textbf{C0}} samples in the evaluation set are substituted
 with 5 random false positives obtained from each of the two best performing
 algorithms (IDSIA and IPAL). These last 10 samples are particularly useful to compare humans to algorithms, in fact allowed us to better observe how test subjects
@@ -88,7 +89,7 @@ Where $c_{i}$ represents the classification of image patch \textit{i}, and $c_{i
 
 \begin{figure}[!hbt]
   \centering
-    \includegraphics[width=0.94\textwidth]{./images/rotDataset.png}
+    \includegraphics[width=0.96\textwidth]{./images/rotDataset_mod1.png}
   \caption[Extended Dataset]{Extended dataset\\(a),(b),(c): $\pi/2$ clockwise rotations, (d),(e),(f): mirror and $\pi/2$ clockwise rotations.}
   \label{ch4:fig1}
 \end{figure}  
@@ -157,7 +158,7 @@ Also this feature is orientation independent.
 
 \begin{figure}[!hbt]
   \centering
-    \includegraphics[width=0.94\textwidth]{./images/histIM.png}
+    \includegraphics[width=0.98\textwidth]{./images/histIM_mod1.png}
   \caption[Color Histograms]{Color Histograms of sample image}
   \label{ch4:fig2}
 \end{figure}  
@@ -176,7 +177,7 @@ We finally computed the mean intensity for each element. Figure \ref{ch4:fig3} i
 
 \begin{figure}[!hbt]
   \centering
-    \includegraphics[width=0.94\textwidth]{./images/GSintens1.png}
+    \includegraphics[width=0.99\textwidth]{./images/GSintens1_mod1.png}
   \caption[Example of mean gray-scale intensities feature]{Mean gray-scale intensity of central part of image patch}
   \label{ch4:fig3}
 \end{figure}
@@ -192,21 +193,21 @@ The resulting feature vector is composed of 25 values, corresponding to the inte
 \subsection{Texture Features}
 \label{ch4:tf}
 
-Texture features are widely used in different \Gls{CV} tasks, as pointed out in Section \ref{ch2:texture}. We focused on the features described in \cite{LBP01} and \cite{LBP02},
-based on Local Binary Patterns (\Gls{LBP}). The general idea of \Gls{LBP} is described on page \pageref{ch2:lbp}.
-The \Gls{LBP} features considered here are labeled LBP$_{P,R}$, where \textit{P} is the number of neighbors considered and \textit{R} is the distance from the pixel.
+Texture features are widely used in different \Gls{CV} tasks, as pointed out in Section \ref{ch2:texture}. We focused on the features based on Local Binary Patterns (\Gls{LBP}),
+described in \cite{LBP01} and \cite{LBP02}. The general idea of \Gls{LBP} is described on page \pageref{ch2:lbp}.
+The \Gls{LBP} features considered here are labeled LBP$_{P,R}$ where \textit{P} is the number of neighbors considered and \textit{R} is the distance from the pixel.
 The two main characteristics of the \Glspl{LBP} considered are:
 
 \begin{itemize}
  \item \textit{uniformity}: which is a fundamental property of local image texture. It refers to the uniform appearance of the local
-binary pattern, that is, there is a limited number of transitions or discontinuities in the circular presentation of the pattern.
+binary pattern: that is, there is a limited number of transitions or discontinuities in the circular presentation of the pattern.
 The most frequent uniform binary patterns correspond to primitive \textquotedblleft microfeatures\textquotedblright, such
 as edges, corners, and spots; hence, they can be regarded as feature detectors that are triggered by the best matching
 pattern.
 \item \textit{rotation invariance}: which takes into account if a spatial pattern is affected by rotation or not.
 \end{itemize}
 
-Three different types of features can be built, on the basis of Equation \ref{ch2:eq_lbp1}:
+Three different types of features can be built, on the basis of the relations described Equation \ref{ch2:eq_lbp1}:
 
 \begin{enumerate}
  \item $\text{LBP}_{P,R}^{u2}$: uniform feature,
@@ -214,7 +215,7 @@ Three different types of features can be built, on the basis of Equation \ref{ch
  \item $\text{LBP}_{P,R}^{riu2}$: uniform and rotation invariant feature,
 \end{enumerate}
 
-In particular we used:
+\noindent In particular we used:
 
 \begin{equation}
  \text{LBP}_{8,R}^{\text{type}} \quad \textrm{where} \begin{cases}
@@ -223,7 +224,7 @@ In particular we used:
   \end{cases}
 \end{equation}
 
-while building the feature vector, we used the \textit{type} parameter in a mutually exclusive way, i.e. we did not concatenate \Glspl{LBP} of different types. On the other hand, we
+\noindent while building the feature vector, we used the \textit{type} parameter in a mutually exclusive way, i.e. we did not concatenate \Glspl{LBP} of different types. On the other hand, we
 built feature vectors with various combitations of radii.\\
 The following equations show the three different mutually exclusive texture feature sets that we considered.
 
@@ -236,18 +237,19 @@ The following equations show the three different mutually exclusive texture feat
 
 Finally, we considered the \Gls{VAR} operator, as described in Equation \ref{ch2:eq_lbp2}. As, from early tests, a single \Gls{VAR} value for the entire image patch proved to be non-significant, we
 decided to follow an approach similar to the one described for the intensity histogram (see Figure \ref{ch4:fig3}) and evaluated the mean value of a grid of samples in the central
-region of the image. Figure \ref{ch4:fig4} shows a sample of $VAR(8,1)$ computation. Please note that the gray-scale mapping of the VAR(8,1) figure has been adjusted to be visible with full gray-scale range.
+region of the image. Figure \ref{ch4:fig4} shows a sample of VAR(8,1) computation. Please note that the gray-scale mapping of the VAR(8,1) figure has been adjusted to be visible with full gray-scale range.
 
 \begin{figure}[!hbt]
   \centering
-    \includegraphics[width=0.94\textwidth]{./images/GS_VAR.png}
+    \includegraphics[width=0.94\textwidth]{./images/GS_VAR_mod1.png}
   \caption[Example of VAR(8,1) feature]{Example of VAR(8,1) feature}
   \label{ch4:fig4}
 \end{figure}
 
 The resulting feature vector is composed of 36 values, corresponding to the average VAR(8,1) in each element of the grid, ordered columnwise. This type of feature is orientation dependent.
 \\
-The Matlab code implemented to build the feature vectors is listed in \ref{appendixB:FE}
+The Matlab code implemented to build the feature vectors can be found at \url{https://github.com/Ccaccia73/mitosis-experiments}, into the sub-directory \texttt{common},
+function \texttt{extractFeatures.m}.
 
 
 % \clearpage
@@ -295,7 +297,7 @@ Once defined the set of feature to be considered, it is possible to build a matr
 	    node [pos=0.5,anchor=north,yshift=-0.36cm] {\tiny \textit{feat$_{nf}$}};
 }
 
-Where $n_f$ is the total number of features and $n_i$ is the total number of instances. Each feature can be made of more than one component (e.g. $feat_1$ and $feat_j$ in the example).
+\noindent Where $n_f$ is the total number of features and $n_i$ is the total number of instances. Each feature can be made of more than one component (e.g. $feat_1$ and $feat_j$ in the example).
 For this reason, the total number of columns in the matrix $(n_{fc})$ is given by the sum of all the feature components. So, 
 each element of the matrix $c_{ijk}$ is the $k^{th}$ component of the $j^{th}$ feature in the $i^{th}$ instance. The matrix representing the eavluation set is built in the same way.\\
 A vector represents the class which every instance belongs to. Equation \ref{ch4:cvect} describes such vector:
@@ -379,8 +381,8 @@ image of Figure \ref{ch4:fig5} gives a linear representation of a \Gls{SVM}.
 
 \begin{figure}[!hbt]
   \centering
-    \includegraphics[width=0.98\textwidth]{./images/SVM_example.png}
-  \caption{Representation of a SVM}
+    \includegraphics[width=0.98\textwidth]{./images/SVM_example_mod1.png}
+  \caption{Representation of a SVM classification}
   \label{ch4:fig5}
 \end{figure}
 
@@ -408,13 +410,13 @@ An example of \Gls{DT} is shown in Figure \ref{ch4:fig6}.
 A \Gls{RF} is composed by a number of trees \textbf{T}. For some number \textit{m}, \textit{m} features are randomly selected from the feature vector.
 The subset of variables is used to train a \Gls{DT}.\\
 According to Breiman implementation of \Glspl{RF}, \textit{m} should be that  $\ll$ than the number of features.\\
-We adopted the convention in \cite{randForests03} that $m \leq \log_2 F +1$ and used an ensemble of 500 trees.\\
-Running a \Gls{RF},when a new input is entered into the system (a test sample), it is run down all of the trees, each of which classifies
-it in a \textquotedblleft hard\textquotedblright way (see \ref{ch3:class}): in a sense, each tree gives a vote for the current sample. 
+We adopted the convention (as described in \cite{randForests03}) that $m \leq \log_2 F +1$ and used an ensemble of 500 trees.\\
+While running a \Gls{RF}, when a new input is entered into the system (a test sample), it is run down all of the trees, each of which classifies
+it in a \textit{hard} way (see Section \ref{ch3:class}): in a sense, each tree gives a vote for the current sample. 
 The result is the average  of all of the terminal nodes that are reached, giving a final \textit{soft} classification.
 \Glspl{RF} are generally quite fast, robust classifiers, and are also used in image classification \cite{randForests04}.
 \\
-The Matlab code implemented to classify data is listed in \ref{appendixB:Cl}.
+The Matlab code implemented to classify data can be found in function \texttt{classifyData.m} in the same repository.
 
 \vspace{0.5cm}
 

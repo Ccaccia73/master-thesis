@@ -1,0 +1,12 @@
+% script for modifying images
+
+%% Ch 5 cr
+
+files = dir('cr_*.png');
+
+for k1=1:length(files)
+	figure(k1)
+	im = imread(files(k1).name);
+	dims=size(im);
+	
+end

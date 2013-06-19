@@ -13,7 +13,7 @@
 }
 \end{quotation}
 
-\vspace{0.5cm}
+\vspace{2cm}
 
 
 \section{Context and Results}
@@ -21,8 +21,8 @@
 Breast cancer is one of the most deadly cancers for women. According to the increasing incidence rate of breast
 cancer reported in many countries, early cancer detection and treatment play a major role
 in increasing the chances of recovery from the disease. Nottingham Grading
-System \Gls{NGS} is the standard grading procedures used in breast cancer assessment;
-it focuses on three criteria: Mitotic Count , Nuclear Pleomorphism , and
+System (\Gls{NGS}) is the standard grading procedures used in breast cancer assessment;
+it focuses on three criteria: Mitotic Count, Nuclear Pleomorphism and
 Tubule Formation. Each criterion can be assigned with 3 scores, and the final
 equivalent NGS grade is the summation of all three criteria.\\
 Breast tissue samples of patients are taken for grading by means of biopsy. The \Gls{NGS} grade
@@ -30,15 +30,15 @@ of tissue samples are based on the deviation of the cell structures from normal
 tissues.\\
 Pathologists need to assess lots of tissue samples under the microscope every day.
 Low agreement for medical cases is typical between pathologists
-because they exam breast tissue samples based on their experience and opinion.
+because they examine breast tissue samples based on their experience and opinion.
 Hence, the evaluation of breast cancer grading is a subjective, manual, and
 time-consuming process.\\
-Digital high resolution histo-pathological images are commonly used for extracting useful structural information from samples
+Digital high resolution histo-pathological images are commonly used for extracting useful structural information from samples.
 With the rapid growth in computer technologies, many computer science researches have
 focused on computer aided diagnosis (\Gls{CAD}) systems to develop a standard and
 quantitative measurement for breast cancer assessment.\\
 From the application point of view, the most important issue is whether such algorithms
-perform in such a way that can be compared to experts who routinely solve the same task.
+perform in a way that can be compared to experts who routinely solve the same task.
 In our work, we considered the perspective of the machine learning algorithm designer.
 In this context, comparing an algorithm with an expert does not provide
 much useful information, because they are not competing fairly. In fact, during
@@ -51,7 +51,7 @@ cancer histological images using the public MITOS dataset.
 We built a balanced dataset (50\% of mitoses and 50\% of non-mitoses) using all the labeled samples provided with the MITOS dataset (216 mitoses in the training set and 87 mitoses in
 the evaluation set) and selected an equal number of negative samples which were not obviously non-mitoses.\\
 We studied how top-performing algorithms in the recent ICPR2012 mitosis detection contest performed on the specific dataset. Furthermore 
-we developed some detection algorithm using state of the art machine learning techniques.\\
+we developed some classification algorithms using state of the art machine learning techniques.\\
 We compared the results with the performance of humans which were new to the mitosis detection problem.
 In order to do so, we designed an user test that placed such humans in the same conditions
 as algorithms (i.e. they were provided with the same training data and tested
@@ -61,7 +61,7 @@ If we had observed that the best performing among such humans significantly outp
 conclude that the algorithms lack either power or generalization ability, and
 can therefore be improved. Otherwise, the algorithm's performance may only be
 limited by the amount of available training data.\\
-Our main contribution is an user study whose results provide strong evidence in favor of the second hypothesis : we found that the two top-scoring algorithms
+Our main contribution is an user study whose results provide strong evidence in favor of the second hypothesis: we found that the two top-scoring algorithms
 and the best ones that we developed perform comparably or better than the top-scoring human who took our test, which suggests that training set size may be limiting
 the performance of such algorithms.
 
@@ -69,8 +69,8 @@ the performance of such algorithms.
 
 \section{Future Work}
 
-Our work focused on the comparison of the performance of humans and on algorithm from the classification point of view ( i.e. the image candidates were previously selected).
-The whole process of mitotic count requires the detection of candidates and then classification. It would be interesting carry experiments on the detection phase,
+Our work focused on the comparison of the performance of humans and on algorithm from the classification point of view (i.e. the image candidates were previously selected).
+The whole process of mitotic count requires the detection of candidates and then classification. It would be interesting to carry experiments on the detection phase,
 comparing human ability to detection algorithms' performance.\\
 Our work could be extended by selecting some histologists and let them classify our dataset. The results would be interesting from different viewpoints: on one side their results
 can be compared to algorithms and other users, and gain some information on possible differences in the performances of the three sets. On the other side, as 
@@ -78,9 +78,9 @@ mitosis detection is widely recognized as a difficult problem, characterized by 
 dataset and in general to confirm the difficulty of the task.\\
 A study similar to the one presented here could be carried out on a larger dataset, so that a comparison among algorithms and pathologists could give significant information: 
 it could be possible to draw correlations among the errors of algorithms and humans and verify the accuracy of algorithms.\\
-Finally, extending the test to histologist, could bring information on possible difference among different types of users. Non-expert users, being all trained in the same way,
+Finally, extending the test to histologists could bring information on possible difference among different types of users. Non-expert users, being all trained in the same way,
 tend to present the same errors, without specific biases. Nevertheless, they tend to be less accurate. Histologists, being trained at different times, in different ways and
-maybe with different criteria, should reach great accuracy but could make different kind of errors, depending on their background.
+maybe with different criteria, should reach great accuracy but could make different kinds of errors, depending on their background.
 
 
 
