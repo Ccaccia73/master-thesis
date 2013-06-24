@@ -85,108 +85,141 @@ With a simple set of features the main results are the following:
 
 
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{350pt}{ >{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X}
-   Classifier & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
-   \hline
-   \hline
-    SVM std   & 0.79 & 74.14\%  & 81.82\%   & 0.71        & 86.21\%     & 62.07\%  \\
-    \hline
-    SVM norm  & 0.74 & 71.26\%  & 70.79\%   & 0.72        & 70.11\%     & 72.41\%  \\
-    \hline
-    \hline
-    RF std    & 0.80 & 75.86\%  & 77.78\%   & 0.75        & 79.31\%     & 72.41\%  \\
-    \hline
-    RF norm   & 0.80 & 75.86\%  & 78.48\%   & 0.75        & 80.46\%     & 71.26\%  \\
- \end{tabularx}
+ \begin{tabular}{lcccccc}
+  \toprule
+  & \multicolumn{6}{c}{\textit{Performances}} \\
+  \cmidrule(lr){2-7}
+  & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
+  \midrule
+    SVM \textbf{std}   & 0.79 & 74.14\%  & 81.82\%   & 0.71        & 86.21\%     & 62.07\%  \\
+    SVM \textbf{norm}  & 0.74 & 71.26\%  & 70.79\%   & 0.72        & 70.11\%     & 72.41\%  \\
+    RF \textbf{std}    & 0.80 & 75.86\%  & 77.78\%   & 0.75        & 79.31\%     & 72.41\%  \\
+    RF \textbf{norm}   & 0.80 & 75.86\%  & 78.48\%   & 0.75        & 80.46\%     & 71.26\%  \\
+    \bottomrule
+ \end{tabular}
+
  \caption{\texttt{MSi} results}
  \label{ch6:tab1}
 \end{table}
 
+
+
 The data in Table \ref{ch6:tab1} show that, with normalization, the \Gls{RF} classifier remains almost unchanged, which is to be expected, while, the \Gls{SVM} classifier
 worsens its performance. With these simple features no advantages have been obtained. The \Gls{ROC} curve of the classifiers is shown in Figure \ref{ch6:fig1}.
 
+% \begin{figure}[!htb]
+%   \centering
+%     \subfigure[SVM std - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp01/SVMprob_MSi_std.png}
+%       \label{ch6:fig1:a}
+%     }
+%     \hspace{1mm}
+%     \subfigure[SVM norm - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp01/SVMprob_MSi_norm.png}
+%       \label{ch6:fig1:b}
+%     }
+%     \\
+%     \subfigure[RF std - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp01/RF_MSi_std.png}
+%       \label{ch6:fig1:c}
+%     }    
+%     \hspace{1mm}
+%     \subfigure[RF std - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp01/RF_MSi_norm.png}
+%       \label{ch6:fig1:d}
+%     }
+%     \caption{ROC curves for \texttt{MSi} feature classification}
+%     \label{ch6:fig1}
+% \end{figure}
+
 \begin{figure}[!htb]
   \centering
-    \subfigure[SVM std - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp01/SVMprob_MSi_std.png}
+    \subfigure[SVM - ROC]{
+      \includegraphics[width=0.46\textwidth]{./images/Ch6/Fig1/SVM_ROC_MSi_crop.png}
       \label{ch6:fig1:a}
     }
     \hspace{1mm}
-    \subfigure[SVM norm - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp01/SVMprob_MSi_norm.png}
+    \subfigure[RF - ROC]{
+      \includegraphics[width=0.46\textwidth]{./images/Ch6/Fig1/RF_ROC_MSi_crop.png}
       \label{ch6:fig1:b}
-    }
-    \\
-    \subfigure[RF std - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp01/RF_MSi_std.png}
-      \label{ch6:fig1:c}
     }    
-    \hspace{1mm}
-    \subfigure[RF std - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp01/RF_MSi_norm.png}
-      \label{ch6:fig1:d}
-    }
     \caption{ROC curves for \texttt{MSi} feature classification}
     \label{ch6:fig1}
 \end{figure}
 
-\vspace{0.5cm}
+\vspace{1.5cm}
 
 \subsubsection{Features: \texttt{MSiHLV}}
 
 The results of applying normalization to data are different when much more features are involved. For example, in a \texttt{MSiHLV} feature-set (but same results 
 have been found for example for \texttt{MSiHUV}), the \Gls{SVM} classifier is unable to find a proper classification with standard features; on the other hand, 
 the results are interesting when normalization is applied. Similarly to the previous case (Table \ref{ch6:tab1}), the \Gls{RF} classifier is slightly influenced by
-normalization.
+normalization. Table \ref{ch6:tab2} shows the results.
 
 
 
-\begin{table}[!hbt]
-\tiny
+
+\begin{table}[!ht]
+\small
  \centering
- \begin{tabularx}{350pt}{ >{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X}
-   Classifier & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
-   \hline
-   \hline
-    SVM norm  & 0.87 & 79.89\%  & 74.07\%   & 0.82        & 67.82\%     & 91.95\%  \\
-    \hline
-    \hline
-    RF std    & 0.89 & 81.03\%  & 79.35\%   & 0.82        & 78.16\%     & 83.91\%  \\
-    \hline
-    RF norm   & 0.90 & 81.61\%  & 77.23\%   & 0.83        & 73.56\%     & 89.66\%  \\
- \end{tabularx}
+ \begin{tabular}{lcccccc}
+  \toprule
+  & \multicolumn{6}{c}{\textit{Performances}} \\
+  \cmidrule(lr){2-7}
+  & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
+  \midrule
+  SVM \textbf{norm}  & 0.87 & 79.89\%  & 74.07\%   & 0.82        & 67.82\%     & 91.95\%  \\
+  RF \textbf{std}    & 0.89 & 81.03\%  & 79.35\%   & 0.82        & 78.16\%     & 83.91\%  \\
+  RF \textbf{norm}   & 0.90 & 81.61\%  & 77.23\%   & 0.83        & 73.56\%     & 89.66\%  \\
+  \bottomrule
+ \end{tabular}
  \caption{\texttt{MSiHLV} results}
  \label{ch6:tab2}
 \end{table}
 
 
-Table \ref{ch6:tab2} shows the results. The \Gls{ROC} curve of the classifiers is shown in Figure \ref{ch6:fig2}.
-
+\noindent The \Gls{ROC} curve of the classifiers is shown in Figure \ref{ch6:fig2}.
 
 \begin{figure}[!htb]
   \centering
-    \subfigure[SVM norm - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp01/SVMprob_MSiHLV_norm.png}
-      \label{ch6:fig2:b}
-    }
-    \\
-    \subfigure[RF std - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp01/RF_MSiHLV_std.png}
-      \label{ch6:fig2:c}
+    \subfigure[SVM - ROC]{
+      \includegraphics[width=0.46\textwidth]{./images/Ch6/Fig2/SVM_ROC_MSiHLV_crop.png}
+      \label{ch6:fig2:a}
     }    
     \hspace{1mm}
-    \subfigure[RF std - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp01/RF_MSiHLV_norm.png}
-      \label{ch6:fig2:d}
+    \subfigure[RF - ROC]{
+      \includegraphics[width=0.46\textwidth]{./images/Ch6/Fig2/RF_ROC_MSiHLV_crop.png}
+      \label{ch6:fig2:b}
     }
     \caption{ROC curves for \texttt{MSiHLV} feature classification}
     \label{ch6:fig2}
 \end{figure}
 
 
-As normalization is generally considered a good practice and as we found, with or experiments, advantages when we applied it to our data, we considered 
+% \begin{figure}[!htb]
+%   \centering
+%     \subfigure[SVM norm - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp01/SVMprob_MSiHLV_norm.png}
+%       \label{ch6:fig2:b}
+%     }
+%     \\
+%     \subfigure[RF std - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp01/RF_MSiHLV_std.png}
+%       \label{ch6:fig2:c}
+%     }    
+%     \hspace{1mm}
+%     \subfigure[RF std - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp01/RF_MSiHLV_norm.png}
+%       \label{ch6:fig2:d}
+%     }
+%     \caption{ROC curves for \texttt{MSiHLV} feature classification}
+%     \label{ch6:fig2}
+% \end{figure}
+
+
+As, on one hand, normalization is generally considered a good practice and, on the other hand, as we found advantages in our experiments when we applied it to the data, we considered 
 only a normalized dataset in all the following experiments.
 
 \vspace{0.5cm}
@@ -195,17 +228,15 @@ only a normalized dataset in all the following experiments.
 \subsection{Extended Dataset}
 
 In this experiment we analyzed the effect of considering the extended dataset, as described in Section \ref{ch4:ed}. Rotated and mirrored images should provide some information for
-all the features that are orientation dependent, in all the other cases, the added elements are just replicates of already present instances.
-Also in this case we run test with different sets of features.
-\\
-The Matlab code implemented to run \textit{experiment 2} is listed in \ref{appendixB:exp2}
+all the features that are orientation dependent. In all the other cases, the added elements are just replicates of already present instances.
+Also in this case we run tests with different sets of features.
 
 
 \vspace{0.5cm}
 
 \subsection{Extended Dataset: Experimental Results}
 
-We considered three different ways of extending our dataset, resulting in four different experiments:
+We considered three ways of extending our dataset, resulting in four different experiments:
 
 \begin{itemize}
  \item no dataset is extended (abbreviated with \textit{default}),
@@ -225,22 +256,21 @@ We report here the most significant experiments and results.
 
 We applied our \Gls{SVM} classifier to the feature-set coded \texttt{MSiHU}, please note that feature \texttt{U} is orientation dependent. The results are the following:
 
-
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{350pt}{ >{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X}
-   Classifier     & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
-   \hline
-   \hline
-    SVM def.      & 0.86 & 79.89\% &  80.23\% &   0.80 &  80.46\% & 79.31\%  \\
-    \hline
-    SVM ext-T     & 0.87 & 81.03\% &  80.00\% &   0.81 &  79.31\% & 82.76\%  \\
-    \hline
-    SVM ext-E     & 0.87 & 81.61\% &  85.71\% &   0.80 &  87.36\% & 75.86\%  \\
-    \hline
-    SVM ext-A     & 0.88 & 81.61\% &  80.22\% &   0.82 &  79.31\% & 83.91\% \\
- \end{tabularx}
+ \begin{tabular}{lcccccc}
+  \toprule
+  & \multicolumn{6}{c}{\textit{Performances}} \\
+  \cmidrule(lr){2-7}
+  & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
+  \midrule
+    SVM \textbf{def.}      & 0.86 & 79.89\% &  80.23\% &   0.80 &  80.46\% & 79.31\%  \\
+    SVM \textbf{ext-T}     & 0.87 & 81.03\% &  80.00\% &   0.81 &  79.31\% & 82.76\%  \\
+    SVM \textbf{ext-E}     & 0.87 & 81.61\% &  85.71\% &   0.80 &  87.36\% & 75.86\%  \\
+    SVM \textbf{ext-A}     & 0.88 & 81.61\% &  80.22\% &   0.82 &  79.31\% & 83.91\% \\
+  \bottomrule
+    \end{tabular}
  \caption{\texttt{MSiHU} results (SVM)}
  \label{ch6:tab3}
 \end{table}
@@ -250,21 +280,21 @@ More in detail, the number of classified images at optimal threshold is the foll
 
 
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{320pt}{ >{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X }
-   Classifier     & TP  & FN & TN & FP  \\
-   \hline
-   \hline
-    SVM def.      & 69 & 18 & 70 & 17  \\
-    \hline
-    SVM ext-T     & 72 & 15 & 69 & 18  \\
-    \hline
-    SVM ext-E     & 66 & 21 & 76 & 11  \\
-    \hline
-    SVM ext-A     & 73 & 14 & 69 & 18 \\
- \end{tabularx}
- \caption{\texttt{MSiHU} classified images(SVM)}
+ \begin{tabular}{lcccc}
+  \toprule
+  & \multicolumn{4}{c}{\textit{classified images}} \\
+  \cmidrule(lr){2-5}
+   & TP  & FN & TN & FP  \\
+   \midrule
+    SVM \textbf{def.}      & 69 & 18 & 70 & 17  \\
+    SVM \textbf{ext-T}     & 72 & 15 & 69 & 18  \\
+    SVM \textbf{ext-E}     & 66 & 21 & 76 & 11  \\
+    SVM \textbf{ext-A}     & 73 & 14 & 69 & 18 \\
+   \bottomrule
+ \end{tabular}
+ \caption{\texttt{MSiHU} classified images (SVM)}
  \label{ch6:tab4}
 \end{table}  
   
@@ -274,30 +304,38 @@ the number of \Glspl{TP} lowers considerably, meaning that the training set lack
 The overall best performance is found when both datasets are extended.
 The \Gls{ROC} curves of this classification is shown in Figure \ref{ch6:fig3}.
 
+% \begin{figure}[!htb]
+%   \centering
+%     \subfigure[SVM default - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp02/SVMprob_MSiHU_def.png}
+%       \label{ch6:fig3:a}
+%     }
+%     \hspace{1mm}
+%     \subfigure[SVM ext-T - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp02/SVMprob_MSiHU_extT.png}
+%       \label{ch6:fig3:b}
+%     }
+%     \\
+%     \subfigure[SVM ext-E - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp02/SVMprob_MSiHU_extE.png}
+%       \label{ch6:fig3:c}
+%     }    
+%     \hspace{1mm}
+%     \subfigure[SVM ext-A - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp02/SVMprob_MSiHU_extA.png}
+%       \label{ch6:fig3:d}
+%     }
+%     \caption{ROC curves for \texttt{MSiHU} features - SVM classification}
+%     \label{ch6:fig3}
+% \end{figure}
+
 \begin{figure}[!htb]
   \centering
-    \subfigure[SVM default - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp02/SVMprob_MSiHU_def.png}
-      \label{ch6:fig3:a}
-    }
-    \hspace{1mm}
-    \subfigure[SVM ext-T - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp02/SVMprob_MSiHU_extT.png}
-      \label{ch6:fig3:b}
-    }
-    \\
-    \subfigure[SVM ext-E - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp02/SVMprob_MSiHU_extE.png}
-      \label{ch6:fig3:c}
-    }    
-    \hspace{1mm}
-    \subfigure[SVM ext-A - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp02/SVMprob_MSiHU_extA.png}
-      \label{ch6:fig3:d}
-    }
+    \includegraphics[width=0.90\textwidth]{./images/Ch6/Fig3/SVM_ROC_MSiHU_crop.png}
     \caption{ROC curves for \texttt{MSiHU} features - SVM classification}
     \label{ch6:fig3}
 \end{figure}
+
 
 
 \vspace{0.5cm}
@@ -307,21 +345,22 @@ The \Gls{ROC} curves of this classification is shown in Figure \ref{ch6:fig3}.
 
 We applied our \Gls{RF} classifier to the same dataset, with the results shown in Table \ref{ch6:tab5}.
 
+
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{350pt}{ >{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X}
-   Classifier     & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
-   \hline
-   \hline
-    RF def.      & 0.85 & 78.74\% & 81.25\% & 0.78 & 82.76\% & 74.71\%  \\
-    \hline
-    RF ext-T     & 0.86 & 79.31\% & 76.29\% & 0.80 & 73.56\% & 85.06\%  \\
-    \hline
-    RF ext-E     & 0.86 & 78.16\% & 74.75\% & 0.80 & 71.26\% & 85.06\%  \\
-    \hline
-    RF ext-A     & 0.86 & 77.59\% & 74.00\% & 0.79 & 70.11\% & 85.06\% \\
- \end{tabularx}
+ \begin{tabular}{lcccccc}
+  \toprule
+  & \multicolumn{6}{c}{\textit{Performances}} \\
+  \cmidrule(lr){2-7}
+  & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
+  \midrule
+  RF \textbf{def.}      & 0.85 & 78.74\% & 81.25\% & 0.78 & 82.76\% & 74.71\%  \\
+  RF \textbf{ext-T}     & 0.86 & 79.31\% & 76.29\% & 0.80 & 73.56\% & 85.06\%  \\
+  RF \textbf{ext-E}     & 0.86 & 78.16\% & 74.75\% & 0.80 & 71.26\% & 85.06\%  \\
+  RF \textbf{ext-A}     & 0.86 & 77.59\% & 74.00\% & 0.79 & 70.11\% & 85.06\% \\
+  \bottomrule
+ \end{tabular}
  \caption{\texttt{MSiHU} results (RF)}
  \label{ch6:tab5}
 \end{table}
@@ -332,20 +371,20 @@ More in detail, the number of classified images at optimal threshold is reported
 
 
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{320pt}{ >{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X }
-   Classifier     & TP  & FN & TN & FP  \\
-   \hline
-   \hline
-    RF def.      & 65 & 22 & 72 & 15  \\
-    \hline
-    RF ext-T     & 74 & 13 & 64 & 23  \\
-    \hline
-    RF ext-E     & 74 & 13 & 62 & 25  \\
-    \hline
-    RF ext-A     & 74 & 13 & 61 & 26 \\
- \end{tabularx}
+ \begin{tabular}{lcccc}
+  \toprule
+  & \multicolumn{4}{c}{\textit{classified images}} \\
+  \cmidrule(lr){2-5}
+   & TP  & FN & TN & FP  \\
+   \midrule
+    RF \textbf{def.}      & 65 & 22 & 72 & 15  \\
+    RF \textbf{ext-T}     & 74 & 13 & 64 & 23  \\
+    RF \textbf{ext-E}     & 74 & 13 & 62 & 25  \\
+    RF \textbf{ext-A}     & 74 & 13 & 61 & 26 \\
+    \bottomrule
+ \end{tabular}
  \caption{\texttt{MSiHU} classified images (RF)}
  \label{ch6:tab6}
 \end{table}  
@@ -353,30 +392,38 @@ More in detail, the number of classified images at optimal threshold is reported
 In this classification the extended dataset brings an improvement in the detection of mitoses, while worsens the detection of non-mitoses.
 The \Gls{ROC} curves of this classification is shown in Figure \ref{ch6:fig4}.
 
-\begin{figure}[!htb]
+% \begin{figure}[!htb]
+%   \centering
+%     \subfigure[RF default - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHU_def.png}
+%       \label{ch6:fig4:a}
+%     }
+%     \hspace{1mm}
+%     \subfigure[RF ext-T - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHU_extT.png}
+%       \label{ch6:fig4:b}
+%     }
+%     \\
+%     \subfigure[RF ext-E - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHU_extE.png}
+%       \label{ch6:fig4:c}
+%     }    
+%     \hspace{1mm}
+%     \subfigure[RF ext-A - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHU_extA.png}
+%       \label{ch6:fig4:d}
+%     }
+%     \caption{ROC curves for \texttt{MSiHU} features - RF classification}
+%     \label{ch6:fig4}
+% \end{figure}
+
+\begin{figure}[!hb]
   \centering
-    \subfigure[RF default - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHU_def.png}
-      \label{ch6:fig4:a}
-    }
-    \hspace{1mm}
-    \subfigure[RF ext-T - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHU_extT.png}
-      \label{ch6:fig4:b}
-    }
-    \\
-    \subfigure[RF ext-E - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHU_extE.png}
-      \label{ch6:fig4:c}
-    }    
-    \hspace{1mm}
-    \subfigure[RF ext-A - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHU_extA.png}
-      \label{ch6:fig4:d}
-    }
+    \includegraphics[width=0.90\textwidth]{./images/Ch6/Fig3/RF_ROC_MSiHU_crop.png}
     \caption{ROC curves for \texttt{MSiHU} features - RF classification}
     \label{ch6:fig4}
 \end{figure}
+
 
 
 \vspace{0.5cm}
@@ -387,20 +434,20 @@ We applied our \Gls{RF} classifier to the feature-set coded \texttt{MSiHR}, whic
 
 
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{350pt}{ >{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X}
-   Classifier     & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
-   \hline
-   \hline
-    RF def.      & 0.89 & 82.18\% & 84.15\% & 0.82 & 85.06\% & 79.31\%  \\
-    \hline
-    RF ext-T     & 0.90 & 81.61\% & 83.95\% & 0.81 & 85.06\% & 78.16\%  \\
-    \hline
-    RF ext-E     & 0.89 & 81.61\% & 85.71\% & 0.80 & 87.36\% & 75.86\%  \\
-    \hline
-    RF ext-A     & 0.90 & 81.03\% & 85.53\% & 0.80 & 87.36\% & 74.71\% \\
- \end{tabularx}
+ \begin{tabular}{lcccccc}
+  \toprule
+  & \multicolumn{6}{c}{\textit{Performances}} \\
+  \cmidrule(lr){2-7}
+  & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
+  \midrule
+    RF \textbf{def.}      & 0.89 & 82.18\% & 84.15\% & 0.82 & 85.06\% & 79.31\%  \\
+    RF \textbf{ext-T}     & 0.90 & 81.61\% & 83.95\% & 0.81 & 85.06\% & 78.16\%  \\
+    RF \textbf{ext-E}     & 0.89 & 81.61\% & 85.71\% & 0.80 & 87.36\% & 75.86\%  \\
+    RF \textbf{ext-A}     & 0.90 & 81.03\% & 85.53\% & 0.80 & 87.36\% & 74.71\% \\
+    \bottomrule
+ \end{tabular}
  \caption{\texttt{MSiHR} results (RF)}
  \label{ch6:tab7}
 \end{table}
@@ -410,20 +457,20 @@ More in detail, the number of classified images at optimal threshold is reported
 
 
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{320pt}{ >{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X }
-   Classifier     & TP  & FN & TN & FP  \\
-   \hline
-   \hline
-    RF def.      & 69 & 18 & 74 & 13  \\
-    \hline
-    RF ext-T     & 68 & 19 & 74 & 13  \\
-    \hline
-    RF ext-E     & 66 & 21 & 76 & 11  \\
-    \hline
-    RF ext-A     & 65 & 22 & 76 & 11 \\
- \end{tabularx}
+ \begin{tabular}{lcccc}
+  \toprule
+  & \multicolumn{4}{c}{\textit{classified images}} \\
+  \cmidrule(lr){2-5}
+   & TP  & FN & TN & FP  \\
+   \midrule
+    RF \textbf{def.}      & 69 & 18 & 74 & 13  \\
+    RF \textbf{ext-T}     & 68 & 19 & 74 & 13  \\
+    RF \textbf{ext-E}     & 66 & 21 & 76 & 11  \\
+    RF \textbf{ext-A}     & 65 & 22 & 76 & 11 \\
+    \bottomrule
+ \end{tabular}
  \caption{\texttt{MSiHR} classified images (RF)}
  \label{ch6:tab8}
 \end{table}  
@@ -433,36 +480,44 @@ brings no advantages, instead reduces the number of detected mitoses. In a sense
 the fact that \Glspl{TN} are better detected with extended datasets.\\
 The \Gls{ROC} curves of this classification is shown in Figure \ref{ch6:fig5}.
 
-\begin{figure}[!htb]
-  \centering
-    \subfigure[RF default - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHR_def.png}
-      \label{ch6:fig5:a}
-    }
-    \hspace{1mm}
-    \subfigure[RF ext-T - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHR_extT.png}
-      \label{ch6:fig5:b}
-    }
-    \\
-    \subfigure[RF ext-E - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHR_extE.png}
-      \label{ch6:fig5:c}
-    }    
-    \hspace{1mm}
-    \subfigure[RF ext-A - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHR_extA.png}
-      \label{ch6:fig5:d}
-    }
+% \begin{figure}[!htb]
+%   \centering
+%     \subfigure[RF default - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHR_def.png}
+%       \label{ch6:fig5:a}
+%     }
+%     \hspace{1mm}
+%     \subfigure[RF ext-T - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHR_extT.png}
+%       \label{ch6:fig5:b}
+%     }
+%     \\
+%     \subfigure[RF ext-E - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHR_extE.png}
+%       \label{ch6:fig5:c}
+%     }    
+%     \hspace{1mm}
+%     \subfigure[RF ext-A - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp02/RF_MSiHR_extA.png}
+%       \label{ch6:fig5:d}
+%     }
+%     \caption{ROC curves for \texttt{MSiHR} features - RF classification}
+%     \label{ch6:fig5}
+% \end{figure}
+
+In the following examples we considered extended datasets, unless explicitly specified.
+
+\clearpage
+
+
+\begin{figure}[!ht]
+    \includegraphics[width=0.90\textwidth]{./images/Ch6/Fig3/RF_ROC_MSiHR_crop.png}
     \caption{ROC curves for \texttt{MSiHR} features - RF classification}
     \label{ch6:fig5}
 \end{figure}
 
 
-In the following examples we considered extended datasets, unless explicitly specified.
-
-
-\vspace{0.5cm}
+\vspace{2.0cm}
 
 \subsection{Best Feature Combinations}
 \label{ch6:sec_best}
@@ -470,8 +525,6 @@ In the following examples we considered extended datasets, unless explicitly spe
 In this experiment we looked for the best combination of features, so we considered all the features described in \ref{ch4:FE}. Having \textit{n} features, maybe multi-component,
 they can be combined in $2^n-1$ ways. As the texture features (see Section \ref{ch4:tf}, in particular Equation \ref{ch4:tftypes}) are mutually exclusive, we run three different
 experiments, one for each texture feature set.
-\\
-The Matlab code implemented to run \textit{experiment 3} is listed in \ref{appendixB:exp3}
 
 \vspace{0.5cm}
 
@@ -485,76 +538,91 @@ Having run all possible combinations of features, we report here the best perfor
 
 \subsubsection{Best Performances - classifier: SVM}
 
-The four feature sets which gave best results, when classified with \Gls{SVM} are described in Table \ref{ch6:tab9}. The detailed number of classified images,
-at the optimal classification threshold is shown in Table \ref{ch6:tab10}.
+The four feature sets which gave best results, when classified with \Gls{SVM}, are described in Table \ref{ch6:tab9}. The detailed number of classified images,
+at the optimal classification threshold, is shown in Table \ref{ch6:tab10}.
+
+\vspace{0.5cm}
+
 
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{350pt}{ l |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X}
-   Classifier     & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
-   \hline
-   \hline
-    SVM - H      & 0.83 & 79.89\% & 73.21\% & 0.82 & 65.52\% & \cellcolor{YellowGreen} 94.25\%  \\
-    \hline
-    SVM - MSiVH     & 0.85 & 78.74\% & \cellcolor{YellowGreen} 87.88\% & 0.76 & \cellcolor{YellowGreen} 90.80\% & 66.67\%  \\
-    \hline
-    SVM - SiU     & \cellcolor{YellowGreen} 0.88 & \cellcolor{YellowGreen} 84.48\% & 81.91\% & \cellcolor{YellowGreen} 0.85 & 80.46\% & 88.51\%  \\
-    \hline
-    SVM - SiVHU     & \cellcolor{YellowGreen} 0.88 & 80.46\% & 77.32\% & 0.82 & 74.71\% & 86.21\% \\
-    \hline
- \end{tabularx}
+ \begin{tabular}{lcccccc}
+  \toprule
+  & \multicolumn{6}{c}{\textit{Performances}} \\
+  \cmidrule(lr){2-7}
+  & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
+  \midrule
+    SVM - \texttt{H}      & 0.83 & 79.89\% & 73.21\% & 0.82 & 65.52\% & \cellcolor{YellowGreen} 94.25\%  \\
+    SVM - \texttt{MSiVH}     & 0.85 & 78.74\% & \cellcolor{YellowGreen} 87.88\% & 0.76 & \cellcolor{YellowGreen} 90.80\% & 66.67\%  \\
+    SVM - \texttt{SiU}     & \cellcolor{YellowGreen} 0.88 & \cellcolor{YellowGreen} 84.48\% & 81.91\% & \cellcolor{YellowGreen} 0.85 & 80.46\% & 88.51\%  \\
+    SVM - \texttt{SiVHU}     & \cellcolor{YellowGreen} 0.88 & 80.46\% & 77.32\% & 0.82 & 74.71\% & 86.21\% \\
+    \bottomrule
+ \end{tabular}
  \caption{Best SVM results}
  \label{ch6:tab9}
 \end{table}
 
+\vspace{0.5cm}
+
+
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{320pt}{ l |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X }
-   Classifier     & TP  & FN & TN & FP  \\
-   \hline
-   \hline
-    SVM - H      & \cellcolor{YellowGreen} 82 & 5 & 57 & 30  \\
-    \hline
-    SVM - MSiVH     & 58 & 29 & \cellcolor{YellowGreen} 79 & 8  \\
-    \hline
-    SVM - SiU     & 77 & 10 & 70 & 17  \\
-    \hline
-    SVM - SiVHU     & 75 & 12 & 65 & 22 \\
-    \hline
-    \end{tabularx}
+ \begin{tabular}{lcccc}
+  \toprule
+  & \multicolumn{4}{c}{\textit{classified images}} \\
+  \cmidrule(lr){2-5}
+   & TP  & FN & TN & FP  \\
+   \midrule
+   SVM - \texttt{H}      & \cellcolor{YellowGreen} 82 & 5 & 57 & 30  \\
+   SVM - \texttt{MSiVH}     & 58 & 29 & \cellcolor{YellowGreen} 79 & 8  \\
+   SVM - \texttt{SiU}     & 77 & 10 & 70 & 17  \\
+   SVM - \texttt{SiVHU}     & 75 & 12 & 65 & 22 \\
+    \bottomrule
+    \end{tabular}
  \caption{Best SVM results - classified images}
  \label{ch6:tab10}
 \end{table}  
 
 
-The \Gls{ROC} curves of these classifications are shown in Figure \ref{ch6:fig6}.
+\noindent The \Gls{ROC} curves of these classifications are shown in Figure \ref{ch6:fig6}.
 
-\begin{figure}[!htb]
+\clearpage
+
+% \begin{figure}[!htb]
+%   \centering
+%     \subfigure[SVM H - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp03/class/SVMprob_H_extA.png}
+%       \label{ch6:fig6:a}
+%     }
+%     \hspace{1mm}
+%     \subfigure[SVM MSiVH - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp03/class/SVMprob_MSiVH_extA.png}
+%       \label{ch6:fig6:b}
+%     }
+%     \\
+%     \subfigure[SVM SiU - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp03/class/SVMprob_SiU_extA.png}
+%       \label{ch6:fig6:c}
+%     }    
+%     \hspace{1mm}
+%     \subfigure[SVM SiVHU - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp03/class/SVMprob_SiVHU_extA.png}
+%       \label{ch6:fig6:d}
+%     }
+%     \caption{ROC curves for best feature-set - SVM classification}
+%     \label{ch6:fig6}
+% \end{figure}
+
+\begin{figure}[!ht]
   \centering
-    \subfigure[SVM H - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/class/SVMprob_H_extA.png}
-      \label{ch6:fig6:a}
-    }
-    \hspace{1mm}
-    \subfigure[SVM MSiVH - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/class/SVMprob_MSiVH_extA.png}
-      \label{ch6:fig6:b}
-    }
-    \\
-    \subfigure[SVM SiU - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/class/SVMprob_SiU_extA.png}
-      \label{ch6:fig6:c}
-    }    
-    \hspace{1mm}
-    \subfigure[SVM SiVHU - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/class/SVMprob_SiVHU_extA.png}
-      \label{ch6:fig6:d}
-    }
+      \includegraphics[width=0.90\textwidth]{./images/Ch6/Fig6/SVM_ROC_best_crop.png}
     \caption{ROC curves for best feature-set - SVM classification}
     \label{ch6:fig6}
 \end{figure}
+
+
 
 \vspace{0.5cm}
 
@@ -563,22 +631,23 @@ The \Gls{ROC} curves of these classifications are shown in Figure \ref{ch6:fig6}
 The four feature sets which gave best results, when classified with \Gls{RF} are described in Table \ref{ch6:tab11}. The detailed number of classified images,
 at the optimal classification threshold is shown in Table \ref{ch6:tab12}.
 
+
+
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{350pt}{ l |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X}
-   Classifier     & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
-   \hline
-   \hline
-    RF - iVHL      &  0.90 & \cellcolor{YellowGreen} 83.91\% & 79.80\% & \cellcolor{YellowGreen} 0.85 & 77.01\% & 90.80\%  \\
-    \hline
-    RF - MSHL     & 0.89 & 81.03\% & \cellcolor{YellowGreen} 89.71\% & 0.79 & \cellcolor{YellowGreen} 91.95\% & 70.11\%  \\
-    \hline
-    RF - MSiVHR     & \cellcolor{YellowGreen} 0.91 & \cellcolor{YellowGreen} 83.91\% & 81.05\% & 0.85 & 79.31\% & 88.51\%  \\
-    \hline
-    RF - SHL     & 0.89 & 80.46\% & 73.04\% & 0.83 & 64.37\% & \cellcolor{YellowGreen} 96.55\% \\
-    \hline
- \end{tabularx}
+ \begin{tabular}{lcccccc}
+  \toprule
+  & \multicolumn{6}{c}{\textit{Performances}} \\
+  \cmidrule(lr){2-7}
+  & AUC  & accuracy & precision & F$_1$-Score & sensitivity & specificity \\
+  \midrule
+    RF - \texttt{iVHL}      &  0.90 & \cellcolor{YellowGreen} 83.91\% & 79.80\% & \cellcolor{YellowGreen} 0.85 & 77.01\% & 90.80\%  \\
+    RF - \texttt{MSHL}     & 0.89 & 81.03\% & \cellcolor{YellowGreen} 89.71\% & 0.79 & \cellcolor{YellowGreen} 91.95\% & 70.11\%  \\
+    RF - \texttt{MSiVHR}     & \cellcolor{YellowGreen} 0.91 & \cellcolor{YellowGreen} 83.91\% & 81.05\% & 0.85 & 79.31\% & 88.51\%  \\
+    RF - \texttt{SHL}     & 0.89 & 80.46\% & 73.04\% & 0.83 & 64.37\% & \cellcolor{YellowGreen} 96.55\% \\
+    \bottomrule
+ \end{tabular}
  \caption{Best RF results}
  \label{ch6:tab11}
 \end{table}
@@ -586,54 +655,61 @@ at the optimal classification threshold is shown in Table \ref{ch6:tab12}.
 
 
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{320pt}{ l |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X |>{\centering\arraybackslash} X }
-   Classifier     & TP  & FN & TN & FP  \\
-   \hline
-   \hline
-    RF - iVHL      & 79 & 8 & 67 & 20  \\
-    \hline
-    RF - MSHL     & 61 & 26 & \cellcolor{YellowGreen} 80 & 7  \\
-    \hline
-    RF - MSiVHR     & 77 & 10 & 69 & 18  \\
-    \hline
-    RF - SHL     & \cellcolor{YellowGreen} 84 & 3 & 56 & 31 \\
-    \hline
- \end{tabularx}
+ \begin{tabular}{lcccc}
+  \toprule
+  & \multicolumn{4}{c}{\textit{classified images}} \\
+  \cmidrule(lr){2-5}
+   & TP  & FN & TN & FP  \\
+   \midrule
+    RF - \texttt{iVHL}      & 79 & 8 & 67 & 20  \\
+    RF - \texttt{MSHL}     & 61 & 26 & \cellcolor{YellowGreen} 80 & 7  \\
+    RF - \texttt{MSiVHR}     & 77 & 10 & 69 & 18  \\
+    RF - \texttt{SHL}     & \cellcolor{YellowGreen} 84 & 3 & 56 & 31 \\
+    \bottomrule
+ \end{tabular}
  \caption{Best RF results - classified images}
  \label{ch6:tab12}
 \end{table}  
 
 
-The \Gls{ROC} curves of these classifications are shown in Figure \ref{ch6:fig7}.
+\noindent The \Gls{ROC} curves of these classifications are shown in Figure \ref{ch6:fig7}.
+
+% \begin{figure}[!htb]
+%   \centering
+%     \subfigure[RF iVHL - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp03/class/RF_iVHL_extA.png}
+%       \label{ch6:fig7:a}
+%     }
+%     \hspace{1mm}
+%     \subfigure[RF MSHL - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp03/class/RF_MSHL_extA.png}
+%       \label{ch6:fig7:b}
+%     }
+%     \\
+%     \subfigure[RF MSiVHR - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp03/class/RF_MSiVHR_extA.png}
+%       \label{ch6:fig7:c}
+%     }    
+%     \hspace{1mm}
+%     \subfigure[RF SHL - ROC]{
+%       \includegraphics[width=0.46\textwidth]{./images/exp03/class/RF_SHL_extA.png}
+%       \label{ch6:fig7:d}
+%     }
+%     \caption{ROC curves for best feature-set - RF classification}
+%     \label{ch6:fig7}
+% \end{figure}
 
 \begin{figure}[!htb]
-  \centering
-    \subfigure[RF iVHL - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/class/RF_iVHL_extA.png}
-      \label{ch6:fig7:a}
-    }
-    \hspace{1mm}
-    \subfigure[RF MSHL - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/class/RF_MSHL_extA.png}
-      \label{ch6:fig7:b}
-    }
-    \\
-    \subfigure[RF MSiVHR - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/class/RF_MSiVHR_extA.png}
-      \label{ch6:fig7:c}
-    }    
-    \hspace{1mm}
-    \subfigure[RF SHL - ROC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/class/RF_SHL_extA.png}
-      \label{ch6:fig7:d}
-    }
+      \includegraphics[width=0.90\textwidth]{./images/Ch6/Fig6//RF_ROC_best_crop.png}
     \caption{ROC curves for best feature-set - RF classification}
     \label{ch6:fig7}
 \end{figure}
 
-\vspace{0.5cm}
+
+
+\clearpage
 
 \subsubsection{Comparison between classifiers}
 
@@ -648,12 +724,12 @@ The results are showed on Figures \ref{ch6:fig8}, \ref{ch6:fig9} and \ref{ch6:fi
 \begin{figure}[!htb]
   \centering
     \subfigure[MSiVHL - AUC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/MSiVHL_sortAUC.png}
+      \includegraphics[width=0.46\textwidth]{./images/Ch6/Fig8/MSiVHL_sortAUC_crop.png}
       \label{ch6:fig8:a}
     }
     \hspace{1mm}
     \subfigure[MSiVHL - accuracy]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/MSiVHL_sortAccuracy.png}
+      \includegraphics[width=0.46\textwidth]{./images/Ch6/Fig8/MSiVHL_sortAccuracy_crop.png}
       \label{ch6:fig8:b}
     }    
     \caption{Features MSiVHL - overall performances}
@@ -663,12 +739,12 @@ The results are showed on Figures \ref{ch6:fig8}, \ref{ch6:fig9} and \ref{ch6:fi
 \begin{figure}[!htb]
   \centering
     \subfigure[MSiVHR - AUC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/MSiVHR_sortAUC.png}
+      \includegraphics[width=0.46\textwidth]{./images/Ch6/Fig8/MSiVHR_sortAUC_crop.png}
       \label{ch6:fig9:a}
     }
     \hspace{1mm}
     \subfigure[MSiVHR - accuracy]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/MSiVHR_sortAccuracy.png}
+      \includegraphics[width=0.46\textwidth]{./images/Ch6/Fig8/MSiVHR_sortAccuracy_crop.png}
       \label{ch6:fig9:b}
     }    
     \caption{Features MSiVHR - overall performances}
@@ -678,12 +754,12 @@ The results are showed on Figures \ref{ch6:fig8}, \ref{ch6:fig9} and \ref{ch6:fi
 \begin{figure}[!htb]
   \centering
     \subfigure[MSiVHU - AUC]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/MSiVHU_sortAUC.png}
+      \includegraphics[width=0.46\textwidth]{./images/Ch6/Fig8/MSiVHU_sortAUC_crop.png}
       \label{ch6:fig10:a}
     }
     \hspace{1mm}
     \subfigure[MSiVHU - accuracy]{
-      \includegraphics[width=0.46\textwidth]{./images/exp03/MSiVHU_sortAccuracy.png}
+      \includegraphics[width=0.46\textwidth]{./images/Ch6/Fig8/MSiVHU_sortAccuracy_crop.png}
       \label{ch6:fig10:b}
     }    
     \caption{Features MSiVHU - overall performances}
@@ -693,7 +769,7 @@ The results are showed on Figures \ref{ch6:fig8}, \ref{ch6:fig9} and \ref{ch6:fi
 
 While it is generally true that the mean performance of the \Gls{RF} classifier is better (in terms of \textit{AUC} and \textit{accuracy}) than the one given by the
 \Gls{SVM} classifier, it is not possible to say that \Gls{RF} outperforms \Gls{SVM}. There are many cases in which the \Gls{SVM} performance turns out to be
-better, in particular when the LBP$^u2$ feature is involved (see Figure \ref{ch6:fig10}). Nevertheless, the best \Gls{RF} performance is better than \Gls{SVM}'s.
+better, in particular when the LBP$^{u2}$ feature is involved (see Figure \ref{ch6:fig10}). Nevertheless, the best \Gls{RF} performance is better than \Gls{SVM}'s.
 
 
 \vspace{0.5cm}
@@ -704,8 +780,7 @@ In this experiment we analyzed the effect of the size of the training dataset on
 To achieve this goal, we repeatedly selected random subsets of the
 extended dataset and applied our classifier. To avoid the dependence on the specific selected subset, we run many different experiments with randomly chosen subsets with the same 
 size and then we averaged the results.
-\\
-The Matlab code implemented to run \textit{experiment 4} is listed in \ref{appendixB:exp4}
+
 
 \vspace{0.5cm}
 
@@ -713,8 +788,8 @@ The Matlab code implemented to run \textit{experiment 4} is listed in \ref{appen
 
 \subsection{Dataset Dimension: Experimental Results}
 
-Considering fractions of the \textit{training} dataset ranging $1\%$ \textrightarrow $100\%$, we performed the classification on the
-whole \textit{evaluation} set having trained the classifier o a randomly selected subset. In order to reduce the risk of biases due to
+Considering fractions of the \textit{training} dataset in the range $1\%$ \textrightarrow $100\%$, we performed the classification on the
+whole \textit{evaluation} set, having trained the classifier o a randomly selected subset. In order to reduce the risk of biases due to
 a specific subset, we made different trials, selecting at each time the training dataset. We used the following empirical rule to decide 
 the number of trials in function of the subset size:
 
@@ -725,7 +800,7 @@ the number of trials in function of the subset size:
 
 Equation \ref{ch6:eq1} brings to the number of trials illustrated in Figure \ref{ch6:fig11}.
 
-\begin{figure}[!hbf]
+\begin{figure}[!ht]
  \begin{center}
   \includegraphics[width=0.75\textwidth]{./images/exp04/iVHL_trials.png}
   \caption[subset size and trials]{Subset size and number of trials}
@@ -733,27 +808,31 @@ Equation \ref{ch6:eq1} brings to the number of trials illustrated in Figure \ref
  \end{center}
 \end{figure}
 
+\vspace{0.5cm}
+
 We run experiments on different sets of features that performed well in previous tests (not necessarily the best ones): \texttt{iVHL}, \texttt{MiVHU} and \texttt{MSVHR}.
 We initially used used both of our classifiers. However, it emerged that, with some combination of instances, the \Gls{SVM} was unable to find a proper solution.
 For this reason we preferred to focus on the performances of the \Gls{RF} classifier, which contextually turned out to be more robust.\\
 As usual we considered, as a metric of performance, \textit{AUC} and \textit{accuracy}.
 
-\vspace{0.5cm}
+\vspace{1.0cm}
 
 \subsubsection{Classifier: RF - Features \texttt{iVHL}}
 
-The results are shown in Figure \ref{ch6:fig12}, where the continuous line represents the average of the performance, and the \textasteriskcentered represent the
+The results are shown in Figure \ref{ch6:fig12}, where the continuous line represents the average of the performance, and the dots represent the
 single classification result.
+
+
 
 \begin{figure}[!htb]
   \centering
     \subfigure[RF iVHL - AUC]{
-      \includegraphics[width=0.75\textwidth]{./images/exp04/iVHL_RF_AUC.png}
+      \includegraphics[width=0.84\textwidth]{./images/Ch6/Fig11/iVHL_RF_AUC.png}
       \label{ch6:fig12:a}
     }
     \\
     \subfigure[RF iVHL - accuracy]{
-      \includegraphics[width=0.75\textwidth]{./images/exp04/iVHL_RF_acc.png}
+      \includegraphics[width=0.84\textwidth]{./images/Ch6/Fig11/iVHL_RF_acc.png}
       \label{ch6:fig12:b}
     }    
     \caption{Features iVHL - sample size}
@@ -764,7 +843,7 @@ It is apparent that, on one side, the performance grows with the subset size, an
 Once the $20\%$ of the dataset size is reached, the average performance remains steady, but it is necessary to reach about the $50\%$ of the dataset to
 have small variability of the data.
 
-\vspace{0.5cm}
+\vspace{1.0cm}
 
 \subsubsection{Classifier: RF - Features \texttt{MiVHU}}
 
@@ -773,19 +852,19 @@ Figure \ref{ch6:fig13}, shows the results with \texttt{MiVHU} feature set.
 \begin{figure}[!htb]
   \centering
     \subfigure[RF MiVHU - AUC]{
-      \includegraphics[width=0.75\textwidth]{./images/exp04/MiVHU_RF_AUC.png}
+      \includegraphics[width=0.84\textwidth]{./images/Ch6/Fig11/MiVHU_RF_AUC.png}
       \label{ch6:fig13:a}
     }
     \\
     \subfigure[RF MiVHU - accuracy]{
-      \includegraphics[width=0.75\textwidth]{./images/exp04/MiVHU_RF_acc.png}
+      \includegraphics[width=0.84\textwidth]{./images/Ch6/Fig11/MiVHU_RF_acc.png}
       \label{ch6:fig13:b}
     }    
     \caption{Features MiVHU - sample size}
     \label{ch6:fig13}
 \end{figure}
 
-The results are similar to the ones shown in Figure \ref{ch6:fig13}. In this case, at $20\%$ of the dataset size a maximum of the \textit{AUC} performance is reached,
+\noindent The results are similar to the ones shown in Figure \ref{ch6:fig13}. In this case, at $20\%$ of the dataset size a maximum of the \textit{AUC} performance is reached,
 even if the negative slope of subsequent data is negligible (see Figure \ref{ch6:fig13:a}).
 
 \vspace{0.5cm}
@@ -798,12 +877,12 @@ Figure \ref{ch6:fig14}, shows the results with \texttt{MSVHR} feature set.
 \begin{figure}[!htb]
   \centering
     \subfigure[RF MSVHR - AUC]{
-      \includegraphics[width=0.75\textwidth]{./images/exp04/MSVHR_RF_AUC.png}
+      \includegraphics[width=0.84\textwidth]{./images/Ch6/Fig11/MSVHR_RF_AUC.png}
       \label{ch6:fig14:a}
     }
     \\
     \subfigure[RF MSVHR - accuracy]{
-      \includegraphics[width=0.75\textwidth]{./images/exp04/MSVHR_RF_acc.png}
+      \includegraphics[width=0.84\textwidth]{./images/Ch6/Fig11/MSVHR_RF_acc.png}
       \label{ch6:fig14:b}
     }    
     \caption{Features MSVHR - sample size}
@@ -821,15 +900,14 @@ is maintained, while a negligible variability is reached at about $40\%$ of the 
 \subsection{SVM parameters}
 
 In the experiments above we noted that \Glspl{SVM} are more sensible to the selected features and to the size of the dataset, meaning that, in some cases, \Gls{SVM} performs poorly on data.
-So we decided to analyze in a deeper way if some of the configuration options of the classifier (i.e. kernel type [Section \ref{ch4:svm}], degree in kernel function, etc. ) could improve the performance.
-\\
-The Matlab code implemented to run \textit{experiment 5} is listed in \ref{appendixB:exp5}
+So we decided to analyze in a deeper way if some of the configuration options of the classifier (i.e. kernel type, degree in kernel function, etc. ) could improve the performance.
+
 
 \vspace{0.5cm}
 
 \subsection{SVM parameters: Experimental results}
 
-We tried different configuration parameters for the \Gls{SVM} classifier on the feature set \texttt{MSiHLV}, of which \Gls{SVM} performed poorly: \textit{AUC} $=0.531$ and
+We tried different configuration parameters for the \Gls{SVM} classifier on the feature set \texttt{MSiHLV}, on which \Gls{SVM} performed poorly: \textit{AUC} $=0.531$ and
 \textit{accuracy} $=0.58$.\\
 We changed the allowed parameters in the \textit{libSVM} implementation that we used (see Section \ref{ch4:svm}):
 
@@ -858,12 +936,10 @@ With a fixed number of training samples, the predictive power reduces as the dim
 (SVD transformation) to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called \textit{principal components}.
 This transformation is defined in such a way that the components are sorted in descending magnitude of \textit{explained variance}: that is, the first principal component
 has the largest possible variance ( accounts for as much of the variability in the data as possible), and each succeeding component, has the highest variance possible under the constraint
-that it is orthogonal to (i.e., uncorrelated with) the preceding components. \Gls{PCA} is sensitive to the relative scaling of the original variables, 
+that it is orthogonal to (i.e. uncorrelated with) the preceding components. \Gls{PCA} is sensitive to the relative scaling of the original variables, 
 and so we applied it on normalized data \cite{PCA02_applications}.
 In our experiments we selected some datasets with high dimension feature spaces, applied \Gls{PCA} and classified the resulting components adding one component at a time, with the aim to
 observe the classification performances in relation to the number of components and the percentage of explained variance.
-\\
-The Matlab code implemented to run \textit{experiment 6} is listed in \ref{appendixB:exp6}
 
 
 \vspace{0.5cm}
@@ -886,12 +962,12 @@ explained variance and number of components considered.
 \begin{figure}[!htb]
   \centering
     \subfigure[PCA MSidHLV - AUC]{
-      \includegraphics[width=0.75\textwidth]{./images/exp06/pca_AUC_MSidHLV.png}
+      \includegraphics[width=0.86\textwidth]{./images/exp06/pca_AUC_MSidHLV.png}
       \label{ch6:fig15:a}
     }
     \\
     \subfigure[PCA MSidHLV - accuracy]{
-      \includegraphics[width=0.75\textwidth]{./images/exp06/pca_acc_MSidHLV.png}
+      \includegraphics[width=0.86\textwidth]{./images/exp06/pca_acc_MSidHLV.png}
       \label{ch6:fig15:b}
     }    
     \caption{Features MSidHLV - Principal Component Analysis}
@@ -915,12 +991,12 @@ explained variance and number of components considered.
 \begin{figure}[!htb]
   \centering
     \subfigure[PCA MSidHUV - AUC]{
-      \includegraphics[width=0.75\textwidth]{./images/exp06/pca_AUC_MSidHUV.png}
+      \includegraphics[width=0.86\textwidth]{./images/exp06/pca_AUC_MSidHUV.png}
       \label{ch6:fig16:a}
     }
     \\
     \subfigure[PCA MSidULV - accuracy]{
-      \includegraphics[width=0.75\textwidth]{./images/exp06/pca_acc_MSidHUV.png}
+      \includegraphics[width=0.86\textwidth]{./images/exp06/pca_acc_MSidHUV.png}
       \label{ch6:fig16:b}
     }    
     \caption{Features MSidHUV - Principal Component Analysis}
@@ -928,8 +1004,8 @@ explained variance and number of components considered.
 \end{figure}
 
 
-The results show a generally better performance of \Gls{RF} than \Gls{SVM}, even if, at high number of components ($>250$), \Gls{SVM} still find information useful
-fpr classification and improves performance, while \Gls{RF} starts decreasing. It appears that, with a high number of components, \Gls{RF} becomes more sensible
+The results show a generally better performance of \Gls{RF} than \Gls{SVM}, even if, at high number of components ($>250$), \Gls{SVM} still finds useful information
+for classification and improves performance, while \Gls{RF} starts decreasing. It appears that, with a high number of components, \Gls{RF} becomes more sensible
 and the performance becomes more noisy.
 In terms of \textit{AUC} (see Figure \ref{ch6:fig16:a}), the \Gls{RF} classification reaches
 a maximum at about $69\%$ of explained variance (33 components), and then it decreases with fluctuations due to noise induced by further components.
@@ -939,16 +1015,16 @@ and then starts decreasing. \Gls{SVM} shows a local maximum at about $45\%$ (jus
 about $54\%$ of explained variance. Then it starts increasing again up to the end.
 
 
-\vspace{0.5cm}
+%\vspace{0.5cm}
+\clearpage
 
 \subsection{Size of the Image Patch}
 
 In all the experiments above, we considered the size of each image patch, on which to compute features, to be $100\times100$ pixels.
-We wanted to analyze if there is a smaller sub-image that includes all the meaningful information, while the boundary contains essentially background (i.e. noise for the
+We wanted to analyze if there is a smaller sub-image that includes all the meaningful information, with the boundary containing essentially background (i.e. noise for the
 purposes of classification), while an excessively small patch would not allow to classify data.\\
 So we run experiments considering, form time to time, bigger portions of the images and analyzed the classification performances.
-\\
-The Matlab code implemented to run \textit{experiment 7} is listed in \ref{appendixB:exp7}
+
 
 
 
@@ -968,7 +1044,7 @@ Here we report the most interesting ones, focusing in particular on the followin
  \item VAR (V).
 \end{itemize}
 }
-In this case we used \textit{AUC} as a measure of performance. 
+\noindent In this case we used \textit{AUC} as a measure of performance. 
 
 \vspace{0.5cm}
 
@@ -978,9 +1054,9 @@ In this case we used \textit{AUC} as a measure of performance.
 By ordering the \Gls{SVM} classification results in ascending order for cumulate \textit{AUC} along feature size, we could plot the behavior as reported in Figure \ref{ch6:fig17} and
 in Figure \ref{ch6:fig18}
 
-\begin{figure}[!hbf]
+\begin{figure}[!ht]
  \begin{center}
-  \includegraphics[width=0.92\textwidth]{./images/exp07/SVM_AUC_H.png}
+  \includegraphics[width=0.98\textwidth]{./images/exp07/SVM_AUC_H.png}
   \caption{Image size and sets with 'H' feature - SVM classifier}
   \label{ch6:fig17}
  \end{center}
@@ -991,9 +1067,9 @@ Figure \ref{ch6:fig17} shows that \Gls{SVM} is unable to classify any dataset co
 an \textit{AUC} of $0.5$ means \textquotedblleft{}random classification\textquotedblright. After 50px the performance increases abruptly to high values.
 
 
-\begin{figure}[!hbf]
+\begin{figure}[!hb]
  \begin{center}
-  \includegraphics[width=0.92\textwidth]{./images/exp07/SVM_AUC_LV.png}
+  \includegraphics[width=0.98\textwidth]{./images/exp07/SVM_AUC_LV.png}
   \caption{Image size and sets with 'LV' features - SVM classifier}
   \label{ch6:fig18}
  \end{center}
@@ -1012,9 +1088,9 @@ We performed the same operations on the results coming from our \Gls{RF} classif
 the result for mean performance over image size, we found that \textbf{all} the feature set containing the \texttt{HLV} components showed good results and
 also performed in the same way (see Figure \ref{ch6:fig19}).
 
-\begin{figure}[!hbf]
+\begin{figure}[!ht]
  \begin{center}
-  \includegraphics[width=0.92\textwidth]{./images/exp07/RF_AUC_HLV.png}
+  \includegraphics[width=0.98\textwidth]{./images/exp07/RF_AUC_HLV.png}
   \caption{Image size and sets with 'HLV' features - RF classifier}
   \label{ch6:fig19}
  \end{center}
@@ -1025,6 +1101,7 @@ Figure \ref{ch6:fig19}, similarly to Figure \ref{ch6:fig18}, shows a general max
 
 \vspace{0.5cm}
 
+\clearpage
 
 \section{Accuracy of Humans}
 
@@ -1033,12 +1110,12 @@ We gathered data from a total of 45 test subjects, 8 of which have expertise in 
 and none of which routinely works with histology datasets. No subject was allowed to take the test twice. In total, subjects provided 3009 classifications
 (on average 67 per subjects), resulting in an average of 17.3 classifications for each of the 174 evaluation samples.
 Each subjects dedicated an average of 49 minutes to the test.
-Below, we compare the performance of such subjects to the 7 top-performing algorithms in the 2012 ICPR mitosis detection contest, all of which were learned
-on the training images of the MITOS dataset. For a given algorithm, a \textbf{C1} evaluation sample is considered a true positive if and only if, in the corresponding
+Below, we compare the performance of such subjects to the 7 top-performing algorithms in the 2012 ICPR mitosis detection contest, all of which were trained
+on the images of the MITOS dataset. For a given algorithm, a \textbf{C1} evaluation sample is considered a true positive if and only if, in the corresponding
 image of the MITOS dataset, the algorithm detected a mitosis whose centroid is within 8 $\mu$m (20 px) from the coordinates given by the algorithm;
-else, the sample is considered a false positive (this is the same criterion used for evaluation of the ICPR contest).
+else, the sample is considered a false negative (this is the same criterion used for evaluation of the ICPR contest).
 A \textbf{C0} evaluation sample is a true negative if and only if the algorithm
-returned no detections in a range of 16 $\mu$m (40 px), else it is a false negative.\\
+returned no detections in a range of 16 $\mu$m (40 px), else it is a false positive.\\
 Note that the results reported below for algorithms do not directly map
 to the results of the ICPR contest (shown in Section \ref{ch3:icpr_perf}). In fact, we are computing the algorithms’
 performance in a classification task on a balanced dataset, whereas the algorithms’ parameters (such as thresholds) were optimized for solving a detection
@@ -1049,8 +1126,8 @@ We also compare the performances of the users with best classifications obtained
 as the one presented to the users.
 
 
-\clearpage
-%\vspace{0.5cm}
+%\clearpage
+\vspace{0.5cm}
 
 \subsection{Humans and ICPR Contest Algorithms}
 
@@ -1099,7 +1176,7 @@ accuracy between 0.60 and 0.75. Only three users (one of which with significant 
 exceeded an accuracy of 0.80. Differences in human performance are partly explained by different
 amounts of motivation end effort put in the test; still, we observed that many
 users who dedicated a significant amount of time and effort to study the training set and complete the test obtained a performance close to the average.
-Most users described the problem as \textquotedblleft{}very difficult\textquotedblright”.\\
+Most users described the problem as \textquotedblleft{}very difficult\textquotedblright.\\
 Some users gave indications about the evaluation criteria which they devised during classification. Most of them focused on the shape of the dark element in the middle.
 Mitotic samples where mostly the one with blurry or bumpy edges, while non-mitotic samples where the ones with a smooth shape.
 Most of them ignored the surrounding area.\\
@@ -1108,9 +1185,9 @@ from which \Gls{ROC} curves were computed.
 
 \begin{figure}[!htb]
    \begin{center}
-    \includegraphics[width=0.94\textwidth]{./images/human/p2.png}
+    \includegraphics[width=0.97\textwidth]{./images/Ch6/Fig22/class_alg_crop.png}
     \caption[ROC plot humans vs. algorithms]{For each subject 3 points are reported, corresponding to the three possible thresholds.
-    Full ROC curves could be plotted for IDSIA (thick blue) and Utrecht (thin blue),who provided soft confidence values for each detection.}
+    Full ROC curves could be plotted for IDSIA and Utrecht,who provided soft confidence values for each detection.}
     \label{ch6:fig22}
     \end{center}
 \end{figure}
@@ -1124,7 +1201,7 @@ reference to Tables \ref{ch6:tab9} and \ref{ch6:tab11}.
 
 \begin{figure}[!htb]
    \begin{center}
-    \includegraphics[width=0.94\textwidth]{./images/human/class_humans.png}
+    \includegraphics[width=0.97\textwidth]{./images/Ch6/Fig22/class_humans_crop.png}
     \caption[ROC plot humans vs. classifiers]{For each subject 3 points are reported, corresponding to the three possible thresholds.
     Full ROC curves are shown for two best feature-sets for SVM and RF}
     \label{ch6:fig23}
@@ -1144,6 +1221,8 @@ Here we investigate whether samples that users find easy are also easier to clas
 
 \subsection{Humans vs. ICPR Algorithms}
 
+\label{ch6:diff1}
+
 First, we define for each sample a score representing the classification difficulty for humans, defined as
 
 \begin{equation}
@@ -1162,29 +1241,28 @@ First, we define for each sample a score representing the classification difficu
 
 Please note that $D_h$ differs from accuracy because it also depends on the confidence that users expressed for each classification.
 
-We divided the \textbf{C1} evaluation samples in three groups: $E_{easy}$, containing the 22 mitosis with the lowest $D_h$ value 
-(i.e. those which were identified most easily by humans), $E_{hard}$ , containing the 22 mitosis with the highest $D_h$  and $E_{med}$,
-containing the remaining 43 mitosis).
+We divided the \textbf{C1} evaluation samples in three groups: $E_{easy}$ containing the 22 mitosis with the lowest $D_h$ value 
+(i.e. those which were identified most easily by humans), $E_{hard}$ containing the 22 mitosis with the highest $D_h$  and $E_{med}$
+containing the remaining 43 mitoses).
 
 Appendix \ref{appendixD}, in particular Section \ref{appendixD:h_diff} shows the samples described in this section.
 
+
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{360pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X}
-    \hline
+ \begin{tabular}{lcccccccc}
+  \toprule
            &            &   \multicolumn{7}{c}{Algorithms}  \\
-    \hline
-    Subset & humans     & IDSIA & IPAL & ISIK   & Necla & NUS & Utrecht & Warwick \\
-    \hline
-     $E_{easy}$   & 0.876 & 0.909 & 0.864 & 0.864 & 0.773 & 0.591 & 0.909 & 0.727  \\
-     \hline
-     $E_{med}$    & 0.716 & 0.884 & 0.814 & 0.512 & 0.744 & 0.395 & 0.860 & 0.674  \\ 
-     \hline
-     $E_{hard}$   & 0.496 & 0.545 & 0.545 & 0.318 & 0.364 & 0.136 & 0.500 & 0.409  \\
-     \hline
- \end{tabularx}
- \caption{Accuracy of human and algorithms on easy, medium and difficult mitosis.}
+    \cmidrule(lr){3-9}
+    Subset & \textbf{humans}     & IDSIA & IPAL & ISIK   & Necla & NUS & Utrecht & Warwick \\
+    \midrule
+     $E_{easy}$   & \textbf{0.876} & 0.909 & 0.864 & 0.864 & 0.773 & 0.591 & 0.909 & 0.727  \\
+     $E_{med}$    & \textbf{0.716} & 0.884 & 0.814 & 0.512 & 0.744 & 0.395 & 0.860 & 0.674  \\ 
+     $E_{hard}$   & \textbf{0.496} & 0.545 & 0.545 & 0.318 & 0.364 & 0.136 & 0.500 & 0.409  \\
+     \bottomrule
+ \end{tabular}
+ \caption{Accuracy of human and algorithms on easy, medium and difficult mitoses.}
  \label{ch6:tab13}
 \end{table}
 
@@ -1205,44 +1283,41 @@ Using the same division in $E_{easy}$, $E_{med}$ and $E_{hard}$ of the mitoses, 
 Tables \ref{ch6:tab14} and \ref{ch6:tab15} show the results, divided for \Gls{SVM} and \Gls{RF} best classifiers.
 
 
+
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{360pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X }
-    \hline
+ \begin{tabular}{lccccc}
+  \toprule
                   &            &  \multicolumn{4}{c}{SVM classifiers}    \\
-    \hline
-    Subset        & humans     & \texttt{H} & \texttt{MSiVH} & \texttt{SiU}   & \texttt{SiVHU} \\
-    \hline
-     $E_{easy}$   & 0.876      & 0.954      & 0.818          & 1.000          & 1.000          \\
-     \hline
-     $E_{med}$    & 0.716      & 0.853      & 0.721          & 0.861          & 0.791          \\ 
-     \hline
-     $E_{hard}$   & 0.496      & 0.909      & 0.409          & 0.818          & 0.864          \\
-     \hline
- \end{tabularx}
- \caption{Accuracy of human and \Gls{SVM} classifiers on sets of mitoses.}
+    \cmidrule(lr){3-6}
+    Subset        & \textbf{humans}     & \texttt{H} & \texttt{MSiVH} & \texttt{SiU}   & \texttt{SiVHU} \\
+    \midrule
+    $E_{easy}$   & \textbf{0.876}      & 0.954      & 0.818          & 1.000          & 1.000          \\
+     $E_{med}$    & \textbf{0.716}      & 0.853      & 0.721          & 0.861          & 0.791          \\ 
+     $E_{hard}$   & \textbf{0.496}      & 0.909      & 0.409          & 0.818          & 0.864          \\
+     \bottomrule
+ \end{tabular}
+ \caption{Accuracy of human and SVM classifiers on sets of mitoses.}
  \label{ch6:tab14}
 \end{table}
 
 
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{360pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X }
-    \hline
+ \begin{tabular}{lccccc}
+  \toprule
                   &            &  \multicolumn{4}{c}{RF classifiers}    \\
-    \hline
-    Subset        & humans     & \texttt{iVHL} & \texttt{MSHL} & \texttt{MSiVHR}   & \texttt{SHL} \\
-    \hline
-     $E_{easy}$   & 0.876      & 0.954      & 0.864          & 0.954          & 1.000          \\
-     \hline
-     $E_{med}$    & 0.716      & 0.861      & 0.698          & 0.837          & 0.930          \\ 
-     \hline
-     $E_{hard}$   & 0.496      & 0.954      & 0.545          & 0.909          & 1.000          \\
-     \hline
- \end{tabularx}
- \caption{Accuracy of human and \Gls{RF} classifiers on sets of mitoses.}
+    \cmidrule(lr){3-6}
+    Subset        & \textbf{humans}     & \texttt{iVHL} & \texttt{MSHL} & \texttt{MSiVHR}   & \texttt{SHL} \\
+    \midrule
+     $E_{easy}$   & \textbf{0.876}      & 0.954      & 0.864          & 0.954          & 1.000          \\
+     $E_{med}$    & \textbf{0.716}      & 0.861      & 0.698          & 0.837          & 0.930          \\ 
+     $E_{hard}$   & \textbf{0.496}      & 0.954      & 0.545          & 0.909          & 1.000          \\
+     \bottomrule
+ \end{tabular}
+ \caption{Accuracy of human and RF classifiers on sets of mitoses.}
  \label{ch6:tab15}
 \end{table}
 
@@ -1252,19 +1327,17 @@ On average, classifiers outperform humans on each set of mitoses, as shown in Ta
 
 
 \begin{table}[!hbt]
-% \tiny
+ \small
  \centering
- \begin{tabularx}{280pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X }
-    \hline
-    Subset        & humans     & classifiers (avg.) \\
-    \hline
-     $E_{easy}$   & 0.876      & 0.943         \\
-     \hline
-     $E_{med}$    & 0.716      & 0.831         \\ 
-     \hline
-     $E_{hard}$   & 0.496      & 0.801         \\
-     \hline
- \end{tabularx}
+ \begin{tabular}{lcc}
+    \toprule
+    Subset        & \textbf{humans}     & \textit{classifiers (avg.)} \\
+    \cmidrule(lr){1-3}
+     $E_{easy}$   & \textbf{0.876}      & \textit{0.943}         \\
+     $E_{med}$    & \textbf{0.716}      & \textit{0.831}         \\ 
+     $E_{hard}$   & \textbf{0.496}      & \textit{0.801}        \\
+     \bottomrule
+ \end{tabular}
  \caption{Accuracy of human and average of classifiers on sets of mitoses.}
  \label{ch6:tab16}
 \end{table}
@@ -1277,43 +1350,40 @@ humans and our classifiers. Tables \ref{ch6:tab17} and \ref{ch6:tab18} show the 
 
 
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{360pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X }
-    \hline
+ \begin{tabular}{lccccc}
+  \toprule
                   &            &  \multicolumn{4}{c}{SVM classifiers}    \\
-    \hline
-    Subset        & humans     & \texttt{H} & \texttt{MSiVH} & \texttt{SiU}   & \texttt{SiVHU} \\
-    \hline
-     $E_{easy}$   & 0.801      & 0.750      & 0.917          & 0.958          & 0.875          \\
-     \hline
-     $E_{med}$    & 0.626      & 0.683      & 0.951          & 0.732          & 0.732          \\ 
-     \hline
-     $E_{hard}$   & 0.376      & 0.500      & 0.818          & 0.773          & 0.636          \\
-     \hline
- \end{tabularx}
- \caption{Accuracy of human and \Gls{SVM} classifiers on sets of non-mitoses.}
+    \cmidrule(lr){3-6}
+    Subset        & \textbf{humans}     & \texttt{H} & \texttt{MSiVH} & \texttt{SiU}   & \texttt{SiVHU} \\
+    \midrule
+     $E_{easy}$   & \textbf{0.801}      & 0.750      & 0.917          & 0.958          & 0.875          \\
+     $E_{med}$    & \textbf{0.626}      & 0.683      & 0.951          & 0.732          & 0.732          \\ 
+     $E_{hard}$   & \textbf{0.376}      & 0.500      & 0.818          & 0.773          & 0.636          \\
+     \bottomrule
+ \end{tabular}
+ \caption{Accuracy of human and SVM classifiers on sets of non-mitoses.}
  \label{ch6:tab17}
 \end{table}
 
 
+
 \begin{table}[!hbt]
-\tiny
+\small
  \centering
- \begin{tabularx}{360pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X >{\centering\arraybackslash} X }
-    \hline
+ \begin{tabular}{lccccc}
+  \toprule
                   &            &  \multicolumn{4}{c}{RF classifiers}    \\
-    \hline
-    Subset        & humans     & \texttt{iVHL} & \texttt{MSHL} & \texttt{MSiVHR}   & \texttt{SHL} \\
-    \hline
-     $E_{easy}$   & 0.801      & 0.875      & 0.958          & 0.917          & 0.833          \\
-     \hline
-     $E_{med}$    & 0.626      & 0.756      & 0.951          & 0.756          & 0.561          \\ 
-     \hline
-     $E_{hard}$   & 0.376      & 0.682      & 0.818          & 0.727          & 0.591          \\
-     \hline
- \end{tabularx}
- \caption{Accuracy of human and \Gls{RF} classifiers on sets of non-mitoses.}
+    \cmidrule(lr){3-6}
+    Subset        & \textbf{humans}     & \texttt{iVHL} & \texttt{MSHL} & \texttt{MSiVHR}   & \texttt{SHL} \\
+    \midrule
+     $E_{easy}$   & \textbf{0.801}      & 0.875      & 0.958          & 0.917          & 0.833          \\
+     $E_{med}$    & \textbf{0.626}      & 0.756      & 0.951          & 0.756          & 0.561          \\ 
+     $E_{hard}$   & \textbf{0.376}      & 0.682      & 0.818          & 0.727          & 0.591          \\
+     \bottomrule
+ \end{tabular}
+ \caption{Accuracy of human and RF classifiers on sets of non-mitoses.}
  \label{ch6:tab18}
 \end{table}
 
@@ -1323,21 +1393,18 @@ with a trend similar to human performance. This confirms that, in general, diffi
 On average, classifiers outperform humans on each set of non-mitoses, as shown in Table \ref{ch6:tab19}.
 
 
-
 \begin{table}[!hbt]
-% \tiny
+ \small
  \centering
- \begin{tabularx}{280pt}{ l | >{\centering\arraybackslash} X | >{\centering\arraybackslash} X }
-    \hline
-    Subset        & humans     & classifiers (avg.) \\
-    \hline
-     $E_{easy}$   & 0.801      & 0.885         \\
-     \hline
-     $E_{med}$    & 0.626      & 0.765         \\ 
-     \hline
-     $E_{hard}$   & 0.376      & 0.693         \\
-     \hline
- \end{tabularx}
+ \begin{tabular}{lcc}
+    \toprule
+    Subset        & \textbf{humans}     & \textit{classifiers (avg.)} \\
+    \cmidrule(lr){1-3}
+     $E_{easy}$   & \textbf{0.801}      & \textit{0.885}         \\
+     $E_{med}$    & \textbf{0.626}      & \textit{0.765}         \\ 
+     $E_{hard}$   & \textbf{0.376}      & \textit{0.693}         \\
+     \bottomrule
+ \end{tabular}
  \caption{Accuracy of human and average of classifiers on sets of non-mitoses.}
  \label{ch6:tab19}
 \end{table}
@@ -1350,53 +1417,48 @@ Tables \ref{ch6:tab16} and \ref{ch6:tab19} also show that, for both humans and c
 \section{Difficulties among Classifiers}
 
 As a further analysis, we tried to find correlations among samples that appear to be difficult (i.e. are wrongly labeled) for several classifiers.
-for this analysis we used the same best classifiers determined in Section \ref{ch6:sec_best} and used also in Section \ref{ch6:sec_class}.
-Among the 8 best classifiers ( 2 types of classifiers and 4 sets of features each ), we considered if there exist samples that are not correctly classified by 
+for this analysis we used the same best classifiers determined in Section \ref{ch6:sec_best} (which were also considered in Section \ref{ch6:sec_class}).
+Among the 8 best classifiers (2 types of classifiers and 4 sets of features each), we analyzed if there exist samples that are not correctly classified by 
 many classifiers.\\
 In this analysis we intersected the \Glspl{FN} and \Glspl{FP} of all the classifiers and looked for frequencies. We considered only \Glspl{FN} and \Glspl{FP}
 with 5 or more occurrences, to be sure that they were misclassified by both \Gls{SVM} and \Gls{RF}.\\
-We started with \Glspl{FN} and found 6 samples: the results illustrated in Tables \ref{ch6:tab20} and \ref{ch6:tab21}.
+We started with \Glspl{FN} and found 6 samples: the results illustrated in Table \ref{ch6:tab20}.
 
 \begin{table}[!hbt]
-% \tiny
+ \small
  \centering
- \begin{tabularx}{280pt}{  >{\centering\arraybackslash} X | >{\centering\arraybackslash} X }
-    \hline
+ \begin{tabular}{lc}
+    \toprule
     Frequency        & $\sharp$ of samples \\
-    \hline
+    \midrule
      5 classifiers   & 2 samples        \\
-     \hline
      6 classifiers   & 3 samples         \\ 
-     \hline
      7 classifiers   & 1 sample         \\
-     \hline
      8 classifiers  &  no samples \\
-     \hline
- \end{tabularx}
- \caption{Frequency of common misclassified mitoses.}
+     \bottomrule
+ \end{tabular}
+ \caption{Occurrence of common mis-labeled mitoses by best SVM and RF classifiers.}
  \label{ch6:tab20}
 \end{table}
 
 \begin{table}[!hbt]
-% \tiny
+ \small
  \centering
- \begin{tabularx}{280pt}{ l | >{\centering\arraybackslash} X  }
-    \hline
-    Subset        & frequency  \\
-    \hline
-     $E_{easy}$   & no samples \\
-     \hline
-     $E_{med}$    & 5 samples \\ 
-     \hline
-     $E_{hard}$   & 1 sample \\
-     \hline
- \end{tabularx}
- \caption{Correlation among frequency and human difficulty.}
+ \begin{tabular}{lcc}
+    \toprule
+    Subset        & samples & [\%] of subset dim.  \\
+    \cmidrule(lr){1-3}
+     $E_{easy}$   & no samples & 0.0\%  \\
+     $E_{med}$    & 5 samples  & 11.63\% \\ 
+     $E_{hard}$   & 1 sample   & 4.54\% \\
+     \bottomrule
+ \end{tabular}
+ \caption{Correlation among occurrences and human difficulty.}
  \label{ch6:tab21}
 \end{table}
 
 Among the 87 \textbf{C1} samples, 41 have been misclassified by at least one algorithm. Of 41 samples, only 6 have been wrongly labeled by 5 of more classifiers.
-Table \ref{ch6:tab21} shows the distribution of the difficulty of the 6 samples. Most of them belong to $E_{med}$, with only one belonging to $E_{hard}$.
+Table \ref{ch6:tab21} shows the distribution of the 6 samples within the subsets determined for human difficulty. Most of them belong to $E_{med}$, with only one belonging to $E_{hard}$.
 
 \vspace{0.2cm}
 
@@ -1404,39 +1466,35 @@ A similar analysis can be carried out on \textbf{C0} samples. Tables \ref{ch6:ta
 
 
 \begin{table}[!hbt]
-% \tiny
+ \small
  \centering
- \begin{tabularx}{280pt}{  >{\centering\arraybackslash} X | >{\centering\arraybackslash} X }
-    \hline
+ \begin{tabular}{lc}
+    \toprule
     Frequency        & $\sharp$ of samples \\
-    \hline
+    \midrule
      5 classifiers   & 6 samples        \\
-     \hline
      6 classifiers   & 6 samples         \\ 
-     \hline
      7 classifiers   & 3 sample         \\
-     \hline
      8 classifiers  &  1 sample \\
-     \hline
- \end{tabularx}
- \caption{Frequency of common misclassified non-mitoses.}
+     \bottomrule
+ \end{tabular}
+ \caption{Occurrence of common mis-labeled non-mitoses by best SVM and RF classifiers.}
  \label{ch6:tab22}
 \end{table}
 
+
 \begin{table}[!hbt]
-% \tiny
+ \small
  \centering
- \begin{tabularx}{280pt}{ l | >{\centering\arraybackslash} X  }
-    \hline
-    Subset        & frequency  \\
-    \hline
-     $E_{easy}$   & 2 samples \\
-     \hline
-     $E_{med}$    & 8 samples \\ 
-     \hline
-     $E_{hard}$   & 6 sample \\
-     \hline
- \end{tabularx}
+ \begin{tabular}{lcc}
+    \toprule
+    Subset        & samples & [\%] of subset dim.  \\
+    \cmidrule(lr){1-3}
+    $E_{easy}$   & 2 samples &  9.09\% \\
+     $E_{med}$    & 8 samples & 18.60\% \\ 
+     $E_{hard}$   & 6 sample &  27.27\% \\
+     \bottomrule
+ \end{tabular}
  \caption{Correlation among frequency and human difficulty.}
  \label{ch6:tab23}
 \end{table}
@@ -1444,6 +1502,7 @@ A similar analysis can be carried out on \textbf{C0} samples. Tables \ref{ch6:ta
 
 Among the 87 \textbf{C0} samples, 46 have been misclassified by at least one algorithm. Of 46 samples, 16 have been wrongly labeled by 5 of more classifiers.
 Table \ref{ch6:tab23} shows the distribution of the difficulty of the 16 samples. Most of them belong to $E_{med}$ and $E_{hard}$, with only 2 belonging to $E_{easy}$.
+We can assert that there is a weak correlation among samples that are difficult for humans and classifiers.
 
 \vspace{0.2cm}
 

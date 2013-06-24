@@ -5,7 +5,49 @@
 
 %Il sommario deve contenere 3 o 4 frasi tratte dall'introduzione di cui la prima inquadra l'area dove si svolge il lavoro (eventualmente la seconda inquadra la sottoarea pi\`u specifica del lavoro), la seconda o la terza frase dovrebbe iniziare con le parole ``Lo scopo della tesi \`e \dots'' e infine la terza o quarta frase riassume brevemente l'attivit\`a  svolta, i risultati ottenuti ed eventuali valutazioni di questi.
 
-\vspace{0.5cm}
+\vspace{1.3cm}
 %\noindent NB: se il relatore effettivo \`e interno al Politecnico di Milano nel frontesizo si scrive Relatore, se vi \`e la collaborazione di un altro studioso lo si riporta come Correlatore come sopra. Nel caso il relatore effettivo sia esterno si scrive Relatore esterno e poi bisogna inserire anche il Relatore interno. Nel caso il relatore sia un ricercatore allora il suo Nome COGNOME dovr\`{a} essere preceduto da Ing. oppure Dott., a seconda dei casi.
 
 
+Il presente lavoro di tesi si colloca nel contesto dell'apprendimento automatico, in particolare 
+nel campo della classificazione automatizzata di immagini istologiche.\\
+In numerose tipologie di carcinoma, l'identificazione dello stadio di avanzamento della malattia gioca un ruolo fondamentale
+per la selezione delle cure migliori e nella riduzione del tasso di mortalit\`{a}. Attualmente, la classificazione
+dello stadio di un tumore \`{e} eseguita manualmente dall'istologo su campioni di tessuto analizzati al microscopio.
+L'applicazione di tecniche di \textit{computer vision} e di \textit{machine learning} possono portare a numerosi benefici in termini di
+tempo e qualit\`{a} delle analisi eseguite.
+
+\vspace{0.3cm}
+
+Il conteggio delle mitosi in un'immagine istologica costituisce uno dei criteri pi\`{u} rigorosi per la classificazione dei tumori e
+si rivela essere un'attivit\`{a} complessa anche per un occhio molto allenato. Per tale motivo, l'identifica-zione automatica delle 
+mitosi \`{e} un tema di ricerca molto interessante e pu\`{o} essere visto come un caso di apprendimento con supervisione, in cui un classificatore 
+ha a disposizione un insieme di immagini di esempio gi\`{a} etichettate e da queste deve inferire dei criteri per classificarne altre.
+
+\vspace{0.3cm}
+
+In generale, da un punto di vista applicativo, l'interesse \`{e} focalizzato sulle prestazioni di un tale sistema: l'obiettivo
+consiste nell'ottenere dei risultati uguali o migliori rispetto a quelli ottenuti dall'occhio umano esperto.
+
+\vspace{0.3cm}
+
+In questo lavoro ci poniamo nell'ottica di chi progetta un algoritmo di apprendimento. In questo contesto,
+confrontare un algoritmo con un pato-logo esperto non fornisce un'informazione utile: infatti, un medico esperto ha avuto accesso,
+durante la sua esperienza lavorativa, ad un insieme di dati di esempio e di linee guida di gran lunga superiori rispetto ad un normale
+insieme di \textit{training} di un algoritmo di apprendimento.
+
+
+\vspace{0.3cm}
+
+Una prestazione inadeguata dell'algoritmo pu\`{o} essere causata dalla sua scarsa capacit\`{a} di identificazione o dalla
+mancanza di un numero sufficiente di dati di esempio.
+Tramite i risultati delle nostre analisi rispondiamo a tale quesito nel contesto del conteggio di mitosi in immagini istologiche, focalizzandoci sul problema di classificazione.
+Abbiamo estratto dei campioni da immagini prese da un \textit{dataset} pubblico e classificato da un patologo esperto.
+A questo insieme abbiamo applicato una serie di classificatori ed abbiamo implementato un'interfaccia web per far eseguire 
+la classificazione a diversi utenti.
+
+\vspace{0.3cm}
+
+I risultati del confronto dei risultati degli utenti e dei classificatori sviluppati portano alla conclusione che la prestazione degli
+algoritmi \`{e} migliore di quella degli umani (risultato coerente con altri studi analizzati) e che quindi la dimensione del dataset
+\`{e} un elemento determinante per la determinazione delle prestazioni di un algoritmo di identificazione.
